@@ -49,20 +49,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias vim='vim'
 alias vi='vim'
-alias gds-start='sudo systemctl start openvpn-client@gds'
-alias gds-stop='sudo systemctl stop openvpn-client@gds'
-gitpush() {
-    git add .
-    git commit -m "$*"
-    git pull
-    git push
-}
-gitupdate() {
-    eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/github
-    ssh -T git@github.com
-}
+
 alias gp=gitpush
 alias gu=gitupdate
-alias lbrynet='/opt/LBRY/resources/static/daemon/lbrynet'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
