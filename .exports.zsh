@@ -4,6 +4,7 @@
 export HISTSIZE='32768';
 export HISTFILESIZE="${HISTSIZE}";
 export HISTFILE="$HOME/.zsh_history";
+export SAVEHIST='5000';
 setopt appendhistory;
 
 # Omit duplicates and commands that begin with a space from history.
