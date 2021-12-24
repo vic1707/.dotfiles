@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-alias ls='ls'
+alias ls='ls --color'
 # ls, the common ones I use a lot shortened for rapid fire usage
 alias l='ls -lFh'     #size,show type,human readable
 alias la='ls -lAFh'   #long list,show almost all,show type,human readable
