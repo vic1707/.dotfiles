@@ -27,6 +27,9 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)               # Include hidden files.
 
+# Custom ZSH Binds
+bindkey '^ ' autosuggest-accept
+
 # Load exports if existent.
 [ -f "$HOME/.dotfiles/.exports.zsh" ] && source "$HOME/.dotfiles/.exports.zsh"
 # Load functions if existent.
