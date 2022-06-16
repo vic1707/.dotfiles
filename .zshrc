@@ -89,11 +89,11 @@ bindkey '^ ' autosuggest-accept
 
 # Load ; should be last.
 if [ "$(uname)" = "Darwin" ]; then
-	source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-	source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-else
 	source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 	source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+else
+	source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+	source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 fi
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
