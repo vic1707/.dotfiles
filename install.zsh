@@ -1,7 +1,7 @@
-ln -s "$HOME/.dotfiles/.zshrc" ~/.zshrc
-ln -s "$HOME/.dotfiles/.p10k.zsh" ~/.p10k.zsh
-ln -s "$HOME/.dotfiles/.gitconfig" ~/.gitconfig
-ln -s "$HOME/.dotfiles/.zsh_history" ~/.zsh_history
+ln -fs "$HOME/.dotfiles/.zshrc" ~/.zshrc
+ln -fs "$HOME/.dotfiles/.p10k.zsh" ~/.p10k.zsh
+ln -fs "$HOME/.dotfiles/.gitconfig" ~/.gitconfig
+ln -fs "$HOME/.dotfiles/.zsh_history" ~/.zsh_history
 
 ## fonts
 if [ "$(uname)" = "Darwin" ]; then
