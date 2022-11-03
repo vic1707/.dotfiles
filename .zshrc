@@ -89,8 +89,8 @@ bindkey '^ ' autosuggest-accept
 
 # Load ; should be last.
 if [ "$(uname)" = "Darwin" ]; then
-	source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-	source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+  source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+  source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
 	source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
 	source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
