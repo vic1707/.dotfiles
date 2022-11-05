@@ -89,11 +89,12 @@ bindkey '^ ' autosuggest-accept
 
 # Load ; should be last.
 if [ "$(uname)" = "Darwin" ]; then
+  export PATH=/opt/homebrew/bin:$PATH # load brew
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
-	source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
-	source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
+  source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+  source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
 fi
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
