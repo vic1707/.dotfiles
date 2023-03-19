@@ -13,6 +13,9 @@ if [ "$(uname)" = "Darwin" ]; then
   cp -r $HOME/.dotfiles/.fonts/* "$HOME/Library/Fonts"
   echo "MacOS specifics and fonts installed"
 else
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting ~/.zsh/zsh-syntax-highlighting
+  
   cp -r $HOME/.dotfiles/.fonts/* "$HOME/.local/share/fonts"
   echo "Linux specifics and fonts installed"
 fi
