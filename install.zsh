@@ -22,7 +22,7 @@ fi
 
 ## install terminal software
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 curl -fsSL https://xmake.io/shget.text | bash
 echo "Xmake, nvm & rust installed"
 
