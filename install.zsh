@@ -26,7 +26,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 curl -fsSL https://xmake.io/shget.text | bash
 echo "Xmake, nvm & rust installed"
 
-source $NVM_DIR/nvm.sh && nvm install node
+source .nvm/nvm.sh && nvm install node
 ~/.cargo/bin/cargo install nushell
 /opt/homebrew/bin/brew install nvim
 echo "Additional softwares installed"
