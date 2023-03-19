@@ -28,5 +28,5 @@ echo "Xmake, nvm & rust installed"
 
 source $NVM_DIR/nvm.sh && nvm install node
 ~/.cargo/bin/cargo install nushell
-brew install nvim
+/opt/homebrew/bin/brew install nvim
 echo "Additional softwares installed"
