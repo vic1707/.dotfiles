@@ -17,8 +17,9 @@ fi
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 curl -fsSL https://xmake.io/shget.text | bash
+
 # reload $PATH
 source ~/.zshrc
 nvm install node
-cargo install nushell
-brew install 
+# cargo install nushell
+brew install nvim
