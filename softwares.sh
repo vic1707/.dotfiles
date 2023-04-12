@@ -1,5 +1,12 @@
 #!/bin/bash
 
+#########################
+# Linux requirements    #
+# - curl                #
+# - libssl-dev (or eq.) #
+# - pkg-config          #
+#########################
+
 ### Utilities ###
 function get_latest_github_release() {
   curl --silent "https://api.github.com/repos/$1/releases/latest" | \
@@ -7,6 +14,27 @@ function get_latest_github_release() {
     head -1 | \
     sed -E 's/.*"([^"]+)".*/\1/'
 }
+
+function check_command_exists() {
+  if ! command -v "$1" &> /dev/null; then
+    echo "Error: $1 is not installed (command)"
+    exit 1
+  fi
+  if ! type "$1" &> /dev/null; then
+    echo "Error: $1 is not installed (type)"
+    exit 1
+  fi
+  if ! hash "$1" &> /dev/null; then
+    echo "Error: $1 is not installed (hash)"
+    exit 1
+  fi
+}
+
+### Check if commands exists ###
+check_command_exists "curl"
+check_command_exists "pkg-config"
+echo "Ensure that libssl-dev or eq. is installed"
+read -p "Press enter to continue"
 
 ### Install softwares ###
 echo "Installing softwares..."
