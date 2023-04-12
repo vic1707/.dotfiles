@@ -60,6 +60,11 @@ echo "Installing xmake..."
 curl -fsSL https://xmake.io/shget.text | bash > /dev/null 2>&1
 echo "Installed xmake"
 
+## Starship
+echo "Installing starship..."
+curl -fsSL https://starship.rs/install.sh | bash > /dev/null 2>&1
+echo "Installed starship"
+
 ## Additionnal softwares
 echo "Installing additional softwares..."
 
