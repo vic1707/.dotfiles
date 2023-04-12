@@ -40,14 +40,14 @@ echo "Installing additional softwares..."
 echo "Installed sccache"
 ## Array of cargo packages to install
 declare -a packages=(
-  "nu"
+  "bacon"
+  "bat"
+  "bob-nvim"
   "coreutils"
   "exa"
-  "bat"
-  "ripgrep"
   "gitui"
-  "bacon"
-  "bob-nvim"
+  "nu"
+  "ripgrep"
 )
 RUSTC_WRAPPER=sccache ~/.cargo/bin/cargo install "${packages[@]}" > /dev/null 2>&1
 echo "Installed" "${packages[@]}"
