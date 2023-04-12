@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ### Utilities ###
-get_latest_github_release() {
+function get_latest_github_release() {
   curl --silent "https://api.github.com/repos/$1/releases/latest" | \
     grep '"tag_name":' | \
     head -1 | \
