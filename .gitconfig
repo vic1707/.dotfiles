@@ -1,15 +1,62 @@
 [user]
 	name = vic1707
 	email = 28602203+vic1707@users.noreply.github.com
+
+[core]
+  # Don't paginate output by default
+  pager = cat
+	# case sensitive
+	ignorecase = false
+	# don't track file mode changes
+	fileMode = false
+
+[alias]
+  # List available aliases
+  aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+	# Display tree-like log, because default log is a pain...
+  lg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+  # Useful when you have to update your last commit
+  # with staged files without editing the commit message.
+  oops = commit --amend --no-edit
+	# Shorter git status
+	sb = status -sb
+
+[color]
+  # Enable colors in color-supporting terminals
+  ui = auto
+
 [init]
 	defaultBranch = main
+
 [submodule]
 	recurse = true
-[core]
-	ignorecase = false
-	fileMode = false
-[alias]
-  lg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
-	sb = status -sb
+
 [help]
-	autocorrect = 3
+	autocorrect = 3 # 0 = off, 1 = warn, 2 = error, 3 = all
+
+[diff]
+  # Use better, descriptive initials (c, i, w) instead of a/b.
+  mnemonicPrefix = true
+  # Show renames/moves as such
+  renames = true
+
+[fetch]
+  # Auto-fetch submodule changes (sadly, won't auto-update)
+  recurseSubmodules = on-demand
+
+[grep]
+  break = true
+  heading = true
+  lineNumber = true
+  # Consider most regexes to be ERE
+  extendedRegexp = true
+
+[status]
+  # Display submodule rev change summaries in status
+  submoduleSummary = true
+  # Recursively traverse untracked directories to display all contents
+  showUntrackedFiles = all
+
+[push]
+  # Default push should only push the current branch to its push target, regardless of its remote name
+  default = upstream
