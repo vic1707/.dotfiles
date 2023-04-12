@@ -14,7 +14,7 @@ echo "Installing softwares..."
 ## NVM
 echo "Installing nvm..."
 NVM_VERSION=$(get_latest_github_release "nvm-sh/nvm")
-curl -o- "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh" | bash
+curl --silent -o- "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh" | bash > /dev/null 2>&1
 echo "Installed nvm"
 
 ## Node
