@@ -53,7 +53,7 @@ RUSTC_WRAPPER=sccache ~/.cargo/bin/cargo install "${packages[@]}" > /dev/null 2>
 echo "Installed" "${packages[@]}"
 
 ## Nvim
-~/.cargo/bin/bob install latest > /dev/null 2>&1
+~/.cargo/bin/bob use latest > /dev/null 2>&1
 echo "Installed nvim via bob"
 
 unset get_latest_github_release NVM_VERSION packages # Unset functions and variables
