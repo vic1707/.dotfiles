@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ln -fs "$HOME/.dotfiles/.zshrc" "$HOME/.zshrc"
+ln -fs "$HOME/.dotfiles/shell/.zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
 mkdir -p "$HOME/.config"
 ln -fs "$HOME/.dotfiles/.config/nvim" "$HOME/.config/nvim"
