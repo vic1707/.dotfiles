@@ -76,6 +76,7 @@ declare -a packages=(
   "bacon"
   "bat"
   "bob-nvim"
+  "cargo-edit"
   "coreutils"
   "exa"
   "gitui"
