@@ -24,3 +24,6 @@ declare -a ADDITIONNAL_PATHS=(
 )
 # do the same without the join_by function
 export PATH="$(echo "${ADDITIONNAL_PATHS[@]}" | tr ' ' ':'):$PATH"
+
+# load brew if installed
+[ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"
