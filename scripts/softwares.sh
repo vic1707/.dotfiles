@@ -15,27 +15,6 @@ function get_latest_github_release() {
     sed -E 's/.*"([^"]+)".*/\1/'
 }
 
-function check_command_exists() {
-  if ! command -v "$1" &> /dev/null; then
-    echo "Error: $1 is not installed (command)"
-    exit 1
-  fi
-  if ! type "$1" &> /dev/null; then
-    echo "Error: $1 is not installed (type)"
-    exit 1
-  fi
-  if ! hash "$1" &> /dev/null; then
-    echo "Error: $1 is not installed (hash)"
-    exit 1
-  fi
-}
-
-### Check if commands exists ###
-check_command_exists "curl"
-check_command_exists "pkg-config"
-echo "Ensure that libssl-dev or eq. is installed"
-read -p "Press enter to continue"
-
 ### Install softwares ###
 echo "Installing softwares..."
 
@@ -89,5 +68,3 @@ echo "Installed" "${packages[@]}"
 ## Nvim
 ~/.cargo/bin/bob use latest > /dev/null 2>&1
 echo "Installed nvim via bob"
-
-unset get_latest_github_release NVM_VERSION packages # Unset functions and variables

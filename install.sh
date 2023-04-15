@@ -38,4 +38,4 @@ cp -r "$HOME/.dotfiles/fonts/"* "$(uname -s | grep -q Darwin && echo "$HOME/Libr
 echo "Fonts installed"
 
 ## install software
-./softwares.sh
+./scripts/softwares.sh
