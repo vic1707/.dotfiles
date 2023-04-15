@@ -17,3 +17,10 @@ export MANPAGER='less -X';
 # Paths
 export DOTS_DIR="$HOME/.dotfiles/"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+
+# add to PATH
+declare -a ADDITIONNAL_PATHS=(
+  "$HOME/.local/share/bob/nvim-bin"
+)
+# do the same without the join_by function
+export PATH="$(echo "${ADDITIONNAL_PATHS[@]}" | tr ' ' ':'):$PATH"
