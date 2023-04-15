@@ -37,5 +37,7 @@ echo "Minimal config done"
 cp -r "$HOME/.dotfiles/fonts/"* "$(uname -s | grep -q Darwin && echo "$HOME/Library/Fonts" || echo "$HOME/.local/share/fonts")"
 echo "Fonts installed"
 
+## install zsh plugins
+./scripts/zsh-plugins.sh
 ## install software
 ./scripts/softwares.sh
