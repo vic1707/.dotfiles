@@ -18,7 +18,7 @@ alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
 # ls
-alias ls='ls --color'
+alias ls='exa'
 alias l='ls -lFh'
 alias la='ls -lAFh'
 alias ll='ls -lAh'
