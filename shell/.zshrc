@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Load exports if existent.
-[ -f "$HOME/.dotfiles/shell/exports.sh" ] && source "$HOME/.dotfiles/shell/exports.sh"
+[ -f "$HOME/.dotfiles/shell/env.sh" ] && source "$HOME/.dotfiles/shell/env.sh"
 # Load functions if existent.
 [ -f "$HOME/.dotfiles/shell/functions.sh" ] && source "$HOME/.dotfiles/shell/functions.sh"
 # Load aliases if existent.
