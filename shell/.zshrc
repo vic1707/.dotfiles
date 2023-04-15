@@ -12,5 +12,12 @@ for plugin in $HOME/.dotfiles/zsh-plugins/*; do
   [ -d "$plugin" ] && source "$plugin/${plugin##*/}.plugin.zsh"
 done
 
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# >>> xmake >>>
+[[ -s "$HOME/.xmake/profile" ]] && source "$HOME/.xmake/profile" # load xmake profile
+# <<< xmake <<<
+
 ## Load starship
 eval "$(starship init zsh)"
