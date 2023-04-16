@@ -1,4 +1,5 @@
-#!/bin/bash -- only affects shellcheck as source will always use the current shell (zsh in my case)
+#!/bin/bash
+#^ only affects shellcheck as source will always use the current shell (zsh in my case)
 
 # Load exports if existent.
 [ -f "$HOME/.dotfiles/shell/env.sh" ] && source "$HOME/.dotfiles/shell/env.sh"
