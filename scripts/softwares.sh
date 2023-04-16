@@ -56,6 +56,7 @@ declare -a packages=(
   "bat"
   "bob-nvim"
   "cargo-edit"
+  "cargo-update"
   "coreutils"
   "exa"
   "gitui"
