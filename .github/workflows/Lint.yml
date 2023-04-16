@@ -10,6 +10,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
+        env:
+          SHELLCHECK_OPTS: -e SC1091 -e SC1090
       - name: Luacheck linter
         if: always()
         uses: lunarmodules/luacheck@v1
