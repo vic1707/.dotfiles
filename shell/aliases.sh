@@ -18,10 +18,10 @@ alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
 # ls
-alias ls='exa'
-alias l='ls -lFh'
-alias la='ls -lAFh'
-alias ll='ls -lAh'
+alias ls='exa --icons'
+alias l='ls -lF'
+alias la='ls -laF'
+alias ll='ls -la'
 
 # enable sccache for cargo
 alias cargo='RUSTC_WRAPPER=sccache cargo'
