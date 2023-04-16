@@ -69,4 +69,9 @@ function __update_all() {
   bob use latest
   # update nvm
   nvm install node
+  # if brew exists, update brew
+  if __command_exists_b brew; then
+    brew update
+    brew upgrade
+  fi
 }
