@@ -13,3 +13,5 @@ jobs:
       - name: Luacheck linter
         if: always()
         uses: lunarmodules/luacheck@v1
+        with:
+          args: --globals 'vim' --codes
