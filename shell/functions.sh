@@ -51,3 +51,22 @@ function __command_exists_b() {
   fi
   return 0
 }
+
+# update all zsh plugins, cargo installs, etc
+function __update_all() {
+  # update zsh plugins in "$HOME/.ditfiles/zsh-plugins"
+  for plugin in "$HOME/.dotfiles/zsh-plugins/"*; do
+    if [ -d "$plugin" ]; then
+      echo "Updating $plugin"
+      cd "$plugin" || exit
+      git pull
+      cd - || exit
+    fi
+  done
+  # update cargo installs
+  cargo install "$(cargo install --list | grep -E '^[a-z0-9_-]+ v[0-9.]+:$' | cut -f1 -d' ')"
+  # update nvim
+  bob use latest
+  # update nvm
+  nvm install node
+}

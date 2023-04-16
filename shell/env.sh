@@ -16,14 +16,16 @@ export MANPAGER='less -X';
 
 # Paths
 export DOTS_DIR="$HOME/.dotfiles/"
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+export NVM_DIR
 
 # add to PATH
 declare -a ADDITIONNAL_PATHS=(
   "$HOME/.local/share/bob/nvim-bin"
 )
 # do the same without the join_by function
-export PATH="$(echo "${ADDITIONNAL_PATHS[@]}" | tr ' ' ':'):$PATH"
+PATH="$(echo "${ADDITIONNAL_PATHS[@]}" | tr ' ' ':'):$PATH"
+export PATH
 
 # load brew if installed
 [ -f "/opt/homebrew/bin/brew" ] && eval "$(/opt/homebrew/bin/brew shellenv)"

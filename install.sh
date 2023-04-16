@@ -6,7 +6,7 @@ __command_exists_f "zsh"
 __command_exists_f "curl"
 __command_exists_f "pkg-config"
 echo "Ensure that libssl-dev or eq. is installed"
-read -p "Press enter to continue"
+read -pr "Press enter to continue"
 
 
 # way to source or echo if file doesn't exist (usefull for plugins)
