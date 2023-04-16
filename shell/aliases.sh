@@ -25,3 +25,7 @@ alias ll='ls -la'
 
 # enable sccache for cargo
 alias cargo='RUSTC_WRAPPER=sccache cargo'
+
+# vi
+alias vi='nvim'
+alias vim='nvim'
