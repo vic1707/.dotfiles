@@ -22,3 +22,32 @@ function ex() {
     echo "'$1' is not a valid file"
   fi
 }
+
+# check if command exists, one version exit if not, the other is a boolean
+function __command_exists_f() {
+  if ! command -v "$1" &> /dev/null; then
+    echo "Error: $1 is not installed (command)"
+    exit 1
+  fi
+  if ! type "$1" &> /dev/null; then
+    echo "Error: $1 is not installed (type)"
+    exit 1
+  fi
+  if ! hash "$1" &> /dev/null; then
+    echo "Error: $1 is not installed (hash)"
+    exit 1
+  fi
+}
+
+function __command_exists_b() {
+  if ! command -v "$1" &> /dev/null; then
+    return 1
+  fi
+  if ! type "$1" &> /dev/null; then
+    return 1
+  fi
+  if ! hash "$1" &> /dev/null; then
+    return 1
+  fi
+  return 0
+}
