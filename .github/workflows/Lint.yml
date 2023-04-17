@@ -1,10 +1,30 @@
-name: Lint
+name: Lint & Format
 
 on: [push, pull_request]
 
 jobs:
-  shellcheck:
-    name: Shellcheck & Luacheck linters
+  formatters:
+    name: Beautysh & stylua
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Beautysh
+        uses: illvart/beautysh-action@latest
+        with:
+          args: -i 2 -s fnpar $(find . -name "*.sh" -o -name "*.bash" -o -name "*.zsh" -not -path "./.git/*")
+      - name: Run stylua
+        uses: JohnnyMorganz/stylua-action@v2
+        with:
+          args: .
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: '[auto] ci: beautify code'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  linters:
+    name: Shellcheck & Luacheck
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
