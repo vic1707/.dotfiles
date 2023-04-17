@@ -10,8 +10,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run Beautysh
         uses: illvart/beautysh-action@latest
-        with:
-          args: -i 2 -s fnpar $(find . -name "*.sh" -o -name "*.bash" -o -name "*.zsh" -not -path "./.git/*")
+        with: # not in .git and not in zsh-plugins
+          args: -i 2 -s fnpar $(find . -name "*.sh" -o -name "*.bash" -o -name "*.zsh" -not -path "./.git/*" -not -path "./zsh-plugins/*")
       - name: Run stylua
         uses: JohnnyMorganz/stylua-action@v2
         with:
