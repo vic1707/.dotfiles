@@ -1,0 +1,419 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[░▒▓](#48CAE4)\
+$os\
+$username\
+[](fg:#48CAE4 bg:#00B4D8)\
+$directory\
+[](fg:#00B4D8 bg:#0096C7)\
+$fossil_branch\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$hg_branch\
+$pijul_channel\
+$vcsh\
+[](fg:#0096C7 bg:#0077B6)\
+$aws\
+$buf\
+$bun\
+$c\
+$cobol\
+$conda\
+$crystal\
+$daml\
+$dart\
+$deno\
+$dotnet\
+$elixir\
+$elm\
+$erlang\
+$fennel\
+$golang\
+$gradle\
+$haskell\
+$haxe\
+$java\
+$julia\
+$kotlin\
+$lua\
+$nim\
+$nodejs\
+$ocaml\
+$perl\
+$php\
+$purescript\
+$python\
+$raku\
+$rlang\
+$red\
+$ruby\
+$rust\
+$scala\
+$swift\
+$vlang\
+$zig\
+[](fg:#0077B6 bg:#023E8A)\
+$docker_context\
+[](fg:#023E8A bg:#03045E)\
+$time\
+[](fg:#03045E)\
+\n$shell$character\
+"""
+
+palette = 'theme1'
+[palettes.theme1]
+fg1 = "#ffffff"
+bg1 = "#48CAE4"
+fg2 = "#ffffff"
+bg2 = "#00B4D8"
+fg3 = "#ffffff"
+bg3 = "#0096C7"
+fg4 = "#ffffff"
+bg4 = "#0077B6"
+fg5 = "#ffffff"
+bg5 = "#023E8A"
+fg6 = "#ffffff"
+bg6 = "#03045E"
+
+## Section 1 ##
+[username]
+show_always = true
+format = '[ $user ](fg:fg1 bg:bg1)'
+disabled = false
+
+[os]
+disabled = false
+format = '[ $symbol ](fg:fg1 bg:bg1)'
+
+[os.symbols]
+Alpaquita = ""
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = ""
+Artix = ""
+CentOS = ""
+Debian = ""
+DragonFly = ""
+Emscripten = ""
+EndeavourOS = ""
+Fedora = ""
+FreeBSD = ""
+Garuda = "﯑"
+Gentoo = ""
+HardenedBSD = "ﲊ"
+Illumos = ""
+Linux = ""
+Mabox = ""
+Macos = ""
+Manjaro = ""
+Mariner = ""
+MidnightBSD = ""
+Mint = ""
+NetBSD = ""
+NixOS = ""
+OpenBSD = ""
+openSUSE = ""
+OracleLinux = ""
+Pop = ""
+Raspbian = ""
+Redhat = ""
+RedHatEnterprise = ""
+Redox = ""
+Solus = "ﴱ"
+SUSE = ""
+Ubuntu = ""
+Unknown = ""
+Windows = ""
+
+## Section 2 ##
+[directory]
+format = "[ $path ](fg:fg2 bg:bg2)"
+truncation_length = 3
+truncation_symbol = "…/"
+read_only = ""
+
+[directory.substitutions]
+"Documents" = ""
+"Downloads" = ""
+"Music" = ""
+"Pictures" = ""
+
+## Section 3 ##
+[fossil_branch]
+symbol = ""
+format = '[ $symbol ($branch) ](fg:fg3 bg:bg3)'
+disabled = false
+
+[git_branch]
+symbol = ""
+format = '[ $symbol ($branch) ](fg:fg3 bg:bg3)'
+
+[git_commit]
+commit_hash_length = 7
+disabled = false
+only_detached = true
+format = '[ $commit ](fg:fg3 bg:bg3)'
+
+[git_state]
+format = '[ $state ](fg:fg3 bg:bg3)'
+disabled = false
+
+[git_metrics]
+added_style = 'fg:fg3 bg:bg3'
+deleted_style = 'fg:fg3 bg:bg3'
+disabled = false
+only_nonzero_diffs = true
+
+[git_status]
+format = '[($all_status$ahead_behind )](fg:fg3 bg:bg3)'
+
+[hg_branch]
+symbol = ""
+format = '[ $symbol ($branch) ](fg:fg3 bg:bg3)'
+disabled = false
+
+[pijul_channel]
+symbol = ""
+format = '[ $symbol ($channel) ](fg:fg4 bg:bg4)'
+disabled = false
+
+[vcsh]
+symbol = ""
+format = '[ $symbol ($repo) ](fg:fg3 bg:bg3)'
+
+## Section 4 ##
+[aws]
+symbol = ""
+format = '[ $symbol($profile )(\($region\) )(\[$duration\] ) ](fg:fg4 bg:bg4)'
+
+[buf]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[bun]
+symbol = "🥟"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[c]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[cobol]
+symbol = "⚙️"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[conda]
+symbol = ""
+format = '[ $symbol ($environment) ](fg:fg4 bg:bg4)'
+
+[crystal]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[daml]
+symbol = "Λ"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[dart]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[deno]
+symbol = "🦕"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[dotnet]
+symbol = ""
+format = '[ $symbol ($version) (🎯 $tfm ) ](fg:fg4 bg:bg4)'
+
+[elixir]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[elm]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[erlang]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[fennel]
+symbol = "🧅"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[golang]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[gradle]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[haskell]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[haxe]
+symbol = "⌘"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[java]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[julia]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[kotlin]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[lua]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[meson]
+symbol = "喝"
+format = '[ $symbol ($project) ](fg:fg4 bg:bg4)'
+
+[nim]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[nodejs]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[ocaml]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[perl]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[package]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[php]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[purescript]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[python]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[raku]
+symbol = "🦋"
+format = '[ $symbol ($version-$vm_version) ](fg:fg4 bg:bg4)'
+
+[red]
+symbol = "🔺"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[rlang]
+symbol = "ﳒ"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[ruby]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[rust]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[scala]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[spack]
+symbol = "🅢"
+format = '[ $symbol ($environment) ](fg:fg4 bg:bg4)'
+
+[swift]
+symbol = "ﯣ"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[vlang]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[zig]
+symbol = ""
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+## Section 5 ##
+[docker_context]
+symbol = ""
+format = '[ $symbol ($context) ](fg:fg5 bg:bg5)'
+
+## Section 6 ##
+[time]
+disabled = false
+time_format = "%H:%M:%S"
+format = '[  $time ](fg:fg6 bg:bg6)'
+
+###################
+[shell]
+disabled = false
+format = '[  $indicator ]($style)'
+
+[battery]
+charging_symbol = ""
+discharging_symbol = ""
+empty_symbol = ""
+full_symbol = ""
+unknown_symbol = "?"
+format = '[ $symbol ($percentage) ](fg:fg4 bg:bg4)'
+
+[cmd_duration]
+min_time = 2000
+format = "[ $duration ](fg:fg4 bg:bg4)"
+disabled = false
+
+[memory_usage]
+symbol = ""
+format = '[ $symbol ($ram) ](fg:fg4 bg:bg4)'
+disabled = false
+
+[nix_shell]
+symbol = ""
+format = '[ $symbol$state( \($name\)) ](fg:fg4 bg:bg4)'
+
+[helm]
+symbol = "⎈"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[cmake]
+symbol = "△"
+format = '[ $symbol ($version) ](fg:fg4 bg:bg4)'
+
+[azure]
+symbol = ""
+format = '[ $symbol ($subscription) ](fg:fg4 bg:bg4)'
+
+[terraform]
+symbol = "󱁢"
+format = '[ $symbol ($workspace) ](fg:fg4 bg:bg4)'
+
+[guix_shell]
+symbol = ""
+format = '[ $symbol ](fg:fg4 bg:bg4)'
+
+[gcloud]
+symbol = "☁️"
+style = 'fg:fg4 bg:bg4'
