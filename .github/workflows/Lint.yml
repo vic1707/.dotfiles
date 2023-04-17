@@ -27,7 +27,7 @@ jobs:
   linters:
     name: Shellcheck & Luacheck
     runs-on: ubuntu-latest
-    depends-on: formatters
+    needs: [formatters]
     steps:
       - uses: actions/checkout@v3
       - name: Run ShellCheck
