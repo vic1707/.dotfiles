@@ -165,13 +165,10 @@ format = '[ $state ](fg:fg3 bg:bg3)'
 disabled = false
 
 [git_metrics]
-added_style = 'fg:fg3 bg:bg3'
-deleted_style = 'fg:fg3 bg:bg3'
-disabled = false
-only_nonzero_diffs = true
+disabled = true
 
 [git_status]
-format = '[($all_status$ahead_behind )](fg:fg3 bg:bg3)'
+format = '[($all_status)](fg:fg3 bg:bg3)'
 
 [hg_branch]
 symbol = ""
