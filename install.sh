@@ -8,7 +8,6 @@ __command_exists_f "pkg-config"
 echo "Ensure that libssl-dev or eq. is installed"
 read -pr "Press enter to continue"
 
-
 # way to source or echo if file doesn't exist (usefull for plugins)
 
 ln -fs "$HOME/.dotfiles/shell/.zshrc" "$HOME/.zshrc"
