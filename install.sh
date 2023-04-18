@@ -19,7 +19,7 @@ ln -fs "$HOME/.dotfiles/.config/starship.toml" "$HOME/.config/starship.toml"
 echo "Minimal config done"
 
 ## fonts
-cp -r "$HOME/.dotfiles/fonts/"* "$(uname -s | grep -q Darwin && echo "$HOME/Library/Fonts" || echo "$HOME/.local/share/fonts")"
+cp -r "$HOME/.dotfiles/fonts/"* "$([[ "$OSTYPE" == "darwin"* ]] && echo "$HOME/Library/Fonts" || echo "$HOME/.local/share/fonts")"
 echo "Fonts installed"
 
 ## install zsh plugins
