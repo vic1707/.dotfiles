@@ -69,3 +69,6 @@ echo "Installed" "${packages[@]}"
 ## Nvim
 ~/.cargo/bin/bob use latest > /dev/null 2>&1
 echo "Installed nvim via bob"
+
+## Brew if on MacOS
+[[ "$OSTYPE" == "darwin"* ]] && ./mac_softwares.sh
