@@ -16,6 +16,9 @@ zle -N down-line-or-beginning-search
 # to add other keys to this hash, see: man 5 terminfo
 typeset -g -A key
 
+# declare terminfo
+typeset -g -A terminfo
+
 key[Home]="${terminfo[khome]}"
 key[End]="${terminfo[kend]}"
 key[Insert]="${terminfo[kich1]}"
