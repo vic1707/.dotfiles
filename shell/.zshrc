@@ -7,6 +7,8 @@
 [ -f "$HOME/.dotfiles/shell/functions.sh" ] && source "$HOME/.dotfiles/shell/functions.sh"
 # Load aliases if existent.
 [ -f "$HOME/.dotfiles/shell/aliases.sh" ] && source "$HOME/.dotfiles/shell/aliases.sh"
+# Load keybindings if existent.
+[ -f "$HOME/.dotfiles/shell/keybindings.sh" ] && source "$HOME/.dotfiles/shell/keybindings.sh"
 
 # sourcing all plugins in the "$HOME/.dotfiles/zsh-plugins" directory
 for plugin in "$HOME/.dotfiles/zsh-plugins"/*; do
