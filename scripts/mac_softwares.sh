@@ -6,6 +6,7 @@
 # install brew packages
 declare -a packages=(
   "ffmpeg"
+  "fzf"
   "imagemagick"
   "openssh"
   "tmux"
