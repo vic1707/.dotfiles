@@ -63,6 +63,8 @@ function __update_all() {
       cd - >/dev/null || exit
     fi
   done
+  # update rust version
+  rustup update
   # update cargo installs
   cargo install-update -a
   # update nvim
