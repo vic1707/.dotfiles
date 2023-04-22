@@ -60,7 +60,7 @@ function __update_all() {
       echo "Updating $plugin"
       cd "$plugin" || exit
       git pull
-      cd - || exit
+      cd - >/dev/null || exit
     fi
   done
   # update cargo installs
