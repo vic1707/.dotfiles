@@ -6,6 +6,9 @@ alias zshrc='${=EDITOR} ~/.zshrc'
 alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 
+# cat
+alias cat='bat'
+
 # tail
 alias t='tail -f'
 
