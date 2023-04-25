@@ -52,6 +52,18 @@ function __command_exists_b() {
   return 0
 }
 
+function __nvm_uptodate() {
+  NVM_VERSION=$(\. "$HOME/.nvm/nvm.sh" && nvm -v)
+  LATEST_NVM_REMOTE=$(curl --silent "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | \
+      grep '"tag_name":' | \
+      head -1 | \
+    sed -E 's/.*"([^"]+)".*/\1/')
+  if [ "v$NVM_VERSION" != "$LATEST_NVM_REMOTE" ]; then
+    return 1
+  fi
+  return 0
+}
+
 # update all zsh plugins, cargo installs, etc
 function __update_all() {
   # update zsh plugins in "$HOME/.ditfiles/zsh-plugins"
@@ -69,6 +81,14 @@ function __update_all() {
   cargo install-update -a
   # update nvim
   bob use latest
+  # update nvm
+  if __nvm_uptodate; then
+    echo "nvm is already up to date at $LATEST_NVM_REMOTE"
+  else
+    echo "Installing nvm..."
+    curl --silent -o- "https://raw.githubusercontent.com/nvm-sh/nvm/$LATEST_NVM_REMOTE/install.sh" | bash > /dev/null 2>&1
+    echo "Installed nvm"
+  fi
   # update nvm
   nvm install node
   # if brew exists, update brew
