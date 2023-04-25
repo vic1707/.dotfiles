@@ -1,5 +1,5 @@
 #!/bin/bash
-source ./shell/functions.sh
+\. ./shell/functions.sh
 
 ### Check if commands exists ###
 __command_exists_f "zsh"

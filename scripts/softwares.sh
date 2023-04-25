@@ -26,7 +26,7 @@ echo "Installed nvm"
 
 ## Node
 echo "Installing node..."
-source ~/.nvm/nvm.sh && nvm install node > /dev/null 2>&1
+\. ~/.nvm/nvm.sh && nvm install node > /dev/null 2>&1
 echo "Installed node"
 
 ## Rust
