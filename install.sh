@@ -6,7 +6,7 @@ __command_exists_f "zsh"
 __command_exists_f "curl"
 __command_exists_f "pkg-config"
 echo "Ensure that libssl-dev or eq. is installed"
-read -pr "Press enter to continue"
+read -r -p "Press enter to continue"
 
 ln -fs "$HOME/.dotfiles/shell/.zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
