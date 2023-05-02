@@ -15,6 +15,7 @@ jobs:
       - name: Run stylua
         uses: JohnnyMorganz/stylua-action@v3
         with:
+          version: latest
           token: ${{ secrets.GITHUB_TOKEN }}
           args: .
       - name: Commit changes
