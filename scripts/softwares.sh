@@ -41,7 +41,7 @@ echo "Installed xmake"
 
 ## Starship
 echo "Installing starship..."
-curl -fsSL https://starship.rs/install.sh | bash > /dev/null 2>&1
+curl -fsSL https://starship.rs/install.sh | sh -s -- -y > /dev/null 2>&1
 echo "Installed starship"
 
 ## Additionnal softwares
@@ -59,6 +59,7 @@ declare -a packages=(
   "cargo-update"
   "coreutils"
   "exa"
+  "flamegraph"
   "gitui"
   "nu"
   "ripgrep"
