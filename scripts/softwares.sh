@@ -72,4 +72,4 @@ echo "Installed" "${packages[@]}"
 echo "Installed nvim via bob"
 
 ## Brew if on MacOS
-[[ "$OSTYPE" == "darwin"* ]] && ./mac_softwares.sh
+[[ "$OSTYPE" == "darwin"* ]] && ./scripts/mac_softwares.sh
