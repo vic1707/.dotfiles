@@ -27,7 +27,7 @@ alias la='ls -laF'
 alias ll='ls -la'
 
 # enable sccache for cargo
-alias cargo='RUSTC_WRAPPER=sccache cargo'
+export RUSTC_WRAPPER=~/.cargo/bin/sccache
 
 # vi
 alias vi='nvim'
