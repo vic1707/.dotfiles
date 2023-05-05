@@ -33,9 +33,9 @@ curl -fsSL https://xmake.io/shget.text | bash
 echo "Installed xmake"
 
 ## Starship
-echo "Installing starship..."
-curl -fsSL https://starship.rs/install.sh | sh -s -- -y 
-echo "Installed starship"
+# echo "Installing starship..."
+# curl -fsSL https://starship.rs/install.sh | sh -s -- -y
+# echo "Installed starship"
 
 ## Additionnal softwares
 echo "Installing additional softwares..."
@@ -56,6 +56,7 @@ declare -a packages=(
   "gitui"
   "nu"
   "ripgrep"
+  "starship"
 )
 RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install "${packages[@]}"
 echo "Installed" "${packages[@]}"
