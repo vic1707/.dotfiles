@@ -69,6 +69,8 @@ function __update_all() {
   rustup update
   # update cargo installs
   cargo install-update -a
+  # update xmake
+  xmake update
   # update nvim
   bob use latest
   # update nvm
