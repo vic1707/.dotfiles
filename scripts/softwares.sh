@@ -64,7 +64,7 @@ declare -a packages=(
   "nu"
   "ripgrep"
 )
-RUSTC_WRAPPER=sccache ~/.cargo/bin/cargo install "${packages[@]}" 
+RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install "${packages[@]}" 
 echo "Installed" "${packages[@]}"
 
 ## Nvim
