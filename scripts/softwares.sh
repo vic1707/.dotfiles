@@ -1,12 +1,5 @@
 #!/bin/bash
 
-#########################
-# Linux requirements    #
-# - curl                #
-# - libssl-dev (or eq.) #
-# - pkg-config          #
-#########################
-
 ### Utilities ###
 function get_latest_github_release() {
   curl --silent "https://api.github.com/repos/$1/releases/latest" | \
