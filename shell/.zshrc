@@ -19,7 +19,7 @@ done
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # >>> xmake >>>
-[[ -s "$HOME/.xmake/profile" ]] && \. "$HOME/.xmake/profile" # load xmake profile
+test -f "$HOME/.xmake/profile" && \. "$HOME/.xmake/profile" # load xmake profile
 # <<< xmake <<<
 
 ## Load starship
