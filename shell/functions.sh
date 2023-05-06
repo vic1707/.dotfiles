@@ -16,28 +16,28 @@ ex() {
       *.zip)       unzip "$1"       ;;
       *.Z)         uncompress "$1"  ;;
       *.7z)        7z x "$1"        ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+      *)           echo "'$1' cannot be extracted via ex()" >&2 ;;
     esac
   else
-    echo "'$1' is not a valid file"
+    echo "'$1' is not a valid file" >&2
   fi
 }
 
 # check if command exists, one version exit if not, the other is a boolean
 # if $2 is provided, exit if command does not exist
 __command_exists() {
-  if command -v "$1" &> /dev/null; then
+  if command -v "$1" 1>/dev/null; then
     return 1
-  elif type -p "$1" &> /dev/null; then
+  elif type -p "$1" 1>/dev/null; then
     return 1
-  elif hash "$1" &> /dev/null; then
+  elif hash "$1" 1>/dev/null; then
     return 1
-  elif which "$1" &> /dev/null; then
+  elif which "$1" 1>/dev/null; then
     return 1
-  elif $1 --version &> /dev/null; then
+  elif $1 --version 1>/dev/null; then
     return 1
   fi
-  echo "Command $1 does not exist"
+  echo "Command $1 does not exist" >&2
   [[ -n "$2" ]] && exit 1
   return 0
 }
@@ -77,9 +77,9 @@ __update_all() {
   if __nvm_uptodate; then
     echo "nvm is already up to date at $LATEST_NVM_REMOTE"
   else
-    echo "Installing nvm..."
+    echo "Updating nvm..."
     curl --silent -o- "https://raw.githubusercontent.com/nvm-sh/nvm/$LATEST_NVM_REMOTE/install.sh" | bash > /dev/null 2>&1
-    echo "Installed nvm"
+    echo "Updated nvm to $LATEST_NVM_REMOTE"
   fi
   # update nvm
   nvm install node
