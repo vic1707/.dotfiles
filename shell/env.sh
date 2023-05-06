@@ -16,8 +16,6 @@ export MANPAGER='less -X';
 
 # Paths
 export DOTS_DIR="$HOME/.dotfiles/"
-NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-export NVM_DIR
 
 # add to PATH
 declare -a ADDITIONNAL_PATHS=(

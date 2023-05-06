@@ -1,26 +1,7 @@
 #!/bin/bash
 
-### Utilities ###
-get_latest_github_release() {
-  curl --silent "https://api.github.com/repos/$1/releases/latest" | \
-    grep '"tag_name":' | \
-    head -1 | \
-    sed -E 's/.*"([^"]+)".*/\1/'
-}
-
 ### Install softwares ###
 echo "Installing softwares..."
-
-## NVM
-echo "Installing nvm..."
-NVM_VERSION=$(get_latest_github_release "nvm-sh/nvm")
-curl --silent -o- "https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh" | bash
-echo "Installed nvm"
-
-## Node
-echo "Installing node..."
-\. ~/.nvm/nvm.sh && nvm install node
-echo "Installed node"
 
 ## Rust
 echo "Installing rust..."
@@ -51,10 +32,14 @@ declare -a packages=(
   "gitui"
   "nu"
   "ripgrep"
+  "rtx-cli"
   "starship"
 )
 RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install "${packages[@]}"
 echo "Installed" "${packages[@]}"
+
+## Node
+~/.cargo/bin/rtx install node
 
 ## Nvim
 ~/.cargo/bin/bob use latest

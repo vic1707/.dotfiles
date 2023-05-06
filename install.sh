@@ -4,6 +4,7 @@ ln -fs "$HOME/.dotfiles/shell/.zshrc" "$HOME/.zshrc"
 ln -fs "$HOME/.dotfiles/.gitconfig" "$HOME/.gitconfig"
 mkdir -p "$HOME/.config"
 ln -fs "$HOME/.dotfiles/.config/nvim" "$HOME/.config/nvim"
+ln -fs "$HOME/.dotfiles/.config/rtx" "$HOME/.config/rtx"
 ln -fs "$HOME/.dotfiles/.config/starship.toml" "$HOME/.config/starship.toml"
 
 echo "Minimal config done"
