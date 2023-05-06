@@ -27,19 +27,19 @@ ex() {
 # if $2 is provided, exit if command does not exist
 __command_exists() {
   if command -v "$1" 1>/dev/null; then
-    return 1
+    return 0
   elif type -p "$1" 1>/dev/null; then
-    return 1
+    return 0
   elif hash "$1" 1>/dev/null; then
-    return 1
+    return 0
   elif which "$1" 1>/dev/null; then
-    return 1
+    return 0
   elif $1 --version 1>/dev/null; then
-    return 1
+    return 0
   fi
   echo "Command $1 does not exist" >&2
   [[ -n "$2" ]] && exit 1
-  return 0
+  return 1
 }
 
 # update all zsh plugins, cargo installs, etc
