@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # extract archives
-function ex() {
+ex() {
   if [ -f "$1" ] ; then
     case "$1" in
       *.tar.bz2)   tar xjf "$1"     ;;
@@ -25,7 +25,7 @@ function ex() {
 
 # check if command exists, one version exit if not, the other is a boolean
 # if $2 is provided, exit if command does not exist
-function __command_exists() {
+__command_exists() {
   if command -v "$1" &> /dev/null; then
     return 1
   elif type -p "$1" &> /dev/null; then
@@ -42,7 +42,7 @@ function __command_exists() {
   return 0
 }
 
-function __nvm_uptodate() {
+__nvm_uptodate() {
   NVM_VERSION=$(\. "$HOME/.nvm/nvm.sh" && nvm -v)
   LATEST_NVM_REMOTE=$(curl --silent "https://api.github.com/repos/nvm-sh/nvm/releases/latest" | \
       grep '"tag_name":' | \
@@ -55,7 +55,7 @@ function __nvm_uptodate() {
 }
 
 # update all zsh plugins, cargo installs, etc
-function __update_all() {
+__update_all() {
   # update zsh plugins in "$HOME/.ditfiles/zsh-plugins"
   for plugin in "$HOME/.dotfiles/zsh-plugins/"*; do
     if [ -d "$plugin" ]; then
