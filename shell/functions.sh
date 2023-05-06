@@ -48,9 +48,9 @@ __update_all() {
   for plugin in "$HOME/.dotfiles/zsh-plugins/"*; do
     if [ -d "$plugin" ]; then
       echo "Updating $plugin"
-      cd "$plugin" || exit
+      cd "$plugin"
       git pull
-      cd - >/dev/null || exit
+      cd - >/dev/null
     fi
   done
   # update rust version
