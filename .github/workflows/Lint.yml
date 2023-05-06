@@ -34,6 +34,8 @@ jobs:
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@master
         env:
+          # SC1090: Can't follow non-constant source.
+          # SC1091: Not following.
           SHELLCHECK_OPTS: -e SC1091 -e SC1090
       - name: Luacheck linter
         if: always()
