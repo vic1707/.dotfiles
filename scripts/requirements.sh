@@ -23,6 +23,17 @@ declare -A REQS=(
   )
 )
 
+#############################################
+# Identify package manager                  #
+# Globals:                                  #
+#   REQS (provided above)                   #
+# Arguments:                                #
+#   None                                    #
+# Returns:                                  #
+#   echo package manager                    #
+#   0 if successful                         #
+#   1 if unsuccessful (will echo an error)  #
+#############################################
 identify_package_manager() {
   local UNAME=$(uname)
   if [ $UNAME = 'Darwin' ]; then
@@ -40,6 +51,8 @@ identify_package_manager() {
         return 0;
       fi
     done
+    echo "Error: No supported package manager found" >&2
+    exit 1;
   else
     echo "Error: Unsupported OS" >&2
     exit 1;

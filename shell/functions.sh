@@ -1,6 +1,17 @@
 #!/bin/bash
 
-# extract archives
+#############################################
+# Extract a given archive if possible       #
+# Globals:                                  #
+#   None                                    #
+# Arguments:                                #
+#   $1: archive to extract                  #
+# Returns:                                  #
+#   0 if archive is extracted               #
+#   1 if archive is not extracted           #
+# Stderr:                                   #
+#   Error message if $1 is not a valid file #
+#############################################
 ex() {
   if [ -f "$1" ] ; then
     case "$1" in
@@ -16,15 +27,26 @@ ex() {
       *.zip)       unzip "$1"       ;;
       *.Z)         uncompress "$1"  ;;
       *.7z)        7z x "$1"        ;;
-      *)           echo "'$1' cannot be extracted via ex()" >&2 ;;
+      *)           echo "'$1' cannot be extracted via ex()" >&2; return 1;;
     esac
   else
     echo "'$1' is not a valid file" >&2
+    return 1
   fi
+  return 0
 }
 
-# check if command exists, one version exit if not, the other is a boolean
-# if $2 is provided, exit if command does not exist
+#############################################
+# Check if a command exists                 #
+# Globals:                                  #
+#   None                                    #
+# Arguments:                                #
+#   $1: command to check                    #
+#   $2: exit if command does not exist      #
+# Returns:                                  #
+#   0 if command exists                     #
+#   1 if command does not exist             #
+#############################################
 __command_exists() {
   if command -v "$1" 1>/dev/null; then
     return 0
@@ -42,9 +64,23 @@ __command_exists() {
   return 1
 }
 
-# update all zsh plugins, cargo installs, etc
+#############################################
+# Update:                                   #
+#   - zsh plugins                           #
+#   - rustup                                #
+#   - cargo installs                        #
+#   - xmake                                 #
+#   - nvim                                  #
+#   - node                                  #
+#   - brew                                  # 
+# Globals:                                  #
+#  HOME                                     #
+# Arguments:                                #
+#   None                                    #
+# Returns:                                  #
+#   0 if all updates are successful         #
+#############################################
 __update_all() {
-  # update zsh plugins in "$HOME/.ditfiles/zsh-plugins"
   for plugin in "$HOME/.dotfiles/zsh-plugins/"*; do
     if [ -d "$plugin" ]; then
       echo "Updating $plugin"
@@ -53,19 +89,15 @@ __update_all() {
       cd - >/dev/null
     fi
   done
-  # update rust version
   rustup update
-  # update cargo installs
   cargo install-update -a
-  # update xmake
   xmake update
-  # update nvim
   bob use latest
-  # update node
   rtx install node
   # if brew exists, update brew
   if __command_exists brew; then
     brew update
     brew upgrade
   fi
+  return 0
 }
