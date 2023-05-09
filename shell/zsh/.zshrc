@@ -21,6 +21,9 @@ done
 # shellcheck source=shell/zsh/completions.zsh
 . "$DOTS_DIR/shell/zsh/completions.zsh"
 
+# shellcheck source=shell/zsh/functions.zsh
+. "$DOTS_DIR/shell/zsh/functions.zsh"
+
 ################################
 #         ZSH settings         #
 ################################
