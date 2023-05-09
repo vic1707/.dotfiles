@@ -1,22 +1,11 @@
-#!/bin/bash
+#!/bin/zsh
 
-# Basic auto/tab complete:
-autoload -U compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)               # Include hidden files.
+###################
+# ZSH keybindings #
+###################
 
-# History
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-
-# create a zkbd compatible hash;
-# to add other keys to this hash, see: man 5 terminfo
+# declare key & terminfo
 typeset -g -A key
-
-# declare terminfo
 typeset -g -A terminfo
 
 key[Home]="${terminfo[khome]}"

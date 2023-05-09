@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/bin/sh
+
+################################
+# This script need to be POSIX #
+################################
 
 #############################################
 # Extract a given archive if possible       #
@@ -50,54 +54,8 @@ ex() {
 __command_exists() {
   if command -v "$1" 1>/dev/null; then
     return 0
-  elif type -p "$1" 1>/dev/null; then
-    return 0
-  elif hash "$1" 1>/dev/null; then
-    return 0
-  elif which "$1" 1>/dev/null; then
-    return 0
-  elif $1 --version 1>/dev/null; then
-    return 0
   fi
   echo "Command $1 does not exist" >&2
-  [[ -n "$2" ]] && exit 1
+  [ -n "$2" ] && exit 1
   return 1
-}
-
-#############################################
-# Update:                                   #
-#   - zsh plugins                           #
-#   - rustup                                #
-#   - cargo installs                        #
-#   - xmake                                 #
-#   - nvim                                  #
-#   - node                                  #
-#   - brew                                  #
-# Globals:                                  #
-#  HOME                                     #
-# Arguments:                                #
-#   None                                    #
-# Returns:                                  #
-#   0 if all updates are successful         #
-#############################################
-__update_all() {
-  for plugin in "$HOME/.dotfiles/zsh-plugins/"*; do
-    if [ -d "$plugin" ]; then
-      echo "Updating $plugin"
-      cd "$plugin"
-      git pull
-      cd - >/dev/null
-    fi
-  done
-  rustup update
-  cargo install-update -a
-  xmake update
-  bob use latest
-  rtx install node
-  # if brew exists, update brew
-  if __command_exists brew; then
-    brew update
-    brew upgrade
-  fi
-  return 0
 }

@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/bin/sh
 
-alias zshrc='${=EDITOR} ~/.zshrc'
+################################
+# This script need to be POSIX #
+################################
 
 # grep
 alias grep='grep --color'
