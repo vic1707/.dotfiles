@@ -1,11 +1,11 @@
 #!/bin/zsh
 
-\. ./shell/functions.sh
+. ./shell/functions.sh
 
 # exit script if any function returns with non-zero status
 trap 'exit' ERR
 
-declare -A REQS=(
+typeset -A REQS=(
   # "'...'" is required due to the following `eval` command
   ["apt"]=(
     ["update"]="'sudo apt update'"
@@ -60,4 +60,4 @@ identify_package_manager() {
 }
 
 PM=$(identify_package_manager)
-eval declare -A MAN=$REQS[$PM]
+eval typeset -A MAN=$REQS[$PM]

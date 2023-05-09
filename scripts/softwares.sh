@@ -22,7 +22,7 @@ echo "Installing additional softwares..."
 ~/.cargo/bin/cargo install -q sccache
 echo "Installed sccache"
 ## Array of cargo packages to install
-declare -a packages=(
+packages=(
   "bacon"
   "bat"
   "bob-nvim"
