@@ -8,16 +8,16 @@ compinit
 _comp_options+=(globdots) # Include hidden files.
 
 # RTX
-eval "$(rtx activate zsh)"
+. <(rtx activate zsh)
 
 # Bob
-eval "$(bob complete zsh)"
+. <(bob complete zsh)
 
 # Cargo-flamegraph
-eval "$(flamegraph --completions zsh)"
+. <(flamegraph --completions zsh)
 
 # Carapace-bin
 . <(carapace _carapace)
 
 # Starship
-eval "$(starship completions zsh)"
+. <(starship completions zsh)
