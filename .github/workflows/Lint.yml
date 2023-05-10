@@ -35,7 +35,7 @@ jobs:
         uses: ludeeus/action-shellcheck@master
         env:
           # SC1091: Not following.
-          SHELLCHECK_OPTS: -e SC1090
+          SHELLCHECK_OPTS: -e SC1091
       - name: Luacheck linter
         if: always()
         uses: lunarmodules/luacheck@v1
