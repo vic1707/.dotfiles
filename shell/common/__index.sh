@@ -1,8 +1,8 @@
 #!/bin/sh
 
-################################
-# This script need to be POSIX #
-################################
+###################################
+## This script needs to be POSIX ##
+###################################
 
 # shellcheck source=shell/common/aliases.sh
 . "$DOTS_DIR/shell/common/aliases.sh"
