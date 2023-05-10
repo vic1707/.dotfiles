@@ -10,5 +10,11 @@ _comp_options+=(globdots) # Include hidden files.
 # RTX
 eval "$(rtx activate zsh)"
 
+# Bob
+eval "$(bob activate zsh)"
+
+# Cargo-flamegraph
+eval "$(flamegraph --completions zsh)"
+
 # Starship
 eval "$(starship completions zsh)"
