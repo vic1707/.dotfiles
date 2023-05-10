@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 #############################################
-# Update:                                   #
+# Updates:                                  #
 #   - zsh plugins                           #
 #   - rustup                                #
 #   - cargo installs                        #
