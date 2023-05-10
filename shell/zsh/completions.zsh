@@ -16,5 +16,8 @@ eval "$(bob complete zsh)"
 # Cargo-flamegraph
 eval "$(flamegraph --completions zsh)"
 
+# Carapace-bin
+. <(carapace _carapace)
+
 # Starship
 eval "$(starship completions zsh)"

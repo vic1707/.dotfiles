@@ -15,6 +15,7 @@ PKGS="
   openssh
   tmux
   tree
+  rsteube/tap/carapace
 "
 # shellcheck disable=SC2046,SC2086
 brew install $PKGS # brew doesn't like quotes around `$PKGS`
