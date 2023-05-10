@@ -1,4 +1,8 @@
-#!/bin/bash
+#!/bin/sh
+
+###################################
+## This script needs to be POSIX ##
+###################################
 
 ### Install softwares ###
 echo "Installing softwares..."
@@ -22,23 +26,24 @@ echo "Installing additional softwares..."
 ~/.cargo/bin/cargo install -q sccache
 echo "Installed sccache"
 ## Array of cargo packages to install
-packages=(
-  "bacon"
-  "bat"
-  "bob-nvim"
-  "cargo-edit"
-  "cargo-update"
-  "coreutils"
-  "exa"
-  "flamegraph"
-  "gitui"
-  "nu"
-  "ripgrep"
-  "rtx-cli"
-  "starship"
-)
-RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install -q "${packages[@]}"
-echo "Installed" "${packages[@]}"
+PKGS="
+  bacon
+  bat
+  bob-nvim
+  cargo-edit
+  cargo-update
+  coreutils
+  exa
+  flamegraph
+  gitui
+  nu
+  ripgrep
+  rtx-cli
+  starship
+"
+# shellcheck disable=SC2046,SC2086
+RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install -q $PKGS # cargo doesn't like quotes around `$PKGS`
+echo "Installed cargo softwares: $PKGS"
 
 ## Node
 ~/.cargo/bin/rtx install node
@@ -48,4 +53,4 @@ echo "Installed" "${packages[@]}"
 echo "Installed nvim via bob"
 
 ## Brew if on MacOS
-[[ "$OSTYPE" == "darwin"* ]] && ./scripts/mac_softwares.sh
+[ "$(uname -s)" = 'Darwin' ] && ./scripts/mac_softwares.sh
