@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-. ./shell/functions.sh
+. ./shell/common/functions.sh
 
 # exit script if any function returns with non-zero status
 trap 'exit' ERR
