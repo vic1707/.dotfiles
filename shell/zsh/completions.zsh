@@ -11,7 +11,7 @@ _comp_options+=(globdots) # Include hidden files.
 eval "$(rtx activate zsh)"
 
 # Bob
-eval "$(bob activate zsh)"
+eval "$(bob complete zsh)"
 
 # Cargo-flamegraph
 eval "$(flamegraph --completions zsh)"
