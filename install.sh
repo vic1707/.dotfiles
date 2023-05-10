@@ -14,21 +14,15 @@ fi
 echo "Installing dotfiles"
 
 ################################
-## create ln for config files ##
+## sourcing install functions ##
 ################################
-ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
-ln -fs "$DOTS_DIR/shell/zsh/.zshrc" "$HOME/.zshrc"
+# shellcheck source=scripts/__index.sh
+. "$DOTS_DIR/scripts/__index.sh"
 
-mkdir -p "$HOME/.config"
-if [ -n "$(ls -A "$HOME/.config")" ]; then
-  echo "Error: $HOME/.config already exists and is not empty" >&2
-  exit 1;
-fi
-ln -fs "$DOTS_DIR/.config"* "$HOME/.config"
-
+################################
+##           INSTALL          ##
+################################
+install_shell_env 'zsh' # only install zsh for now
+install_config_files
+install_fonts
 echo "Minimal config done"
-
-## fonts
-FONT_DIR="$([ "$(uname)" = 'Darwin' ] && echo "$HOME/Library/Fonts" || echo "$HOME/.local/share/fonts")"
-cp -r "$HOME/.dotfiles/fonts/"* "$FONT_DIR"
-echo "Fonts installed"
