@@ -34,10 +34,6 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 setopt appendhistory
 
-# >>> Load RTX >>>
-eval "$(rtx activate zsh)"
-# <<< Load RTX <<<
-
-## Load starship
+## Load starship prompt
 ## idealy needs to be at the end of the file
 eval "$(starship init zsh)"
