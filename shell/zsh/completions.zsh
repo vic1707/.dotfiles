@@ -14,7 +14,8 @@ _comp_options+=(globdots) # Include hidden files.
 . <(bob complete zsh)
 
 # Cargo-flamegraph
-. <(flamegraph --completions zsh)
+# bugged for now see https://github.com/flamegraph-rs/flamegraph/issues/263
+# . <(flamegraph --completions zsh)
 
 # Carapace-bin
 . <(carapace _carapace)
