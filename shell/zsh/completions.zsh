@@ -8,9 +8,11 @@ compinit
 _comp_options+=(globdots) # Include hidden files.
 
 # RTX
+# shellcheck disable=SC1090 # sourced via external command
 . <(rtx activate zsh)
 
 # Bob
+# shellcheck disable=SC1090 # sourced via external command
 . <(bob complete zsh)
 
 # Cargo-flamegraph
@@ -18,7 +20,9 @@ _comp_options+=(globdots) # Include hidden files.
 # . <(flamegraph --completions zsh)
 
 # Carapace-bin
+# shellcheck disable=SC1090 # sourced via external command
 . <(carapace _carapace)
 
 # Starship
+# shellcheck disable=SC1090 # sourced via external command
 . <(starship completions zsh)

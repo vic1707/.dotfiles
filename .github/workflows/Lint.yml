@@ -48,9 +48,8 @@ jobs:
             !./shell/zsh/.zshrc
             !./**/*.zsh
         env:
-          # SC1091: Not following.
           # -s bash: force checks as bash because of zsh not supported
-          SHELLCHECK_OPTS: -e SC1091 -s bash
+          SHELLCHECK_OPTS: -s bash
       - name: Luacheck linter
         if: always()
         uses: lunarmodules/luacheck@v1
