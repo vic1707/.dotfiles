@@ -34,7 +34,9 @@ jobs:
       - name: Run ShellCheck (no ZSH)
         uses: ludeeus/action-shellcheck@master
         with:
-          ignore_paths: ./**/*.zsh
+          ignore_paths: >-
+            ./shell/zsh/.zshrc
+            ./**/*.zsh
         env:
           # SC1091: Not following.
           SHELLCHECK_OPTS: -e SC1091
@@ -42,7 +44,9 @@ jobs:
         if: always()
         uses: ludeeus/action-shellcheck@master
         with:
-          ignore_paths: "!(./**/*.zsh)"
+          ignore_paths:  >-
+            !./shell/zsh/.zshrc
+            !./**/*.zsh
         env:
           # SC1091: Not following.
           # -s bash: force checks as bash because of zsh not supported
