@@ -12,6 +12,7 @@ export DOTS_DIR
 . "$DOTS_DIR/shell/common/__index.sh"
 
 for plugin in "$DOTS_DIR/zsh-plugins"/*; do
+  # shellcheck disable=SC1090 # is completly dynamic
   test -d "$plugin" && \. "$plugin/${plugin##*/}.plugin.zsh"
 done
 
