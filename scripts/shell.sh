@@ -49,8 +49,8 @@ install_zsh_env() {
   ##    zsh plugins    ##
   #######################
   for plugin in $ZSH_PLUGINS; do
-    if [ ! -d "$HOME/.dotfiles/zsh-plugins/$plugin" ]; then
-      git clone -q "https://github.com/$plugin" "$HOME/.dotfiles/zsh-plugins/${plugin#*/}"
+    if [ ! -d "$DOTS_DIR/zsh-plugins/$plugin" ]; then
+      git clone -q "https://github.com/$plugin" "$DOTS_DIR/zsh-plugins/${plugin#*/}"
     fi
   done
 }
