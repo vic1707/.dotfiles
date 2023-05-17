@@ -40,11 +40,6 @@ jobs:
       - name: Run ShellCheck (only ZSH)
         if: always()
         uses: ludeeus/action-shellcheck@master
-        with:
-          ignore_paths:  >-
-            **/*
-            !./shell/zsh/.zshrc
-            !./**/*.zsh
         env:
           # -s bash: force checks as bash because of zsh not supported
           SHELLCHECK_OPTS: -s bash
