@@ -6,7 +6,6 @@
 
 # shellcheck source=shell/common/aliases.sh
 . "$DOTS_DIR/shell/common/aliases.sh"
-# shellcheck source=shell/common/env.sh
 . "$DOTS_DIR/shell/common/env.sh"
 # shellcheck source=shell/common/functions.sh
 . "$DOTS_DIR/shell/common/functions.sh"

@@ -24,5 +24,4 @@ _comp_options+=(globdots) # Include hidden files.
 . <(carapace _carapace)
 
 # Starship
-# shellcheck disable=SC1090 # sourced via external command
 . <(starship completions zsh)
