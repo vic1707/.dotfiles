@@ -17,9 +17,9 @@ PM_commands() {
   # $1: package manager => must be in $SUPPORTED_PM
   # $2: command => update | install | upgrade | reqs
   case $1 in
-    ##############
-    ## Homebrew ##
-    ##############
+      ##############
+      ## Homebrew ##
+      ##############
     brew)
       case $2 in
         update)
@@ -40,9 +40,9 @@ PM_commands() {
           ;;
       esac
       ;;
-    ###########
-    ##  APT  ##
-    ###########
+      ###########
+      ##  APT  ##
+      ###########
     apt | apt-get)
       case $2 in
         update)

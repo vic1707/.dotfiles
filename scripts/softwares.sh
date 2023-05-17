@@ -26,24 +26,24 @@ echo "Installing additional softwares..."
 ~/.cargo/bin/cargo install -q sccache
 echo "Installed sccache"
 ## Array of cargo packages to install
-PKGS="
-  bacon
-  bat
-  bob-nvim
-  cargo-edit
-  cargo-update
-  coreutils
-  exa
-  flamegraph
-  gitui
-  nu
-  ripgrep
-  rtx-cli
-  starship
+CARGO_PKGS="
+bacon
+bat
+bob-nvim
+cargo-edit
+cargo-update
+coreutils
+exa
+flamegraph
+gitui
+nu
+ripgrep
+rtx-cli
+starship
 "
 # shellcheck disable=SC2046,SC2086
-RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install -q $PKGS # cargo doesn't like quotes around `$PKGS`
-echo "Installed cargo softwares: $PKGS"
+RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install -q $CARGO_PKGS # cargo doesn't like quotes around `$CARGO_PKGS`
+echo "Installed cargo softwares: $CARGO_PKGS"
 
 ## Node
 ~/.cargo/bin/rtx install node

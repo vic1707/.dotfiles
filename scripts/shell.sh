@@ -37,17 +37,18 @@ install_bash_env() {
 ######################
 ##        ZSH       ##
 ######################
+ZSH_PLUGINS="
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-autosuggestions
+"
+
 install_zsh_env() {
   ln -fs "$DOTS_DIR/shell/zsh/.zshrc" "$HOME/.zshrc"
 
   #######################
   ##    zsh plugins    ##
   #######################
-  PLUGINS="
-    zsh-users/zsh-syntax-highlighting
-    zsh-users/zsh-autosuggestions
-  "
-  for plugin in $PLUGINS; do
+  for plugin in $ZSH_PLUGINS; do
     if [ ! -d "$HOME/.dotfiles/zsh-plugins/$plugin" ]; then
       git clone -q "https://github.com/$plugin" "$HOME/.dotfiles/zsh-plugins/${plugin#*/}"
     fi
