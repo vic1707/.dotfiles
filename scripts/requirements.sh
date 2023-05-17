@@ -1,12 +1,11 @@
 #!/bin/sh
 
 SUPPORTED_PM="brew apt apt-get"
-SUPPORTED_PM_OPS="update install upgrade install-reqs"
 
 find_package_manager() {
   for PM in $SUPPORTED_PM; do
-    if command -v $PM >/dev/null 2>&1; then
-      echo $PM
+    if command -v "$PM" >/dev/null 2>&1; then
+      echo "$PM"
       return 0
     fi
   done
@@ -70,9 +69,3 @@ PM_commands() {
       ;;
   esac
 }
-
-echo "PM: $(find_package_manager)"
-echo "update: $(PM_commands $(find_package_manager) update)"
-echo "install: $(PM_commands $(find_package_manager) install)"
-echo "upgrade: $(PM_commands $(find_package_manager) upgrade)"
-echo "reqs: $(PM_commands $(find_package_manager) reqs)"
