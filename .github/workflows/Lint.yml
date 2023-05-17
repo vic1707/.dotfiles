@@ -31,11 +31,21 @@ jobs:
     needs: [formatters]
     steps:
       - uses: actions/checkout@v3
-      - name: Run ShellCheck
+      - name: Run ShellCheck (no ZSH)
         uses: ludeeus/action-shellcheck@master
+        with:
+          ignore_paths: ./**/*.zsh
         env:
           # SC1091: Not following.
           SHELLCHECK_OPTS: -e SC1091
+      - name: Run ShellCheck (only ZSH)
+        uses: ludeeus/action-shellcheck@master
+        with:
+          ignore_paths: "!(./**/*.zsh)"
+        env:
+          # SC1091: Not following.
+          # -s bash: force checks as bash because of zsh not supported
+          SHELLCHECK_OPTS: -e SC1091 -s bash
       - name: Luacheck linter
         if: always()
         uses: lunarmodules/luacheck@v1
