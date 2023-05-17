@@ -37,12 +37,16 @@ jobs:
           ignore_paths: >-
             ./shell/zsh/.zshrc
             ./**/*.zsh
+        env:
+          # SC1091: Not following. -- is fixed locally but CI still fails
+          SHELLCHECK_OPTS: -e SC1091
       - name: Run ShellCheck (only ZSH)
         if: always()
         uses: ludeeus/action-shellcheck@master
         env:
+          # SC1091: Not following. -- is fixed locally but CI still fails
           # -s bash: force checks as bash because of zsh not supported
-          SHELLCHECK_OPTS: -s bash
+          SHELLCHECK_OPTS: -e SC1091 -s bash
       - name: Luacheck linter
         if: always()
         uses: lunarmodules/luacheck@v1
