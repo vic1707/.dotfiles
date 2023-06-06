@@ -36,6 +36,7 @@ coreutils
 exa
 flamegraph
 gitui
+hyperfine
 nu
 ripgrep
 rtx-cli
