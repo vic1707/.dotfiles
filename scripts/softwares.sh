@@ -32,6 +32,7 @@ bat
 bob-nvim
 bottom
 cargo-edit
+cargo-leptos
 cargo-update
 coreutils
 du-dust
