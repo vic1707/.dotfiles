@@ -3,8 +3,7 @@
 	email = 28602203+vic1707@users.noreply.github.com
 
 [core]
-  # Don't paginate output by default
-  pager = cat
+  pager = delta
 	# case sensitive
 	ignorecase = false
 	# don't track file mode changes
@@ -39,6 +38,7 @@
   mnemonicPrefix = true
   # Show renames/moves as such
   renames = true
+  colorMoved = default
 
 [fetch]
   # Auto-fetch submodule changes (sadly, won't auto-update)
@@ -60,3 +60,15 @@
 [push]
   # Default push should only push the current branch to its push target, regardless of its remote name
   default = upstream
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  navigate = true    # use n and N to move between diff sections
+  light = false
+  line-numbers = true
+  side-by-side = true
+
+[merge]
+  conflictstyle = diff3
