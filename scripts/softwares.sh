@@ -43,7 +43,7 @@ rtx-cli
 starship
 "
 # shellcheck disable=SC2046,SC2086
-RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install -q $CARGO_PKGS # cargo doesn't like quotes around `$CARGO_PKGS`
+RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install --locked -q $CARGO_PKGS # cargo doesn't like quotes around `$CARGO_PKGS`
 echo "Installed cargo softwares: $CARGO_PKGS"
 
 ## Node
