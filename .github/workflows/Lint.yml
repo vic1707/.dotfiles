@@ -11,7 +11,7 @@ jobs:
       - name: Run Beautysh
         uses: illvart/beautysh-action@latest
         with: # not in .git and not in zsh-plugins
-          args: -i 2 -s paronly $(find . -not -path "./.git/*" -not -path "./zsh-plugins/*" \( -name "*.sh" -o -name "*.bash" -o -name "*.zsh" \))
+          args: -c -i 2 -s paronly $(find . -not -path "./.git/*" -not -path "./zsh-plugins/*" \( -name "*.sh" -o -name "*.bash" -o -name "*.zsh" \))
       - name: Run stylua
         uses: JohnnyMorganz/stylua-action@v3
         with:
