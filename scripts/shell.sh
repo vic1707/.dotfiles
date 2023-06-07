@@ -35,8 +35,8 @@ install_shells() {
 ##       BASH       ##
 ######################
 install_bash_env() {
-  ## placeholder
-  true;
+  echo "-- Installing bash environment --"
+  echo "Nothing to do for now"
 }
 
 ######################
@@ -48,6 +48,7 @@ zsh-users/zsh-autosuggestions
 "
 
 install_zsh_env() {
+  echo "-- Installing zsh environment --"
   ln -fs "$DOTS_DIR/shell/zsh/.zshrc" "$HOME/.zshrc"
 
   #######################
