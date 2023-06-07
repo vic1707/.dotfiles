@@ -22,7 +22,24 @@ echo "Installing dotfiles"
 ################################
 ##           INSTALL          ##
 ################################
-install_shell_env 'zsh' # only install zsh for now
-install_config_files
-install_fonts
-echo "Minimal config done"
+## Config files ##
+(install_config_files && {
+  echo "Config files installed"
+}) || {
+  echo "Error: $HOME/.config already exists and is not empty" >&2
+  exit 1;
+}
+## Fonts ##
+(install_fonts && {
+  echo "Fonts installed"
+}) || {
+  echo "Error: fonts could not be installed" >&2
+  exit 1;
+}
+## Shell ##
+(install_shells && {
+  echo "Shell(s) installed"
+}) || {
+  echo "Error: shell(s) could not be installed" >&2
+  exit 1;
+}

@@ -21,10 +21,7 @@
 install_config_files() {
   ## `.config` directory
   mkdir -p "$HOME/.config"
-  if [ -n "$(ls -A "$HOME/.config")" ]; then
-    echo "Error: $HOME/.config already exists and is not empty" >&2
-    exit 1;
-  fi
+  [ -n "$(ls -A "$HOME/.config")" ] && return 1
   ln -fs "$DOTS_DIR/.config"* "$HOME/.config"
   ## Git config files
   ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
