@@ -4,6 +4,8 @@
 ## This script needs to be POSIX ##
 ###################################
 
+AVAILABLE_SHELLS="zsh bash"
+
 #####################################
 # Install needed shell config files #
 # and plugins if needed             #
@@ -14,16 +16,19 @@
 # Returns:                          #
 #   0 if install was successful     #
 #####################################
-install_shell_env() {
-  if [ "$1" = "zsh" ]; then
-    install_zsh_env
-  elif [ "$1" = "bash" ]; then
-    install_bash_env
-  else
-    echo "Error: install_shell_env: unknown shell $1" >&2
-    exit 1
-  fi
-  return 0
+install_shells() {
+  SHELLS_TO_INSTALL=""
+  __ask_multi_choice "Which shell do you want to install?" "$AVAILABLE_SHELLS" SHELLS_TO_INSTALL
+  for choice in $SHELLS_TO_INSTALL; do
+    case "$choice" in
+      zsh)
+        install_zsh_env
+        ;;
+      bash)
+        install_bash_env
+        ;;
+    esac
+  done
 }
 
 ######################
