@@ -59,3 +59,107 @@ __command_exists() {
   [ -n "$2" ] && exit 1
   return 1
 }
+
+###################################
+# Function to display a choice    #
+# Globals:                        #
+#  None                           #
+# Arguments:                      #
+#   $1 is a string separated by   #
+#      spaces or \n for options   #
+#   $2 is prompt                  #
+# Returns:                        #
+#   list of selected options      #
+###################################
+__ask_multi_choice() {
+  options="$(echo "$1" | tr '\n' ' ')"
+  subject="$2"
+  length=$(echo "$options" | awk '{print NF}')
+  answers=""
+
+  __menu() {
+    echo "$2"
+    idx=1
+    for i in $1; do
+      is_selected=$(echo "$answers" | grep -c "$i")
+      if [ "$is_selected" -eq 1 ]; then
+        echo "$idx+) $i"
+      else
+        echo "$idx ) $i"
+      fi
+      idx=$((idx+1))
+    done
+    if [ -n "$msg" ]; then echo "$msg"; fi
+  }
+
+  prompt="Check an option (again to uncheck, ENTER when done): "
+  while __menu "$options" "$subject" && printf "%s" "$prompt" && read -r num && test -n "$num"; do
+    case $num in
+      *[!0-9]* | "")
+        msg="Invalid option: $num"
+        continue
+        ;;
+      *)
+        test "$num" -gt 0 -a "$num" -lt "$((length+1))" || {
+          msg="Invalid option: $num"
+          continue
+        } ;;
+    esac
+
+    chosen=$(echo "$options" | awk -v n="$num" 'BEGIN{FS=" "}{print $n}')
+    if echo "$answers" | grep -q "$chosen"; then
+      answers=$(echo "$answers" | sed "s/$chosen//g")
+    else
+      answers="$answers $chosen"
+    fi
+  done
+
+  echo "$answers"
+}
+
+###################################
+# Function to display a choice    #
+# Globals:                        #
+#  None                           #
+# Arguments:                      #
+#   $1 is a string separated by   #
+#      spaces or \n for options   #
+#   $2 is prompt                  #
+# Returns:                        #
+#   selected option               #
+###################################
+__ask_unique_choice() {
+  options="$(echo "$1" | tr '\n' ' ')"
+  subject="$2"
+  length=$(echo "$options" | awk '{print NF}')
+  answer=""
+
+  __menu() {
+    echo "$2"
+    idx=1
+    for i in $1; do
+      echo "$idx ) $i"
+      idx=$((idx+1))
+    done
+    if [ -n "$msg" ]; then echo "$msg"; fi
+  }
+
+  prompt="Check an option (again to uncheck, ENTER when done): "
+  while __menu "$options" "$subject" && printf "%s" "$prompt" && read -r num && test -n "$num"; do
+    case $num in
+      *[!0-9]* | "")
+        msg="Invalid option: $num";
+        continue ;;
+      *)
+        test "$num" -gt 0 -a "$num" -lt "$((length+1))" || {
+          msg="Invalid option: $num";
+          continue;
+        } ;;
+    esac
+
+    answer=$(echo "$options" | awk -v n="$num" 'BEGIN{FS=" "}{print $n}')
+    break
+  done
+
+  echo "$answer"
+}
