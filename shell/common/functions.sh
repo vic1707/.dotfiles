@@ -65,15 +65,17 @@ __command_exists() {
 # Globals:                        #
 #  None                           #
 # Arguments:                      #
-#   $1 is a string separated by   #
+#   $1 is prompt                  #
+#   $2 is a string separated by   #
 #      spaces or \n for options   #
-#   $2 is prompt                  #
+#   $3 return value (ref)         #
 # Returns:                        #
 #   list of selected options      #
 ###################################
 __ask_multi_choice() {
-  options="$(echo "$1" | tr '\n' ' ')"
-  subject="$2"
+  subject="$1"
+  options="$(echo "$2" | tr '\n' ' ')"
+  _outvar="$3"
   length=$(echo "$options" | awk '{print NF}')
   answers=""
 
@@ -114,7 +116,7 @@ __ask_multi_choice() {
     fi
   done
 
-  echo "$answers"
+  eval "$_outvar='$answers'"
 }
 
 ###################################
@@ -122,15 +124,17 @@ __ask_multi_choice() {
 # Globals:                        #
 #  None                           #
 # Arguments:                      #
-#   $1 is a string separated by   #
+#   $1 is prompt                  #
+#   $2 is a string separated by   #
 #      spaces or \n for options   #
-#   $2 is prompt                  #
+#   $3 return value (ref)         #
 # Returns:                        #
 #   selected option               #
 ###################################
 __ask_unique_choice() {
-  options="$(echo "$1" | tr '\n' ' ')"
-  subject="$2"
+  subject="$1"
+  options="$(echo "$2" | tr '\n' ' ')"
+  _outvar="$3"
   length=$(echo "$options" | awk '{print NF}')
   answer=""
 
@@ -161,5 +165,5 @@ __ask_unique_choice() {
     break
   done
 
-  echo "$answer"
+  eval "$_outvar='$answer'"
 }
