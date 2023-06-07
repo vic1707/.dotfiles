@@ -110,6 +110,8 @@ __ask_multi_choice() {
 
     chosen=$(echo "$options" | awk -v n="$num" 'BEGIN{FS=" "}{print $n}')
     if echo "$answers" | grep -q "$chosen"; then
+      # vvv SC3060 (warning): In POSIX sh, string replacement is undefined. vvv
+      # shellcheck disable=SC2001
       answers=$(echo "$answers" | sed "s/$chosen//g")
     else
       answers="$answers $chosen"
