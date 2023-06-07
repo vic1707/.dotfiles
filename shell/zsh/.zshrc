@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # REQUIRED ENVIRONMENT VARIABLE
-DOTS_DIR="$HOME/.dotfiles/"
+DOTS_DIR="$HOME/.dotfiles"
 export DOTS_DIR
 
 ################################
