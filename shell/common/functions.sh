@@ -91,7 +91,10 @@ __ask_multi_choice() {
       fi
       idx=$((idx+1))
     done
-    if [ -n "$msg" ]; then echo "$msg"; fi
+    if [ -n "$msg" ]; then
+      echo "$msg"
+      msg=""
+    fi
   }
 
   prompt="Check an option (again to uncheck, ENTER when done): "
