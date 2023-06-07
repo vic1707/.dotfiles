@@ -141,7 +141,6 @@ __ask_unique_choice() {
   options="$(echo "$2" | tr '\n' ' ')"
   _outvar="$3"
   length=$(echo "$options" | awk '{print NF}')
-  answer=""
 
   __menu() {
     echo "$2"
@@ -150,25 +149,26 @@ __ask_unique_choice() {
       echo "$idx ) $i"
       idx=$((idx+1))
     done
-    if [ -n "$msg" ]; then echo "$msg"; fi
+    [ -n "$msg" ] && echo "$msg"
   }
 
-  prompt="Check an option (again to uncheck, ENTER when done): "
-  while __menu "$options" "$subject" && printf "%s" "$prompt" && read -r num && test -n "$num"; do
+  prompt="Choose an option: "
+  while __menu "$options" "$subject" && printf "%s" "$prompt" && read -r num; do
     case $num in
-      *[!0-9]* | "")
+      "")
+        msg="You need to select an option."
+        continue ;;
+      *[!0-9]*)
         msg="Invalid option: $num";
         continue ;;
       *)
-        test "$num" -gt 0 -a "$num" -lt "$((length+1))" || {
+        test "$num" -gt 0 -a "$num" -lt "$((length+1))" && {
+          eval "$_outvar='$(echo "$options" | awk -v n="$num" 'BEGIN{FS=" "}{print $n}')'"
+          return 0;
+          } || {
           msg="Invalid option: $num";
           continue;
         } ;;
     esac
-
-    answer=$(echo "$options" | awk -v n="$num" 'BEGIN{FS=" "}{print $n}')
-    break
   done
-
-  eval "$_outvar='$answer'"
 }
