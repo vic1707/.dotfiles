@@ -66,16 +66,18 @@ __command_exists() {
 #  None                           #
 # Arguments:                      #
 #   $1 is prompt                  #
-#   $2 is a string separated by   #
+#   $2 min answers required       #
+#   $3 is a string separated by   #
 #      spaces or \n for options   #
-#   $3 return value (ref)         #
+#   $4 return value (ref)         #
 # Returns:                        #
 #   list of selected options      #
 ###################################
-__ask_multi_choice() {
+__ask_choice() {
   subject="$1"
-  options="$(echo "$2" | tr '\n' ' ')"
-  _outvar="$3"
+  min_answers=$2
+  options="$(echo "$3" | tr '\n' ' ')"
+  _outvar="$4"
   length=$(echo "$options" | awk '{print NF}')
   answers=""
 
@@ -98,9 +100,17 @@ __ask_multi_choice() {
   }
 
   prompt="Check an option (again to uncheck, ENTER when done): "
-  while __menu "$options" "$subject" && printf "%s" "$prompt" && read -r num && test -n "$num"; do
+  while __menu "$options" "$subject" && printf "%s" "$prompt" && read -r num; do
     case $num in
-      *[!0-9]* | "")
+      "")
+        if [ "$(echo "$answers" | wc -w)" -lt "$min_answers" ]; then
+          msg="You need to select at least $min_answers option."
+          continue
+        else
+          break
+        fi
+        ;;
+      *[!0-9]*)
         msg="Invalid option: $num"
         continue
         ;;
@@ -108,14 +118,14 @@ __ask_multi_choice() {
         test "$num" -gt 0 -a "$num" -lt "$((length+1))" || {
           msg="Invalid option: $num"
           continue
-        } ;;
+        }
+        ;;
     esac
-
     chosen=$(echo "$options" | awk -v n="$num" 'BEGIN{FS=" "}{print $n}')
     if echo "$answers" | grep -q "$chosen"; then
       # vvv SC3060 (warning): In POSIX sh, string replacement is undefined. vvv
       # shellcheck disable=SC2001
-      answers=$(echo "$answers" | sed "s/$chosen//g")
+      answers=$(echo "$answers" | sed "s/ $chosen//g")
     else
       answers="$answers $chosen"
     fi
@@ -124,51 +134,3 @@ __ask_multi_choice() {
   eval "$_outvar='$answers'"
 }
 
-###################################
-# Function to display a choice    #
-# Globals:                        #
-#  None                           #
-# Arguments:                      #
-#   $1 is prompt                  #
-#   $2 is a string separated by   #
-#      spaces or \n for options   #
-#   $3 return value (ref)         #
-# Returns:                        #
-#   selected option               #
-###################################
-__ask_unique_choice() {
-  subject="$1"
-  options="$(echo "$2" | tr '\n' ' ')"
-  _outvar="$3"
-  length=$(echo "$options" | awk '{print NF}')
-
-  __menu() {
-    echo "$2"
-    idx=1
-    for i in $1; do
-      echo "$idx ) $i"
-      idx=$((idx+1))
-    done
-    [ -n "$msg" ] && echo "$msg"
-  }
-
-  prompt="Choose an option: "
-  while __menu "$options" "$subject" && printf "%s" "$prompt" && read -r num; do
-    case $num in
-      "")
-        msg="You need to select an option."
-        continue ;;
-      *[!0-9]*)
-        msg="Invalid option: $num";
-        continue ;;
-      *)
-        test "$num" -gt 0 -a "$num" -lt "$((length+1))" && {
-          eval "$_outvar='$(echo "$options" | awk -v n="$num" 'BEGIN{FS=" "}{print $n}')'"
-          return 0;
-          } || {
-          msg="Invalid option: $num";
-          continue;
-        } ;;
-    esac
-  done
-}

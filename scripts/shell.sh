@@ -18,7 +18,7 @@ AVAILABLE_SHELLS="zsh bash"
 #####################################
 install_shells() {
   SHELLS_TO_INSTALL=""
-  __ask_multi_choice "Which shell do you want to install?" "$AVAILABLE_SHELLS" SHELLS_TO_INSTALL
+  __ask_choice "Which shell do you want to install?" 1 "$AVAILABLE_SHELLS" SHELLS_TO_INSTALL
   for choice in $SHELLS_TO_INSTALL; do
     case "$choice" in
       zsh)
