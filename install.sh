@@ -37,3 +37,8 @@ echo "Installing dotfiles"
   echo "Error: shell(s) could not be installed" >&2
   exit 1;
 }
+## Softwares ##
+(install_softwares && echo "Softwares installed") || {
+  echo "Error: softwares could not be installed" >&2
+  exit 1;
+}

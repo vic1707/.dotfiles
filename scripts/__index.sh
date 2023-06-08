@@ -14,3 +14,5 @@
 . "$DOTS_DIR/scripts/2_fonts.sh"
 # shellcheck source=scripts/3_shell.sh
 . "$DOTS_DIR/scripts/3_shell.sh"
+# shellcheck source=scripts/4_softwares.sh
+. "$DOTS_DIR/scripts/4_softwares.sh"
