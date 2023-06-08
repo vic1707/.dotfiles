@@ -103,7 +103,7 @@ __ask_choice() {
   while __menu "$options" "$subject" && printf "%s" "$prompt" && read -r num; do
     case $num in
       "")
-        if [ "$(echo "$answers" | wc -w)" -lt "$min_answers" ]; then
+        if [ "$(echo "$answers" | awk '{print NF}')" -lt "$min_answers" ]; then
           msg="You need to select at least $min_answers option."
           continue
         else
