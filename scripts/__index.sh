@@ -8,9 +8,9 @@
 # shellcheck source=shell/common/functions.sh
 . "$DOTS_DIR/shell/common/functions.sh"
 
-# shellcheck source=scripts/config_files.sh
-. "$DOTS_DIR/scripts/config_files.sh"
-# shellcheck source=scripts/fonts.sh
-. "$DOTS_DIR/scripts/fonts.sh"
-# shellcheck source=scripts/shell.sh
-. "$DOTS_DIR/scripts/shell.sh"
+# shellcheck source=scripts/1_config_files.sh
+. "$DOTS_DIR/scripts/1_config_files.sh"
+# shellcheck source=scripts/2_fonts.sh
+. "$DOTS_DIR/scripts/2_fonts.sh"
+# shellcheck source=scripts/3_shell.sh
+. "$DOTS_DIR/scripts/3_shell.sh"
