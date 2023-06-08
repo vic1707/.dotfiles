@@ -46,6 +46,8 @@ ZSH_PLUGINS="
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 "
+# keep this up to date with `.zshrc` line 5
+BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
 
 install_zsh_env() {
   echo "-- Installing zsh environment --"
@@ -55,8 +57,8 @@ install_zsh_env() {
   ##    zsh plugins    ##
   #######################
   for plugin in $ZSH_PLUGINS; do
-    if [ ! -d "$DOTS_DIR/zsh-plugins/$plugin" ]; then
-      git clone -q "https://github.com/$plugin" "$DOTS_DIR/zsh-plugins/${plugin#*/}"
+    if [ ! -d "$BASE_ZSH_PLUGINS_DIR/$plugin" ]; then
+      git clone -q "https://github.com/$plugin" "$BASE_ZSH_PLUGINS_DIR/${plugin#*/}"
     fi
   done
 }

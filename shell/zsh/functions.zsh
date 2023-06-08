@@ -17,7 +17,7 @@
 #   0 if all updates are successful         #
 #############################################
 __update_all() {
-  for plugin in "$DOTS_DIR/zsh-plugins/"*; do
+  for plugin in "$BASE_ZSH_PLUGINS_DIR/"*; do
     if [ -d "$plugin" ]; then
       echo "Updating $plugin"
       cd "$plugin" || exit 1

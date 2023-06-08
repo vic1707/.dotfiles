@@ -3,6 +3,9 @@
 # REQUIRED ENVIRONMENT VARIABLE
 DOTS_DIR="$HOME/.dotfiles"
 export DOTS_DIR
+# keep it up to date with `scripts/shell.sh` line 50
+BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
+export BASE_ZSH_PLUGINS_DIR
 
 ################################
 #         source config        #
@@ -11,7 +14,7 @@ export DOTS_DIR
 # shellcheck source=shell/common/__index.sh
 . "$DOTS_DIR/shell/common/__index.sh"
 
-for plugin in "$DOTS_DIR/zsh-plugins"/*; do
+for plugin in "$BASE_ZSH_PLUGINS_DIR"/*; do
   # shellcheck disable=SC1090 # is completly dynamic
   test -d "$plugin" && \. "$plugin/${plugin##*/}.plugin.zsh"
 done
