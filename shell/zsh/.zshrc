@@ -3,7 +3,7 @@
 # REQUIRED ENVIRONMENT VARIABLE
 DOTS_DIR="$HOME/.dotfiles"
 export DOTS_DIR
-# keep it up to date with `scripts/shell.sh` line 50
+# keep it up to date with `scripts/__consts.sh` line 14
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
 export BASE_ZSH_PLUGINS_DIR
 

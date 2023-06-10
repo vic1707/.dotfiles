@@ -56,27 +56,6 @@ install_sccache() {
   return $?
 }
 
-CARGO_PKGS="
-bacon
-bat
-bob-nvim
-bottom
-cargo-edit
-cargo-leptos
-cargo-update
-coreutils
-du-dust
-exa
-flamegraph
-gitui
-git-delta
-hyperfine
-nu
-procs
-ripgrep
-rtx-cli
-starship
-"
 install_cargo_pkgs() {
   [ -x ~/.cargo/bin/cargo ] || return 1
   # shellcheck disable=SC2046,SC2086

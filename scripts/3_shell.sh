@@ -4,8 +4,6 @@
 ## This script needs to be POSIX ##
 ###################################
 
-AVAILABLE_SHELLS="zsh bash"
-
 #####################################
 # Install needed shell config files #
 # and plugins if needed             #
@@ -42,13 +40,6 @@ install_bash_env() {
 ######################
 ##        ZSH       ##
 ######################
-ZSH_PLUGINS="
-zsh-users/zsh-syntax-highlighting
-zsh-users/zsh-autosuggestions
-"
-# keep this up to date with `.zshrc` line 5
-BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
-
 install_zsh_env() {
   echo "-- Installing zsh environment --"
   ln -fs "$DOTS_DIR/shell/zsh/.zshrc" "$HOME/.zshrc"

@@ -7,6 +7,8 @@
 ## source some helpers functions
 # shellcheck source=shell/common/functions.sh
 . "$DOTS_DIR/shell/common/functions.sh"
+# shellcheck source=scripts/__consts.sh
+. "$DOTS_DIR/scripts/__consts.sh"
 
 # shellcheck source=scripts/1_config_files.sh
 . "$DOTS_DIR/scripts/1_config_files.sh"
