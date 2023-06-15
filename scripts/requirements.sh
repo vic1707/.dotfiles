@@ -32,6 +32,9 @@ PM_commands() {
           echo "brew upgrade"
           ;;
         install-reqs)
+          # curl
+          # cmake
+          # pkg-config
           echo "brew install curl cmake pkg-config"
           ;;
         *)
@@ -55,7 +58,13 @@ PM_commands() {
           echo "sudo apt upgrade"
           ;;
         install-reqs)
-          echo "sudo apt install curl build-essential cmake libssl-dev pkg-config"
+          # passwd: allows `chsh` command
+          # curl
+          # build-essential
+          # cmake
+          # libssl-dev
+          # pkg-config
+          echo "sudo apt install passwd curl build-essential cmake libssl-dev pkg-config"
           ;;
         *)
           echo "Error: Unsupported command" >&2
