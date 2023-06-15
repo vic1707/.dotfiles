@@ -13,7 +13,6 @@ zsh-users/zsh-autosuggestions
 # keep this up to date with `.zshrc` line 5
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
 
-
 ## 4_softwares.sh ##
 CARGO_PKGS="
 bacon
@@ -24,6 +23,7 @@ cargo-edit
 cargo-leptos
 cargo-update
 coreutils
+diskonaut
 du-dust
 exa
 flamegraph
