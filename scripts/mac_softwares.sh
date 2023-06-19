@@ -16,6 +16,7 @@ openssh
 tmux
 tree
 rsteube/tap/carapace
+android-platform-tools
 "
 # shellcheck disable=SC2046,SC2086
 brew install $BREW_PKGS # brew doesn't like quotes around `$BREW_PKGS`
