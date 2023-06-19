@@ -10,6 +10,8 @@
 # shellcheck source=scripts/__consts.sh
 . "$DOTS_DIR/scripts/__consts.sh"
 
+# shellcheck source=scripts/0_requirements.sh
+. "$DOTS_DIR/scripts/0_requirements.sh"
 # shellcheck source=scripts/1_config_files.sh
 . "$DOTS_DIR/scripts/1_config_files.sh"
 # shellcheck source=scripts/2_fonts.sh

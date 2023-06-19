@@ -30,6 +30,32 @@ SUDO_PREFIX="$(if [ "$(id -u)" -eq 0 ]; then echo ""; else echo "sudo"; fi)"
 export SUDO_PREFIX
 
 ################################
+##        REQUIREMENTS        ##
+################################
+## Homebrew (if MacOS) ##
+if [ "$UNAME" = "Darwin" ]; then
+  (install_brew && echo "Homebrew installed") || {
+    echo "Error: Homebrew could not be installed" >&2
+    exit 1;
+  }
+fi
+
+## Find package manager ##
+PM="$(find_package_manager)"
+export PM
+
+## Update package manager ##
+($(PM_commands "$PM" update) && echo "Package manager updated") || {
+  echo "Error: package manager could not be updated" >&2
+  exit 1;
+}
+## Requirements ##
+($(PM_commands "$PM" install-reqs) && echo "Requirements installed") || {
+  echo "Error: requirements could not be installed" >&2
+  exit 1;
+}
+
+################################
 ##           INSTALL          ##
 ################################
 ## Config files ##
