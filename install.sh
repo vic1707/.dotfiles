@@ -20,6 +20,16 @@ echo "Installing dotfiles"
 . "$DOTS_DIR/scripts/__index.sh"
 
 ################################
+##           GLOBALS          ##
+################################
+## Uname ##
+UNAME="$(uname -s)"
+export UNAME
+## SUDO PREFIX ##
+SUDO_PREFIX="$(if [ "$(id -u)" -eq 0 ]; then echo ""; else echo "sudo"; fi)"
+export SUDO_PREFIX
+
+################################
 ##           INSTALL          ##
 ################################
 ## Config files ##

@@ -49,13 +49,13 @@ PM_commands() {
     apt | apt-get)
       case $2 in
         update)
-          echo "sudo apt update"
+          echo "$SUDO_PREFIX apt update"
           ;;
         install)
-          echo "sudo apt install"
+          echo "$SUDO_PREFIX apt install"
           ;;
         upgrade)
-          echo "sudo apt upgrade"
+          echo "$SUDO_PREFIX apt upgrade"
           ;;
         install-reqs)
           # passwd: allows `chsh` command
@@ -64,7 +64,7 @@ PM_commands() {
           # cmake
           # libssl-dev
           # pkg-config
-          echo "sudo apt install passwd curl build-essential cmake libssl-dev pkg-config"
+          echo "$SUDO_PREFIX apt install passwd curl build-essential cmake libssl-dev pkg-config"
           ;;
         *)
           echo "Error: Unsupported command" >&2
