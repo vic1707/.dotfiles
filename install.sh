@@ -45,12 +45,14 @@ PM="$(find_package_manager)"
 export PM
 
 ## Update package manager ##
-($(PM_commands "$PM" update) && echo "Package manager updated") || {
+UPDATE_COMMAND="$(PM_commands "$PM" update)"
+(eval "$UPDATE_COMMAND" && echo "Package manager updated") || {
   echo "Error: package manager could not be updated" >&2
   exit 1;
 }
 ## Requirements ##
-($(PM_commands "$PM" install-reqs) && echo "Requirements installed") || {
+REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
+(eval "$REQUIREMENTS_COMMAND" && echo "Requirements installed") || {
   echo "Error: requirements could not be installed" >&2
   exit 1;
 }
