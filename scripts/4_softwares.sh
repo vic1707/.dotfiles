@@ -44,14 +44,12 @@ install_xmake() {
 }
 
 install_sccache() {
-  [ -x ~/.cargo/bin/cargo ] && return 1
   ~/.cargo/bin/cargo install -q sccache
   # return error code of previous command
   return $?
 }
 
 install_cargo_pkgs() {
-  [ -x ~/.cargo/bin/cargo ] || return 1
   # shellcheck disable=SC2046,SC2086
   RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install --locked -q $CARGO_PKGS # cargo doesn't like quotes around `$CARGO_PKGS`
   # return error code of previous command
@@ -59,14 +57,12 @@ install_cargo_pkgs() {
 }
 
 install_node() {
-  [ -x ~/.cargo/bin/rtx ] || return 1
   ~/.cargo/bin/rtx install node
   # return error code of previous command
   return $?
 }
 
 install_nvim() {
-  [ -x ~/.cargo/bin/bob ] || return 1
   ~/.cargo/bin/bob use latest
   # return error code of previous command
   return $?
