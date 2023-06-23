@@ -7,31 +7,25 @@
 install_softwares() {
   (install_rust && echo "Rust installed") || {
     echo "Failed to install rust"
-    return 1
   }
   (install_xmake && echo "xmake installed") || {
     echo "Failed to install xmake"
-    return 1
   }
   (install_sccache && echo "sccache installed") || {
     echo "Failed to install sccache"
     echo "Cargo is not installed"
-    return 1
   }
   (install_cargo_pkgs && echo "Cargo packages installed") || {
     echo "Failed to install cargo packages"
     echo "Cargo is not installed"
-    return 1
   }
   (install_node && echo "Node installed") || {
     echo "Failed to install rtx"
     echo "Rtx is not installed"
-    return 1
   }
   (install_nvim && echo "Nvim installed") || {
     echo "Failed to install nvim"
     echo "Bob is not installed"
-    return 1
   }
 }
 
