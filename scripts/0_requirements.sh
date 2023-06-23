@@ -36,11 +36,10 @@ find_package_manager() {
 # manager                         #
 # Globals:                        #
 #   SUDO_PREFIX                   #
+#   QUIET                         #
 # Arguments:                      #
 #   $1: package manager           #
 #   $2: command                   #
-#   $3: enable allow flag (bool)  #
-#   $4: enable quiet flag (bool)  #
 # Returns:                        #
 #   0 if a supported command & PM #
 #     was passed                  #
@@ -49,25 +48,11 @@ find_package_manager() {
 #     was passed                  #
 ###################################
 PM_commands() {
-  if [ "$#" -ne 4 ]; then
-    echo "Error: PM_commands expects 4 arguments" >&2
-    exit 1
-  fi
-  if [ "$3" -ne 0 ]; then
-    ALLOW='-y'
-  else
-    ALLOW=''
-  fi
   case $1 in
       ##############
       ## Homebrew ##
       ##############
     brew)
-      if [ "$4" -ne 0 ]; then
-        QUIET='-q'
-      else
-        QUIET=''
-      fi
       case $2 in
         update)
           echo "brew update $QUIET"
@@ -98,22 +83,18 @@ PM_commands() {
       ##  APT  ##
       ###########
     apt | apt-get)
-      if [ "$4" -ne 0 ]; then
-        QUIET='-qq'
-      else
-        QUIET=''
-      fi
+      APT_QUIET="$(if [ "$QUIET" -eq 1 ]; then echo "-qq -o=Dpkg::Use-Pty=0"; else echo ""; fi)"
       case $2 in
         update)
-          echo "$SUDO_PREFIX apt $ALLOW $QUIET update"
+          echo "$SUDO_PREFIX apt $APT_QUIET update"
           return 0
           ;;
         install)
-          echo "$SUDO_PREFIX apt $ALLOW $QUIET install"
+          echo "$SUDO_PREFIX apt $APT_QUIET install"
           return 0
           ;;
         upgrade)
-          echo "$SUDO_PREFIX apt $ALLOW $QUIET upgrade"
+          echo "$SUDO_PREFIX apt $APT_QUIET upgrade"
           return 0
           ;;
         install-reqs)
@@ -123,7 +104,7 @@ PM_commands() {
           # cmake
           # libssl-dev
           # pkg-config
-          echo "$SUDO_PREFIX apt $ALLOW $QUIET install passwd curl build-essential cmake libssl-dev pkg-config"
+          echo "$SUDO_PREFIX apt $QUIET install passwd curl build-essential cmake libssl-dev pkg-config"
           ;;
         *)
           echo "Error: Unsupported command" >&2

@@ -28,6 +28,8 @@ export UNAME
 ## SUDO PREFIX ##
 SUDO_PREFIX="$(if [ "$(id -u)" -eq 0 ]; then echo ""; else echo "sudo"; fi)"
 export SUDO_PREFIX
+QUIET='-q'
+export QUIET
 
 ################################
 ##        REQUIREMENTS        ##
@@ -45,13 +47,13 @@ PM="$(find_package_manager)"
 export PM
 
 ## Update package manager ##
-UPDATE_COMMAND="$(PM_commands "$PM" update 1 1)"
+UPDATE_COMMAND="$(PM_commands "$PM" update)"
 (eval "$UPDATE_COMMAND" && echo "Package manager updated") || {
   echo "Error: package manager could not be updated" >&2
   exit 1;
 }
 ## Requirements ##
-REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs 1 1)"
+REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
 (eval "$REQUIREMENTS_COMMAND" && echo "Requirements installed") || {
   echo "Error: requirements could not be installed" >&2
   exit 1;
