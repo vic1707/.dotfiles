@@ -8,15 +8,13 @@
 # Install needed shell config files #
 # and plugins if needed             #
 # Globals:                          #
-#  None                             #
+#  SHELLS_TO_INSTALL                #
 # Arguments:                        #
 #   $1: shell to install (zsh|bash) #
 # Returns:                          #
 #   0 if install was successful     #
 #####################################
 install_shells() {
-  SHELLS_TO_INSTALL=""
-  __ask_choice "Which shell do you want to install?" 1 "$AVAILABLE_SHELLS" SHELLS_TO_INSTALL
   for choice in $SHELLS_TO_INSTALL; do
     case "$choice" in
       zsh)

@@ -32,6 +32,13 @@ QUIET='-q'
 export QUIET
 
 ################################
+##     ASK CONFIG OPTIONS     ##
+################################
+SHELLS_TO_INSTALL=''
+__ask_choice "Which shell do you want to install?" 0 "$AVAILABLE_SHELLS" SHELLS_TO_INSTALL
+export SHELLS_TO_INSTALL
+
+################################
 ##        REQUIREMENTS        ##
 ################################
 ## Homebrew (if MacOS) ##
@@ -54,7 +61,7 @@ UPDATE_COMMAND="$(PM_commands "$PM" update)"
 }
 ## Requirements ##
 REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
-(eval "$REQUIREMENTS_COMMAND" && echo "Requirements installed") || {
+(eval "$REQUIREMENTS_COMMAND $SHELLS_TO_INSTALL" && echo "Requirements installed") || {
   echo "Error: requirements could not be installed" >&2
   exit 1;
 }
