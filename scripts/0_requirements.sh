@@ -90,11 +90,11 @@ PM_commands() {
           return 0
           ;;
         install)
-          echo "$SUDO_PREFIX apt $APT_QUIET install"
+          echo "$SUDO_PREFIX apt $APT_QUIET -y install"
           return 0
           ;;
         upgrade)
-          echo "$SUDO_PREFIX apt $APT_QUIET upgrade"
+          echo "$SUDO_PREFIX apt $APT_QUIET -y upgrade"
           return 0
           ;;
         install-reqs)
@@ -104,7 +104,7 @@ PM_commands() {
           # cmake
           # libssl-dev
           # pkg-config
-          echo "$SUDO_PREFIX apt $QUIET install passwd curl build-essential cmake libssl-dev pkg-config"
+          echo "$SUDO_PREFIX apt $QUIET -y install passwd curl build-essential cmake libssl-dev pkg-config"
           ;;
         *)
           echo "Error: Unsupported command" >&2
