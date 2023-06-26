@@ -93,19 +93,19 @@ REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
 }
 (install_sccache && echo "sccache installed") || {
   echo "Failed to install sccache"
-  echo "Cargo is not installed"
+  echo "Is cargo installed?"
 }
 (install_cargo_pkgs && echo "Cargo packages installed") || {
   echo "Failed to install cargo packages"
-  echo "Cargo is not installed"
+  echo "Is cargo installed?"
 }
 (install_node && echo "Node installed") || {
   echo "Failed to install rtx"
-  echo "Rtx is not installed"
+  echo "Is rtx installed?"
 }
 (install_nvim && echo "Nvim installed") || {
   echo "Failed to install nvim"
-  echo "Bob is not installed"
+  echo "Is bob installed?"
 }
 ## additionnal packages ##
 INSTALL_ADDITIONNAL_PKGS_COMMAND="$(PM_commands "$PM" install-additionnal)"
