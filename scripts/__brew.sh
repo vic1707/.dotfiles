@@ -6,9 +6,3 @@ install_brew() {
     eval "$(/opt/homebrew/bin/brew shellenv)"
   fi
 }
-
-install_brew_packages() {
-  # shellcheck disable=SC2046,SC2086
-  /opt/homebrew/bin/brew install $BREW_PKGS # brew doesn't like quotes around `$BREW_PKGS`
-  return $?
-}
