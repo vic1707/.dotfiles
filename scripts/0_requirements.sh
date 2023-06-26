@@ -104,6 +104,7 @@ PM_commands() {
           # libssl-dev
           # pkg-config
           echo "$SUDO_PREFIX apt $QUIET -y install passwd curl build-essential cmake libssl-dev pkg-config"
+          return 0
           ;;
         *)
           echo "Error: Unsupported command" >&2
