@@ -13,6 +13,11 @@ install_rust() {
 }
 
 install_xmake() {
+  # requires bash
+  if ! command -v bash >/dev/null 2>&1; then
+    echo "bash is required to install xmake"
+    return 1
+  fi
   XMAKE_QUIET="$(if [ "$QUIET" = "-q" ]; then echo '1>/dev/null'; else echo ""; fi)"
   # cannot be quieter because https://github.com/xmake-io/xmake/issues/3714
   # TODO: bash is used
