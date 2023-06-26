@@ -89,3 +89,10 @@ REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
   echo "Error: softwares could not be installed" >&2
   exit 1;
 }
+# Brew (if MacOS) #
+if [ "$UNAME" = "Darwin" ]; then
+  (install_brew_packages && echo "Homebrew packages installed") || {
+    echo "Error: Homebrew packages could not be installed" >&2
+    exit 1;
+  }
+fi

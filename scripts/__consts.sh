@@ -42,3 +42,16 @@ export AVAILABLE_SHELLS
 export ZSH_PLUGINS
 export BASE_ZSH_PLUGINS_DIR
 export CARGO_PKGS
+
+## __brew.sh ##
+# Homebrew
+BREW_PKGS="
+ffmpeg
+fzf
+imagemagick
+openssh
+tmux
+tree
+rsteube/tap/carapace
+android-platform-tools
+"
