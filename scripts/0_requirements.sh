@@ -73,6 +73,7 @@ PM_commands() {
           return 0
           ;;
         install-additionnal)
+          # shellcheck disable=SC2086 # brew doesn't like quotes
           echo "brew install $QUIET" $BREW_PKGS
           return 0
           ;;
@@ -111,6 +112,7 @@ PM_commands() {
           return 0
           ;;
         install-additionnal)
+          # shellcheck disable=SC2086 # apt doesn't like quotes
           echo "$SUDO_PREFIX apt $APT_QUIET -y install" $APT_PKGS
           return 0
           ;;
