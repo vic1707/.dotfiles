@@ -7,14 +7,17 @@
 #####################################
 # Install needed shell config files #
 # and plugins if needed             #
+# Arguments:                        #
+#   $1: shell to install (zsh|bash) #
 # Globals:                          #
-#  SHELLS_TO_INSTALL                #
+#  None                             #
 # Arguments:                        #
 #   $1: shell to install (zsh|bash) #
 # Returns:                          #
 #   0 if install was successful     #
 #####################################
 install_shells() {
+  SHELLS_TO_INSTALL="$1"
   for choice in $SHELLS_TO_INSTALL; do
     case "$choice" in
       zsh)

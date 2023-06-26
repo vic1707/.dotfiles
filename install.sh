@@ -80,7 +80,7 @@ REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
   exit 1;
 }
 ## Shell ##
-(install_shells && echo "Shell(s) installed") || {
+(install_shells "$SHELLS_TO_INSTALL" && echo "Shell(s) installed") || {
   echo "Error: shell(s) could not be installed" >&2
   exit 1;
 }
