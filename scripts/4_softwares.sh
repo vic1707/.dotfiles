@@ -31,7 +31,8 @@ install_softwares() {
 
 install_rust() {
   # quiet option doesn't seem to do much see https://github.com/rust-lang/rustup/issues/3350
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y "$QUIET"
+  # shellcheck disable=SC2086 # rustup doesn't like quotes around `$QUIET`
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y $QUIET
   # return error code of previous command
   return $?
 }
@@ -44,14 +45,15 @@ install_xmake() {
 }
 
 install_sccache() {
-  ~/.cargo/bin/cargo install "$QUIET" sccache
+  # shellcheck disable=SC2086 # cargo doesn't like quotes around `$QUIET`
+  ~/.cargo/bin/cargo install $QUIET sccache
   # return error code of previous command
   return $?
 }
 
 install_cargo_pkgs() {
-  # shellcheck disable=SC2046,SC2086
-  RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install --locked $QUIET $CARGO_PKGS # cargo doesn't like quotes around `$CARGO_PKGS`
+  # shellcheck disable=SC2086 # cargo doesn't like quotes around `$QUIET` and `$CARGO_PKGS`
+  RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install --locked $QUIET $CARGO_PKGS
   # return error code of previous command
   return $?
 }
