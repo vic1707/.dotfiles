@@ -17,7 +17,6 @@
 #   1 if no supported package     #
 #     manager was found           #
 ###################################
-SUPPORTED_PM="brew apt apt-get"
 find_package_manager() {
   for PM in $SUPPORTED_PM; do
     if command -v "$PM" >/dev/null 2>&1; then
