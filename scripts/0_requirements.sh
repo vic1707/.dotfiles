@@ -87,7 +87,7 @@ PM_commands() {
       ##  APT  ##
       ###########
     apt | apt-get)
-      APT_QUIET="$(if [ "$QUIET" -eq 1 ]; then echo "-qq -o=Dpkg::Use-Pty=0"; else echo ""; fi)"
+      APT_QUIET="$(if [ "$QUIET" = "-q" ]; then echo "-qq -o=Dpkg::Use-Pty=0"; else echo ""; fi)"
       case $2 in
         update)
           echo "$SUDO_PREFIX apt $APT_QUIET update"
