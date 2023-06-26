@@ -13,8 +13,10 @@ install_rust() {
 }
 
 install_xmake() {
-  # cannot be quieter until https://github.com/xmake-io/xmake/issues/3714 is fixed
-  curl -fsSL https://xmake.io/shget.text | bash 1>/dev/null
+  XMAKE_QUIET="$(if [ "$QUIET" = "-q" ]; then echo '1>/dev/null'; else echo ""; fi)"
+  # cannot be quieter because https://github.com/xmake-io/xmake/issues/3714
+  # TODO: bash is used
+  bash -c "$(curl -fsSL https://xmake.io/shget.text) $XMAKE_QUIET"
   # return error code of previous command
   return $?
 }
