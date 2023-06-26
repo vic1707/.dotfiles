@@ -28,14 +28,17 @@ install_xmake() {
 
 install_sccache() {
   # shellcheck disable=SC2086 # cargo doesn't like quotes around `$QUIET`
-  ~/.cargo/bin/cargo install $QUIET sccache
+  ~/.cargo/bin/cargo install --locked $QUIET sccache
+  RET=$?
   # return error code of previous command
-  return $?
+  RUSTC_WRAPPER=~/.cargo/bin/sccache
+  export RUSTC_WRAPPER
+  return $RET
 }
 
 install_cargo_pkgs() {
   # shellcheck disable=SC2086 # cargo doesn't like quotes around `$QUIET` and `$CARGO_PKGS`
-  RUSTC_WRAPPER=~/.cargo/bin/sccache ~/.cargo/bin/cargo install --locked $QUIET $CARGO_PKGS
+  ~/.cargo/bin/cargo install --locked $QUIET $CARGO_PKGS
   # return error code of previous command
   return $?
 }
