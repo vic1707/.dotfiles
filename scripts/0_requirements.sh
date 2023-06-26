@@ -72,6 +72,10 @@ PM_commands() {
           echo "brew install $QUIET curl cmake pkg-config"
           return 0
           ;;
+        install-additionnal)
+          echo "brew install $QUIET" $BREW_PKGS
+          return 0
+          ;;
         *)
           echo "Error: Unsupported command" >&2
           exit 1
@@ -104,6 +108,10 @@ PM_commands() {
           # libssl-dev
           # pkg-config
           echo "$SUDO_PREFIX apt $QUIET -y install passwd curl build-essential cmake libssl-dev pkg-config"
+          return 0
+          ;;
+        install-additionnal)
+          echo "$SUDO_PREFIX apt $QUIET -y install" $APT_PKGS
           return 0
           ;;
         *)

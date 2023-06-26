@@ -89,10 +89,9 @@ REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
   echo "Error: softwares could not be installed" >&2
   exit 1;
 }
-# Brew (if MacOS) #
-if [ "$UNAME" = "Darwin" ]; then
-  (install_brew_packages && echo "Homebrew packages installed") || {
-    echo "Error: Homebrew packages could not be installed" >&2
-    exit 1;
-  }
-fi
+## additionnal packages ##
+INSTALL_ADDITIONNAL_PKGS_COMMAND="$(PM_commands "$PM" install-additionnal)"
+(eval "$INSTALL_ADDITIONNAL_PKGS_COMMAND" && echo "Additionnal packages ($PM) installed") || {
+  echo "Error: additionnal packages ($PM) could not be installed" >&2
+  exit 1;
+}
