@@ -31,7 +31,7 @@ install_softwares() {
 
 install_rust() {
   # quiet option doesn't seem to do much see https://github.com/rust-lang/rustup/issues/3350
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y $QUIET
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y "$QUIET"
   # return error code of previous command
   return $?
 }
@@ -44,7 +44,7 @@ install_xmake() {
 }
 
 install_sccache() {
-  ~/.cargo/bin/cargo install $QUIET sccache
+  ~/.cargo/bin/cargo install "$QUIET" sccache
   # return error code of previous command
   return $?
 }
