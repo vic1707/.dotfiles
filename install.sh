@@ -11,8 +11,6 @@ if [ "$DOTS_DIR" != "$HOME/.dotfiles" ]; then
   exit 1;
 fi
 
-echo "Installing dotfiles"
-
 ################################
 ## sourcing install functions ##
 ################################
@@ -25,18 +23,57 @@ echo "Installing dotfiles"
 ## Uname ##
 UNAME="$(uname -s)"
 export UNAME
+## SHELLS_TO_INSTALL ##
+SHELLS_TO_INSTALL=''
+export SHELLS_TO_INSTALL
 ## SUDO PREFIX ##
 SUDO_PREFIX="$(if [ "$(id -u)" -eq 0 ]; then echo ""; else echo "sudo"; fi)"
 export SUDO_PREFIX
-QUIET='-q'
+## QUIET ##
+QUIET=''
 export QUIET
+
+################################
+##  ARGUMENT PARSING OPTIONS  ##
+################################
+show_help() {
+  JOINED_AVAILABLE_SHELLS="$(printf "%s" "$AVAILABLE_SHELLS" | tr ' ' '|')"
+  echo "Usage: $0 [options]"
+  echo "Options:"
+  echo "  -h, --help        Show this help message"
+  echo "  -q, --quiet       Quiet mode"
+  echo "  -s, --shell       Install a shell ($JOINED_AVAILABLE_SHELLS)"
+  echo "  --all-shells      Install all shells ($JOINED_AVAILABLE_SHELLS)"
+  echo "  --                End of options"
+}
+
+while getopts "hqs:-:" _; do
+  case "$1" in
+    -h|--help|-\?) show_help; exit 0 ;;
+    -q|--quiet) QUIET='-q'; shift ;;
+      # append shell to SHELLS_TO_INSTALL if it is in AVAILABLE_SHELLS
+    -s|--shell)
+      shift;
+      if [ "$(echo " $AVAILABLE_SHELLS " | grep -c " $1 ")" -eq 1 ]; then
+        SHELLS_TO_INSTALL="$SHELLS_TO_INSTALL $1"
+      else
+        echo "Error: $1 is not a valid shell" >&2
+        exit 1;
+      fi
+      shift ;;
+    --all-shells) SHELLS_TO_INSTALL="$AVAILABLE_SHELLS"; shift ;;
+    --) shift; break ;;
+    -*) echo "invalid option: $1" 1>&2; show_help; exit 1 ;;
+  esac
+done
 
 ################################
 ##     ASK CONFIG OPTIONS     ##
 ################################
-SHELLS_TO_INSTALL=''
-__ask_choice "Which shell do you want to install?" 0 "$AVAILABLE_SHELLS" SHELLS_TO_INSTALL
-export SHELLS_TO_INSTALL
+# ask shell if not already set
+if [ -z "$SHELLS_TO_INSTALL" ]; then
+  __ask_choice "Which shell do you want to install?" 0 "$AVAILABLE_SHELLS" SHELLS_TO_INSTALL
+fi
 
 ################################
 ##        REQUIREMENTS        ##
