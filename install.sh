@@ -96,6 +96,12 @@ UPDATE_COMMAND="$(PM_commands "$PM" update)"
   echo "Error: package manager could not be updated" >&2
   exit 1;
 }
+## Upgrade package manager ##
+UPGRADE_COMMAND="$(PM_commands "$PM" upgrade)"
+(eval "$UPGRADE_COMMAND" && echo "Package manager upgraded") || {
+  echo "Error: package manager could not be upgraded" >&2
+  exit 1;
+}
 ## Requirements ##
 REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
 (eval "$REQUIREMENTS_COMMAND $SHELLS_TO_INSTALL" && echo "Requirements installed") || {
