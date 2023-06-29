@@ -123,26 +123,26 @@ REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
 }
 ## Softwares ##
 (install_rust && echo "Rust installed") || {
-  echo "Failed to install rust"
+  echo "Failed to install rust" >&2
 }
 (install_xmake && echo "xmake installed") || {
-  echo "Failed to install xmake"
+  echo "Failed to install xmake" >&2
 }
 (install_sccache && echo "sccache installed") || {
-  echo "Failed to install sccache"
-  echo "Is cargo installed?"
+  echo "Failed to install sccache" >&2
+  echo "Is cargo installed?" >&2
 }
 (install_cargo_pkgs && echo "Cargo packages installed") || {
-  echo "Failed to install cargo packages"
-  echo "Is cargo installed?"
+  echo "Failed to install cargo packages" >&2
+  echo "Is cargo installed?" >&2
 }
 (install_node && echo "Node installed") || {
-  echo "Failed to install rtx"
-  echo "Is rtx installed?"
+  echo "Failed to install rtx" >&2
+  echo "Is rtx installed?" >&2
 }
 (install_nvim && echo "Nvim installed") || {
-  echo "Failed to install nvim"
-  echo "Is bob installed?"
+  echo "Failed to install nvim" >&2
+  echo "Is bob installed?" >&2
 }
 ## additionnal packages ##
 INSTALL_ADDITIONNAL_PKGS_COMMAND="$(PM_commands "$PM" install-additionnal)"
