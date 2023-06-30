@@ -8,7 +8,7 @@
 # Tries to find a supported       #
 # package manager                 #
 # Globals:                        #
-#   None                          #
+#   SUPPORTED_PM                  #
 # Arguments:                      #
 #   None                          #
 # Returns:                        #
