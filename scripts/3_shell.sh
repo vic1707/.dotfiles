@@ -35,7 +35,7 @@ install_shells() {
 ######################
 install_bash_env() {
   echo "-- Installing bash environment --"
-  echo "Nothing to do for now"
+  ln -fs "$DOTS_DIR/shell/bash/.bashrc" "$HOME/.bashrc"
 }
 
 ######################
