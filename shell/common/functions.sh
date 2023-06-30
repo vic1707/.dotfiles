@@ -114,3 +114,38 @@ __ask_choice() {
   eval "$_outvar='$answers'"
 }
 
+###################################
+# Updates current environment     #
+#   - package manager             #
+#   - rustup                      #
+#   - cargo                       #
+#   - xmake                       #
+#   - nvim (via Bob)              #
+#   - node (via Rtx)              #
+# Globals:                        #
+#   None                          #
+# Arguments:                      #
+#   None                          #
+# Returns:                        #
+#   0 if all updates are OK       #
+###################################
+____update_env() {
+  ## Package manager ##
+  # PM="$(find_package_manager)"
+  # UPDATE_COMMAND="$(PM_commands "$PM" update)"
+  # UPGRADE_COMMAND="$(PM_commands "$PM" upgrade)"
+  # eval "$UPDATE_COMMAND"
+  # eval "$UPGRADE_COMMAND -y"
+  ## Rustup ##
+  [ -x "$(command -v rustup)" ] && rustup update
+  ## Cargo ##
+  [ -x "$(command -v cargo)" ] && cargo install-update -a
+  ## Xmake ##
+  [ -x "$(command -v xmake)" ] && xmake update
+  ## Nvim (via Bob) ##
+  [ -x "$(command -v bob)" ] && bob use latest
+  ## Node (via Rtx) ##
+  [ -x "$(command -v rtx)" ] && rtx install node
+
+  return 0
+}

@@ -2,21 +2,18 @@
 
 #############################################
 # Updates:                                  #
+#   - environment                           #
 #   - zsh plugins                           #
-#   - rustup                                #
-#   - cargo installs                        #
-#   - xmake                                 #
-#   - nvim                                  #
-#   - node                                  #
-#   - brew                                  #
 # Globals:                                  #
-#  HOME                                     #
+#   BASE_ZSH_PLUGINS_DIR                    #
 # Arguments:                                #
 #   None                                    #
 # Returns:                                  #
 #   0 if all updates are successful         #
 #############################################
 __update_all() {
+  ____update_env
+  ## Zsh plugins ##
   for plugin in "$BASE_ZSH_PLUGINS_DIR/"*; do
     if [ -d "$plugin" ]; then
       echo "Updating $plugin"
@@ -25,15 +22,5 @@ __update_all() {
       cd - >/dev/null || exit 1
     fi
   done
-  rustup update
-  cargo install-update -a
-  xmake update
-  bob use latest
-  rtx install node
-  # if brew exists, update brew
-  if command -v brew >/dev/null; then
-    brew update
-    brew upgrade
-  fi
   return 0
 }
