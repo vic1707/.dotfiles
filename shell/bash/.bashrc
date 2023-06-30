@@ -16,3 +16,6 @@ export DOTS_DIR
 
 # shellcheck source=shell/bash/completions.bash
 . "$DOTS_DIR/shell/bash/completions.bash"
+
+# shellcheck source=shell/bash/functions.bash
+. "$DOTS_DIR/shell/bash/functions.bash"
