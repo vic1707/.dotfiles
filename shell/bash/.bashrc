@@ -19,3 +19,7 @@ export DOTS_DIR
 
 # shellcheck source=shell/bash/functions.bash
 . "$DOTS_DIR/shell/bash/functions.bash"
+
+## Load starship prompt
+## idealy needs to be at the end of the file
+eval "$(starship init bash)"
