@@ -9,7 +9,9 @@ alias grep='grep --color'
 alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
 
 # cat
-alias cat='bat'
+if command -v bat > /dev/null; then
+  alias cat='bat'
+fi
 
 # tail
 alias t='tail -f'
@@ -23,7 +25,9 @@ alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
 # ls
-alias ls='exa --icons'
+if command -v exa > /dev/null; then
+  alias ls='exa --icons'
+fi
 alias l='ls -lF'
 alias la='ls -laF'
 alias ll='ls -la'
@@ -32,5 +36,7 @@ alias ll='ls -la'
 export RUSTC_WRAPPER=~/.cargo/bin/sccache
 
 # vi
-alias vi='nvim'
-alias vim='nvim'
+if command -v nvim > /dev/null; then
+  alias vi='nvim'
+  alias vim='nvim'
+fi
