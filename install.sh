@@ -37,6 +37,7 @@ export QUIET
 ##  ARGUMENT PARSING OPTIONS  ##
 ################################
 show_help() {
+  # Please keep this in sync with the README
   JOINED_AVAILABLE_SHELLS="$(printf "%s" "$AVAILABLE_SHELLS" | tr ' ' '|')"
   echo "Usage: $0 [options]"
   echo "Options:"
