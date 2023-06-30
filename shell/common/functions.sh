@@ -40,26 +40,6 @@ ex() {
   return 0
 }
 
-#############################################
-# Check if a command exists                 #
-# Globals:                                  #
-#   None                                    #
-# Arguments:                                #
-#   $1: command to check                    #
-#   $2: exit if command does not exist      #
-# Returns:                                  #
-#   0 if command exists                     #
-#   1 if command does not exist             #
-#############################################
-__command_exists() {
-  if command -v "$1" 1>/dev/null; then
-    return 0
-  fi
-  echo "Command $1 does not exist" >&2
-  [ -n "$2" ] && exit 1
-  return 1
-}
-
 ###################################
 # Function to display a choice    #
 # Globals:                        #

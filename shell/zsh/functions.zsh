@@ -31,7 +31,7 @@ __update_all() {
   bob use latest
   rtx install node
   # if brew exists, update brew
-  if __command_exists brew; then
+  if command -v brew >/dev/null; then
     brew update
     brew upgrade
   fi
