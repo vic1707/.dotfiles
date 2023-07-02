@@ -4,18 +4,18 @@
 ## This script needs to be POSIX ##
 ###################################
 
-#####################################
-# Install needed shell config files #
-# and plugins if needed             #
-# Arguments:                        #
-#   $1: shell to install (zsh|bash) #
-# Globals:                          #
-#  None                             #
-# Arguments:                        #
-#   $1: shell to install (zsh|bash) #
-# Returns:                          #
-#   0 if install was successful     #
-#####################################
+########################################
+# Install needed shell config files    #
+# and plugins if needed                #
+# Arguments:                           #
+#   $1: shell to install (zsh|bash|nu) #
+# Globals:                             #
+#  None                                #
+# Arguments:                           #
+#   $1: shell to install (zsh|bash|nu) #
+# Returns:                             #
+#   0 if install was successful        #
+########################################
 install_shells() {
   SHELLS_TO_INSTALL="$1"
   for choice in $SHELLS_TO_INSTALL; do
@@ -25,6 +25,9 @@ install_shells() {
         ;;
       bash)
         install_bash_env
+        ;;
+      nu)
+        install_nu_env
         ;;
     esac
   done
@@ -36,6 +39,23 @@ install_shells() {
 install_bash_env() {
   echo "-- Installing bash environment --"
   ln -fs "$DOTS_DIR/shell/bash/.bashrc" "$HOME/.bashrc"
+}
+
+######################
+##        NU        ##
+######################
+install_nu_env() {
+  echo "-- Installing nu environment --"
+  mkdir -p "$HOME/.config/nushell" # just in case
+  if [ "$UNAME" = "Darwin" ]; then
+    CONFIG_DIR="$HOME/Library/Application Support/nushell"
+  else
+    CONFIG_DIR="$HOME/.config/nushell"
+  fi
+  # link config.nu && env.nu
+  rm -rf "$CONFIG_DIR/config.nu" "$CONFIG_DIR/env.nu"
+  ln -fs "$DOTS_DIR/shell/nu/config.nu" "$CONFIG_DIR/config.nu"
+  ln -fs "$DOTS_DIR/shell/nu/env.nu" "$CONFIG_DIR/env.nu"
 }
 
 ######################

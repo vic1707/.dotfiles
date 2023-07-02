@@ -8,7 +8,7 @@
 . "$DOTS_DIR/scripts/package-managers/__index.sh"
 
 ## 3_shell.sh ##
-AVAILABLE_SHELLS="zsh bash"
+AVAILABLE_SHELLS="zsh bash nu"
 ZSH_PLUGINS="
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
