@@ -46,11 +46,12 @@ install_bash_env() {
 ######################
 install_nu_env() {
   echo "-- Installing nu environment --"
-  mkdir -p "$HOME/.config/nushell" # just in case
   if [ "$UNAME" = "Darwin" ]; then
     CONFIG_DIR="$HOME/Library/Application Support/nushell"
+    mkdir -p "$HOME/Library/Application Support/nushell" # just in case
   else
     CONFIG_DIR="$HOME/.config/nushell"
+    mkdir -p "$HOME/.config/nushell" # just in case
   fi
   # link config.nu && env.nu
   rm -rf "$CONFIG_DIR/config.nu" "$CONFIG_DIR/env.nu"
