@@ -551,3 +551,9 @@ let-env config = {
     }
   ]
 }
+
+###################
+## Custom config ##
+###################
+## Starship
+source ~/.cache/starship/init.nu
