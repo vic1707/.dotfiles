@@ -54,27 +54,27 @@ PM_commands() {
     brew)
       case $2 in
         update)
-          echo "brew update $QUIET"
+          echo "/opt/homebrew/bin/brew update $QUIET"
           return 0
           ;;
         install)
-          echo "brew install $QUIET"
+          echo /opt/homebrew/bin/brew install $QUIET"
           return 0
           ;;
         upgrade)
-          echo "brew upgrade $QUIET"
+          echo /opt/homebrew/bin/brew upgrade $QUIET"
           return 0
           ;;
         install-reqs)
           # curl
           # cmake
           # pkg-config
-          echo "brew install $QUIET curl cmake pkg-config"
+          echo /opt/homebrew/bin/brew install $QUIET curl cmake pkg-config"
           return 0
           ;;
         install-additionnal)
           # shellcheck disable=SC2086 # brew doesn't like quotes
-          echo "brew install $QUIET" $BREW_PKGS
+          echo /opt/homebrew/bin/brew install $QUIET" $BREW_PKGS
           return 0
           ;;
         *)
