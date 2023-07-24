@@ -58,23 +58,23 @@ PM_commands() {
           return 0
           ;;
         install)
-          echo /opt/homebrew/bin/brew install $QUIET"
+          echo "/opt/homebrew/bin/brew install $QUIET"
           return 0
           ;;
         upgrade)
-          echo /opt/homebrew/bin/brew upgrade $QUIET"
+          echo "/opt/homebrew/bin/brew upgrade $QUIET"
           return 0
           ;;
         install-reqs)
           # curl
           # cmake
           # pkg-config
-          echo /opt/homebrew/bin/brew install $QUIET curl cmake pkg-config"
+          echo "/opt/homebrew/bin/brew install $QUIET curl cmake pkg-config"
           return 0
           ;;
         install-additionnal)
           # shellcheck disable=SC2086 # brew doesn't like quotes
-          echo /opt/homebrew/bin/brew install $QUIET" $BREW_PKGS
+          echo "/opt/homebrew/bin/brew install $QUIET" $BREW_PKGS
           return 0
           ;;
         *)
