@@ -20,9 +20,7 @@
 ###################################
 install_config_files() {
   ## `.config` directory
-  if ! test -d "$HOME/.config"; then
-    return 1;
-  fi
+  test -d "$HOME/.config" && return 1;
   ln -fs "$DOTS_DIR/.config" "$HOME/.config"
   ## Git config files
   ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
