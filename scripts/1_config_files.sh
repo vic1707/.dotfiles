@@ -20,8 +20,7 @@
 ###################################
 install_config_files() {
   ## `.config` directory
-  mkdir -p "$HOME/.config"
-  if ! test -d $HOME/.config; then
+  if ! test -d "$HOME/.config"; then
     return 1;
   fi
   ln -fs "$DOTS_DIR/.config" "$HOME/.config"
