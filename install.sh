@@ -107,7 +107,7 @@ UPGRADE_COMMAND="$(PM_commands "$PM" upgrade)"
 }
 ## Requirements ##
 REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
-(eval "$REQUIREMENTS_COMMAND $SHELLS_TO_INSTALL" && echo "Requirements installed") || {
+(eval "$REQUIREMENTS_COMMAND ${AVAILABLE_SHELLS//nu/}" && echo "Requirements installed") || {
   echo "Error: requirements could not be installed" >&2
   exit 1;
 }
