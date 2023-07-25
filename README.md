@@ -3,6 +3,11 @@ This is my `.dotfiles` repository. It contains my configuration files for variou
 ## Requirements
   - `git`
   Should be it.
+### MacOS
+Xcode license should be accepted.
+```sh
+sudo xcodebuild -license accept
+```
 
 ## Installation
 Clone this repo inside `~/.dotfiles`:
