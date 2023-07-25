@@ -11,14 +11,20 @@ install_brew() {
 }
 
 BREW_PKGS="
+android-platform-tools
+discord
+docker
 ffmpeg
 fzf
 imagemagick
+iterm2
+jellyfin-media-player
+notion
 openssh
 tmux
 tree
 rsteube/tap/carapace
-android-platform-tools
+visual-studio-code
 "
 
 export BREW_PKGS
