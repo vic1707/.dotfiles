@@ -21,7 +21,9 @@
 install_config_files() {
   ## `.config` directory
   mkdir -p "$HOME/.config"
-  [ -n "$(ls -A "$HOME/.config")" ] && return 1
+  if ! test -d $HOME/.config; then
+    return 1;
+  fi
   ln -fs "$DOTS_DIR/.config" "$HOME/.config"
   ## Git config files
   ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
