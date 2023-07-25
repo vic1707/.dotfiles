@@ -85,10 +85,12 @@ if [ "$UNAME" = "Darwin" ]; then
     echo "Error: Homebrew could not be installed" >&2
     exit 1;
   }
+  alias brew=/opt/homebrew/bin/brew
+  PM="brew"
+else
+  ## Find package manager ##
+  PM="$(find_package_manager)"
 fi
-
-## Find package manager ##
-PM="$(find_package_manager)"
 export PM
 
 ## Update package manager ##
