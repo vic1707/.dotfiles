@@ -48,7 +48,7 @@ show_help() {
   echo "  --                End of options"
 }
 
-while getopts "hqs:-:" _; do
+while :; do
   case "$1" in
     -h|--help|-\?) show_help; exit 0 ;;
     -q|--quiet) QUIET='-q'; shift ;;
@@ -64,7 +64,8 @@ while getopts "hqs:-:" _; do
       shift ;;
     --all-shells) SHELLS_TO_INSTALL="$AVAILABLE_SHELLS"; shift ;;
     --) shift; break ;;
-    -*) echo "invalid option: $1" 1>&2; show_help; exit 1 ;;
+    -?*) echo "invalid option: $1" 1>&2; show_help; exit 1 ;;
+    *) break ;;
   esac
 done
 
