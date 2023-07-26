@@ -36,6 +36,7 @@ procs
 ripgrep
 rtx-cli
 starship
+tokei
 "
 
 # Export variables
