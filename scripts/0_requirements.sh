@@ -67,7 +67,7 @@ PM_commands() {
           ;;
         install-reqs)
           # curl
-          # cmake
+          # cmake: Required to install `starship`
           # pkg-config
           echo "/opt/homebrew/bin/brew install $QUIET curl cmake pkg-config"
           return 0
