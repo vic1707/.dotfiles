@@ -89,8 +89,8 @@ if [ "$UNAME" = "Darwin" ]; then
   # make requirements' bins available
   PATH="$PATH:/opt/homebrew/bin"
   export PATH
-  echo "Ensure XCODE license is accepted"
-  sudo xcodebuild -license accept
+  # echo "Ensure XCODE license is accepted"
+  # sudo xcodebuild -license accept
 fi
 ## Find package manager ##
 PM="$(find_package_manager)"
