@@ -87,12 +87,12 @@ if [ "$UNAME" = "Darwin" ]; then
   }
   alias brew=/opt/homebrew/bin/brew
   PM="brew"
+  # make requirements' bins available
+  PATH="$PATH:/opt/homebrew/bin"
+  export PATH
 else
   ## Find package manager ##
   PM="$(find_package_manager)"
-  # maybe an alias to cmake is enough?
-  PATH="$PATH:/opt/homebrew/bin"
-  export PATH
 fi
 export PM
 
