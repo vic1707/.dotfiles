@@ -21,7 +21,7 @@ install_xmake() {
   XMAKE_QUIET="$(if [ "$QUIET" = "-q" ]; then echo '1>/dev/null'; else echo ""; fi)"
   # cannot be quieter because https://github.com/xmake-io/xmake/issues/3714
   # TODO: bash is used
-  bash -c "$(curl -fsSL https://xmake.io/shget.text) $XMAKE_QUIET"
+  curl -fsSL https://xmake.io/shget.text | bash $XMAKE_QUIET
   # return error code of previous command
   return $?
 }
