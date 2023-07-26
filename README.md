@@ -6,6 +6,7 @@ This is my `.dotfiles` repository. It contains my configuration files for variou
 ### MacOS
 Xcode license should be accepted.
 ```sh
+xcode-select --install
 sudo xcodebuild -license accept
 ```
 
@@ -20,13 +21,13 @@ And simply run the install script:
 ```
 
 ## Install options
-```sh
+```
 Usage: install.sh [options]
 Options:
   -h, --help        Show this help message
   -q, --quiet       Quiet mode
-  -s, --shell       Install a shell (zsh|bash)
-  --all-shells      Install all shells (zsh|bash)
+  -s, --shell       Install a shell (zsh|bash|nu)
+  --all-shells      Install all shells (zsh|bash|nu)
   --                End of options
 ```
 ## Usage
