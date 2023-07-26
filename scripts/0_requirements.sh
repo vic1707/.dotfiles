@@ -66,10 +66,10 @@ PM_commands() {
           return 0
           ;;
         install-reqs)
-          # curl
           # cmake: Required to install `starship`
+          # openssl: Required to install `cargo-edit`
           # pkg-config
-          echo "/opt/homebrew/bin/brew install $QUIET curl cmake pkg-config"
+          echo "/opt/homebrew/bin/brew install $QUIET cmake openssl pkg-config"
           return 0
           ;;
         install-additionnal)
