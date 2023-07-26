@@ -54,26 +54,26 @@ PM_commands() {
     brew)
       case $2 in
         update)
-          echo "/opt/homebrew/bin/brew update $QUIET"
+          echo "brew update $QUIET"
           return 0
           ;;
         install)
-          echo "/opt/homebrew/bin/brew install $QUIET"
+          echo "brew install $QUIET"
           return 0
           ;;
         upgrade)
-          echo "/opt/homebrew/bin/brew upgrade $QUIET"
+          echo "brew upgrade $QUIET"
           return 0
           ;;
         install-reqs)
           # cmake: Required to install `starship`
           # openssl: Required to install `cargo-edit`
-          echo "/opt/homebrew/bin/brew install $QUIET cmake openssl"
+          echo "brew install $QUIET cmake openssl"
           return 0
           ;;
         install-additionnal)
           # shellcheck disable=SC2086 # brew doesn't like quotes
-          echo "/opt/homebrew/bin/brew install $QUIET" $BREW_PKGS
+          echo "brew install $QUIET" $BREW_PKGS
           return 0
           ;;
         *)
