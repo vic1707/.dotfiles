@@ -6,7 +6,9 @@
 
 install_brew() {
   if ! test -f "/opt/homebrew/bin/brew"; then
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    # Only possible because sudo permissions are already granted (cause Xcode license)
+    curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh | NONINTERACTIVE=1 bash
   fi
 }
 
