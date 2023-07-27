@@ -82,6 +82,13 @@ fi
 ################################
 ## Homebrew (if MacOS) ##
 if [ "$UNAME" = "Darwin" ]; then
+  # echo "Ensure XCODE license is accepted"
+  echo "Trying to accept the license $(date)";
+  while ! sudo xcodebuild -license accept 2>/dev/null; do
+    sleep 2
+  done;
+  echo "License finally accepted $(date)";
+
   (install_brew && echo "Homebrew installed") || {
     echo "Error: Homebrew could not be installed" >&2
     exit 1;
@@ -89,8 +96,6 @@ if [ "$UNAME" = "Darwin" ]; then
   # make requirements' bins available
   PATH="$PATH:/opt/homebrew/bin"
   export PATH
-  # echo "Ensure XCODE license is accepted"
-  # sudo xcodebuild -license accept
 fi
 ## Find package manager ##
 PM="$(find_package_manager)"
