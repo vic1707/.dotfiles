@@ -71,7 +71,7 @@ install_zsh_env() {
   #######################
   for plugin in $ZSH_PLUGINS; do
     if [ ! -d "$BASE_ZSH_PLUGINS_DIR/$plugin" ]; then
-      git clone -q "https://github.com/$plugin" "$BASE_ZSH_PLUGINS_DIR/${plugin#*/}"
+      git clone "$QUIET" "https://github.com/$plugin" "$BASE_ZSH_PLUGINS_DIR/${plugin#*/}"
     fi
   done
 }
