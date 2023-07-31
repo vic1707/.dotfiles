@@ -53,10 +53,6 @@ install_nu_env() {
     CONFIG_DIR="$HOME/.config/nushell"
     mkdir -p "$HOME/.config/nushell" # just in case
   fi
-  # link config.nu && env.nu
-  rm -rf "$CONFIG_DIR/config.nu" "$CONFIG_DIR/env.nu"
-  ln -fs "$DOTS_DIR/shell/nu/config.nu" "$CONFIG_DIR/config.nu"
-  ln -fs "$DOTS_DIR/shell/nu/env.nu" "$CONFIG_DIR/env.nu"
 }
 
 ######################
