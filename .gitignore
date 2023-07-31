@@ -1,3 +1,7 @@
+## MacOS specifics ##
 .DS_Store
-.config/iterm2
+
+## Linux specifics ##
+
+# Misc
 shell/zsh/.zsh-plugins/*
