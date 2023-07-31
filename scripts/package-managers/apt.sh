@@ -8,8 +8,6 @@ adb
 ffmpeg
 fzf
 imagemagick
-openssh-client
-passwd
 tmux
 tree
 "
