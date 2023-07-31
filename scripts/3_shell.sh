@@ -71,7 +71,8 @@ install_zsh_env() {
   #######################
   for plugin in $ZSH_PLUGINS; do
     if [ ! -d "$BASE_ZSH_PLUGINS_DIR/$plugin" ]; then
-      git clone "$QUIET" "https://github.com/$plugin" "$BASE_ZSH_PLUGINS_DIR/${plugin#*/}"
+      # shellcheck disable=SC2086 # git doesn't like quotes around `$QUIET`
+      git clone $QUIET "https://github.com/$plugin" "$BASE_ZSH_PLUGINS_DIR/${plugin#*/}"
     fi
   done
 }
