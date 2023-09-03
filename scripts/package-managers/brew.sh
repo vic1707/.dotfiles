@@ -17,7 +17,6 @@ arc
 android-platform-tools
 brave-browser
 discord
-docker
 ffmpeg
 fzf
 imagemagick
@@ -25,6 +24,7 @@ iterm2
 jellyfin-media-player
 notion
 openssh
+podman
 tmux
 tree
 rsteube/tap/carapace
