@@ -24,7 +24,7 @@ iterm2
 jellyfin-media-player
 notion
 openssh
-podman
+podman-desktop
 tmux
 tree
 rsteube/tap/carapace
