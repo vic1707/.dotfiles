@@ -34,7 +34,12 @@ Options:
 The install script will create symlinks to the configuration files in this repo. If you want to add a new configuration file, simply add it to the repo and run the install script again.
 
 ## After install
-Once ssh key is generated run 
+Add SSH key:
+```
+ssh-keygen -t ed25519 -f ~/.ssh/github-vic1707 -P '' -C "<email>"
+ssh-add ~/.ssh/github-vic1707
+```
+Once ssh key is generated and added to github run 
 ```sh
 git remote set-url origin git@github.com:vic1707/.dotfiles
 ```
