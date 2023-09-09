@@ -1,5 +1,6 @@
 require('vic1707.lazy')
 require('vic1707.options')
+require('vic1707.remaps')
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
