@@ -4,4 +4,4 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-require("vic1707")
+require('vic1707')
