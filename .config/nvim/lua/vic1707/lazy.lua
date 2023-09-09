@@ -12,6 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
     lazypath,
   })
 end
+
+-- Add lazy.nvim to runtimepath
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({

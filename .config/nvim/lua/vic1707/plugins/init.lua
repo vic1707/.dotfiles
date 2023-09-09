@@ -1,5 +1,6 @@
 return {
   -- NOTE: First, some plugins that don't require any configuration --
+  --     The plugins with configurations are in `plugins/*.lua`     --
 
   -- Git related plugins
   'tpope/vim-fugitive',
