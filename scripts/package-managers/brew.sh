@@ -19,6 +19,7 @@ brave-browser
 discord
 ffmpeg
 fzf
+go
 imagemagick
 iterm2
 jellyfin-media-player
