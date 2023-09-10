@@ -23,6 +23,7 @@ imagemagick
 iterm2
 jellyfin-media-player
 notion
+opam
 openssh
 podman-desktop
 tmux

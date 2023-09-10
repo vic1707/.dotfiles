@@ -8,6 +8,7 @@ adb
 ffmpeg
 fzf
 imagemagick
+opam
 tmux
 tree
 "
