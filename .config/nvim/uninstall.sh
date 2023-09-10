@@ -11,6 +11,6 @@ if [ "$1" != "-f" ] && [ "$1" != "-y" ]; then
   fi
 fi
 echo "Uninstalling all nvim lazy plugins..."
-rm -rf ~/.local/share/nvim/lazy
-rm -rf ~/.local/state/nvim/lazy
+rm -rf ~/.local/share/nvim/
+rm -rf ~/.local/state/nvim/
 rm -rf ~/.config/nvim/lazy-lock.json
