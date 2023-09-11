@@ -9,8 +9,10 @@ ffmpeg
 fzf
 golang-go
 imagemagick
+jq
 luarocks
 opam
+shellcheck
 tmux
 tree
 "
