@@ -22,9 +22,11 @@ fzf
 imagemagick
 iterm2
 jellyfin-media-player
+jq
 notion
 openssh
 podman-desktop
+shellcheck
 tmux
 tree
 rsteube/tap/carapace

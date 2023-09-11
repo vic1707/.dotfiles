@@ -8,6 +8,8 @@ adb
 ffmpeg
 fzf
 imagemagick
+jq
+shellcheck
 tmux
 tree
 "
