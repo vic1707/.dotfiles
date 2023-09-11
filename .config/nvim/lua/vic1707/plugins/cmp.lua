@@ -81,7 +81,7 @@ return {
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
       },
-      experimental = { 
+      experimental = {
         ghost_text = true,
       },
     })
