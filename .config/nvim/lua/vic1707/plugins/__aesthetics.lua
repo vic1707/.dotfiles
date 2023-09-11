@@ -5,6 +5,15 @@ return {
     'navarasu/onedark.nvim',
     priority = 1000,
     config = function()
+      require('onedark').setup({
+        style = 'deep',
+        -- transparent = true,
+        -- Lualine options --
+        lualine = {
+          transparent = false, -- lualine center bar transparency
+        },
+      })
+      require('onedark').load()
       vim.cmd.colorscheme('onedark')
     end,
   },
@@ -28,8 +37,8 @@ return {
     'lukas-reineke/indent-blankline.nvim',
     -- See `:help indent_blankline.txt`
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
+      use_treesitter = true,
+      show_current_context = true,
     },
   },
 
