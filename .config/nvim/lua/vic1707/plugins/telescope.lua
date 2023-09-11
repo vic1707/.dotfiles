@@ -26,7 +26,7 @@ return {
     --- NOTE: enable if `fzf-native` is installed
     -- pcall(require('telescope').load_extension, 'fzf')
 
-    telescope_builtin = require('telescope.builtin')
+    local telescope_builtin = require('telescope.builtin')
     -- See `:help telescope.builtin`
     vim.keymap.set('n', '<leader>?', telescope_builtin.oldfiles, { desc = '[?] Find recently opened files' })
     vim.keymap.set('n', '<leader><space>', telescope_builtin.buffers, { desc = '[ ] Find existing buffers' })

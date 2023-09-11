@@ -6,7 +6,7 @@
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
-get_servers_config = function()
+local get_servers_config = function()
   return {
     angularls = {}, -- Angular
     astro = {}, -- Astro
@@ -60,10 +60,11 @@ get_servers_config = function()
   }
 end
 
-mason_tools = {
+local mason_tools = {
   'beautysh', -- Shell
   'editorconfig-checker', -- EditorConfig
   'flake8', -- Python
+  'luacheck', -- Lua
   'prettier', -- JavaScript, TypeScript, HTML, CSS, JSON, YAML, Markdown, Vue, Svelte, GraphQL, etc.
   'stylelint', -- CSS, SCSS, etc.
   'stylua', -- Lua
