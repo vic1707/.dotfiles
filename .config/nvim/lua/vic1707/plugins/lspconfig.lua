@@ -6,20 +6,68 @@
 --
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
-servers = {
-  clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  rust_analyzer = {},
-  tsserver = {},
-  html = { filetypes = { 'html', 'twig', 'hbs'} },
-
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
+get_servers_config = function()
+  return {
+    angularls = {}, -- Angular
+    astro = {}, -- Astro
+    bashls = {}, -- Bash
+    clangd = {}, -- C, C++, Objective-C
+    cssls = {}, -- CSS
+    dockerls = {}, -- Dockerfile
+    -- TODO: `EslintFixAll` on save
+    eslint = {}, -- JavaScript, TypeScript, etc.
+    gopls = {}, -- Go
+    html = { -- HTML, Twig, Handlebars
+      filetypes = {
+        'html',
+        'twig',
+        'hbs',
+      },
     },
-  },
+    intelephense = {}, -- PHP -- Hate that shit
+    jsonls = { -- JSON
+      json = {
+        -- Enable json schemas
+        schemas = require('schemastore').json.schemas(),
+        validate = { enable = true },
+      },
+    },
+    lua_ls = { -- Lua
+      Lua = {
+        workspace = {
+          checkThirdParty = false,
+        },
+        telemetry = {
+          enable = false,
+        },
+      },
+    },
+    ocamllsp = {}, -- OCaml
+    pyright = {}, -- Python
+    rust_analyzer = { -- Rust
+      ['rust-analyzer'] = {
+        checkOnSave = {
+          command = 'clippy',
+        },
+      },
+    },
+    sqlls = {}, -- SQL
+    stylelint_lsp = {}, -- CSS, SCSS, etc.
+    svelte = {}, -- Svelte
+    taplo = {}, -- TOML
+    tsserver = {}, -- JavaScript, TypeScript, etc.
+    zls = {}, -- Zig
+  }
+end
+
+mason_tools = {
+  'beautysh', -- Shell
+  'editorconfig-checker', -- EditorConfig
+  'flake8', -- Python
+  'prettier', -- JavaScript, TypeScript, HTML, CSS, JSON, YAML, Markdown, Vue, Svelte, GraphQL, etc.
+  'stylelint', -- CSS, SCSS, etc.
+  'stylua', -- Lua
+  'shellcheck', -- Shell
 }
 
 return {
@@ -30,13 +78,33 @@ return {
   dependencies = {
     -- Automatically install LSPs to stdpath for neovim
     { 'williamboman/mason.nvim', config = true },
-    'williamboman/mason-lspconfig.nvim',
+    {
+      'williamboman/mason-lspconfig.nvim',
+      dependencies = {
+        -- Json Schemas
+        'b0o/schemastore.nvim',
+      },
+    },
+
+    -- Automatically install other mason tools
+    {
+      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      opts = {
+        ensure_installed = mason_tools,
+        -- if set to true this will check each tool for updates. If updates
+        -- are available the tool will be updated.
+        auto_update = true,
+        -- Only attempt to install if 'debounce_hours' number of hours has
+        -- elapsed since the last time Neovim was started.
+        debounce_hours = 24,
+      },
+    },
 
     -- Useful status updates for LSP
     { 'j-hui/fidget.nvim', tag = 'legacy' },
 
     -- Additional lua configuration, makes nvim stuff amazing!
-    'folke/neodev.nvim',
+    { 'folke/neodev.nvim', opts = {} },
   },
   config = function()
     -- [[ Configure LSP ]]
@@ -90,6 +158,8 @@ return {
 
     -- Ensure the servers above are installed
     local mason_lspconfig = require('mason-lspconfig')
+
+    local servers = get_servers_config()
 
     mason_lspconfig.setup({
       ensure_installed = vim.tbl_keys(servers),
