@@ -14,6 +14,21 @@ return {
 
     -- Adds LSP completion capabilities
     'hrsh7th/cmp-nvim-lsp',
+
+    -- Copilot
+    {
+      'zbirenbaum/copilot-cmp',
+      dependencies = {
+        {
+          'zbirenbaum/copilot.lua',
+          opts = {
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+          },
+        },
+      },
+      opts = {},
+    },
   },
   config = function()
     -- [[ Configure nvim-cmp ]]
@@ -62,6 +77,7 @@ return {
         end, { 'i', 's' }),
       }),
       sources = {
+        { name = 'copilot' },
         { name = 'nvim_lsp' },
         { name = 'luasnip' },
       },
