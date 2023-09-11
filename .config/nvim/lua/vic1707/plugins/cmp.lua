@@ -24,6 +24,9 @@ return {
     luasnip.config.setup({})
 
     cmp.setup({
+      completion = {
+        completeopt = 'menu,menuone,noinsert,noselect,preview'
+      },
       snippet = {
         expand = function(args)
           luasnip.lsp_expand(args.body)
@@ -37,7 +40,7 @@ return {
         ['<C-Space>'] = cmp.mapping.complete({}),
         ['<CR>'] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
-          select = true,
+          select = false,
         }),
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
