@@ -45,4 +45,4 @@ jobs:
         if: always()
         uses: lunarmodules/luacheck@v1
         with:
-          args: . --codes
+          args: . --codes --config .config/nvim/.luacheckrc
