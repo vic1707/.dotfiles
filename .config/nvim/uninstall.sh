@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ### Uninstall all nvim lazy plugins
 # are you sure ? (ask if $1 != -f|-y)
