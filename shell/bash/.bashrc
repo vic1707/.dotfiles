@@ -11,6 +11,10 @@ export DOTS_DIR
 # shellcheck source=shell/common/__index.sh
 . "$DOTS_DIR/shell/common/__index.sh"
 
+# doesn't seems to be automatically loaded on macos
+# shellcheck source=shell/bash/.bash_profile
+. "$HOME/.bash_profile"
+
 # shellcheck source=shell/bash/keybindings.bash
 . "$DOTS_DIR/shell/bash/keybindings.bash"
 
