@@ -17,6 +17,7 @@ zsh-users/zsh-autosuggestions
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
 
 CARGO_PKGS="
+aio-cli
 bacon
 bat
 bob-nvim
