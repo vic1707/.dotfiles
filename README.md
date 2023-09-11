@@ -34,13 +34,19 @@ Options:
 The install script will create symlinks to the configuration files in this repo. If you want to add a new configuration file, simply add it to the repo and run the install script again.
 
 ## After install
+
 Dont't forget to initialize opam (need to be done for each shell):
 ```sh
 opam init -y --shell-setup
 ```
-
-Add SSH key:
+---
+Install all `rtx` runtimes:
+```sh
+rtx i
 ```
+---
+Add SSH key:
+```sh
 ssh-keygen -t ed25519 -f ~/.ssh/github-vic1707 -P '' -C "<email>"
 ssh-add ~/.ssh/github-vic1707
 ```
