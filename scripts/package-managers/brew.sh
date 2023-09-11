@@ -19,11 +19,14 @@ brave-browser
 discord
 ffmpeg
 fzf
+go
 imagemagick
 iterm2
 jellyfin-media-player
 jq
+luarocks
 notion
+opam
 openssh
 podman-desktop
 shellcheck

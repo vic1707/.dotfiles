@@ -39,6 +39,7 @@ install_shells() {
 install_bash_env() {
   echo "-- Installing bash environment --"
   ln -fs "$DOTS_DIR/shell/bash/.bashrc" "$HOME/.bashrc"
+  ln -fs "$DOTS_DIR/shell/bash/.bash_profile" "$HOME/.bash_profile"
 }
 
 ######################
@@ -58,6 +59,7 @@ install_nu_env() {
 install_zsh_env() {
   echo "-- Installing zsh environment --"
   ln -fs "$DOTS_DIR/shell/zsh/.zshrc" "$HOME/.zshrc"
+  ln -fs "$DOTS_DIR/shell/zsh/.zshenv" "$HOME/.zshenv"
 
   #######################
   ##    zsh plugins    ##
