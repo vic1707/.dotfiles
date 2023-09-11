@@ -23,6 +23,7 @@ go
 imagemagick
 iterm2
 jellyfin-media-player
+luarocks
 notion
 opam
 openssh

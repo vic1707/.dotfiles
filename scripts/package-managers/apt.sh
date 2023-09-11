@@ -9,6 +9,7 @@ ffmpeg
 fzf
 golang-go
 imagemagick
+luarocks
 opam
 tmux
 tree
