@@ -39,3 +39,17 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- undo dir
+vim.o.undodir = vim.fn.expand('~/.config/nvim/undodir')
+vim.o.undofile = true
+
+-- search related
+vim.o.hlsearch = false
+vim.o.incsearch = true
+
+-- always minimum 8 lines visible
+vim.o.scrolloff = 8
+
+-- I hate word wrap
+vim.o.wrap = false
