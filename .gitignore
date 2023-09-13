@@ -9,3 +9,6 @@ shell/nu/history.txt
 
 ## Contains sensitive information ##
 .config/aio/creds.yaml
+
+## Undotree nvim plugin ##
+.config/nvim/undodir
