@@ -10,4 +10,7 @@ return {
 
   -- "gc" to comment visual regions/lines
   'numToStr/Comment.nvim',
+
+  -- Seamless navigation between tmux panes and vim splits
+  'christoomey/vim-tmux-navigator',
 }
