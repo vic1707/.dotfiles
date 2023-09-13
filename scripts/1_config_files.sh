@@ -23,6 +23,7 @@ install_config_files() {
   mkdir -p "$HOME/.config"
   ## Aio-cli creds sample
   cp "$DOTS_DIR/.config/aio/creds.sample.yaml"  "$DOTS_DIR/.config/aio/creds.yaml"
+  ## .config dir
   ln -fs "$DOTS_DIR/.config"/* "$HOME/.config"
   ## Git config files
   ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
