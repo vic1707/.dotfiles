@@ -21,13 +21,36 @@ return {
   {
     -- Set lualine as statusline
     'nvim-lualine/lualine.nvim',
+    event = 'VeryLazy',
     -- See `:help lualine.txt`
     opts = {
       options = {
-        icons_enabled = false,
         theme = 'onedark',
-        component_separators = '|',
-        section_separators = '',
+      },
+      sections = {
+        lualine_a = { 'mode' },
+        lualine_b = { 'branch' },
+        lualine_c = {
+          {
+            'diagnostics',
+            symbols = {
+              error = ' ',
+              warn = ' ',
+              hint = ' ',
+              info = ' ',
+            },
+          },
+          { 'filetype' },
+          { 'filename', path = 3 },
+        },
+        lualine_x = {},
+        lualine_y = {
+          { 'progress' },
+          { 'location' },
+        },
+        lualine_z = {
+          { 'datetime', style = ' %R' }
+        },
       },
     },
   },
