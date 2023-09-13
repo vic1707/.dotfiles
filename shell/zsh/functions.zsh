@@ -16,7 +16,7 @@ __update_all() {
   ## Zsh plugins ##
   for plugin in "$BASE_ZSH_PLUGINS_DIR/"*; do
     if [ -d "$plugin" ]; then
-      echo "Updating ${plugin##*/}"
+      printf "[ZSH] Updating %-25s: " "$(echo "$plugin" | awk -F'/' '{print $NF}')"
       git -C "$plugin" pull
     fi
   done
