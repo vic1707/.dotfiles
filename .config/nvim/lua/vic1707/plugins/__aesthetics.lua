@@ -49,7 +49,7 @@ return {
           { 'location' },
         },
         lualine_z = {
-          { 'datetime', style = ' %R' }
+          { 'datetime', style = ' %R' },
         },
       },
     },
