@@ -6,7 +6,7 @@ return {
     view_options = {
       show_hidden = true,
       -- This function defines what will never be shown, even when `show_hidden` is set
-      is_always_hidden = function(name, bufnr)
+      is_always_hidden = function(name, _bufnr)
         local to_always_hide = {
           '.DS_Store',
           'Thumbs.db',
