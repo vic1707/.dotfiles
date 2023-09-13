@@ -146,6 +146,12 @@ ____update_env() {
   [ -x "$(command -v bob)" ] && bob use latest
   ## Node (via Rtx) ##
   [ -x "$(command -v rtx)" ] && rtx install node
-
+  ## Tmux Plugins ##
+  if [ -d "$HOME/.config/tmux/plugins" ]; then
+    for plugin in "$HOME/.config/tmux/plugins/"*; do
+      printf "[TPM] Updating %-25s: " "$(echo "$plugin" | awk -F'/' '{print $NF}')"
+      git -C "$plugin" pull
+    done
+  fi
   return 0
 }

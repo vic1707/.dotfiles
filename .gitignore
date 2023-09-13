@@ -12,3 +12,6 @@ shell/nu/history.txt
 
 ## Undotree nvim plugin ##
 .config/nvim/undodir
+
+## Tmux plugins ##
+.config/tmux/plugins/*
