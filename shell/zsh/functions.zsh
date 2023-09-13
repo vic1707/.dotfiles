@@ -16,10 +16,8 @@ __update_all() {
   ## Zsh plugins ##
   for plugin in "$BASE_ZSH_PLUGINS_DIR/"*; do
     if [ -d "$plugin" ]; then
-      echo "Updating $plugin"
-      cd "$plugin" || exit 1
-      git pull
-      cd - >/dev/null || exit 1
+      echo "Updating ${plugin##*/}"
+      git -C "$plugin" pull
     fi
   done
   return 0
