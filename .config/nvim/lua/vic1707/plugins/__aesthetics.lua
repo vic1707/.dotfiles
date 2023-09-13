@@ -33,12 +33,12 @@ return {
   },
 
   {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- See `:help indent_blankline.txt`
+    -- Add indentation guides
+    "echasnovski/mini.indentscope",
+    event = { "BufReadPre", "BufNewFile" },
     opts = {
-      use_treesitter = true,
-      show_current_context = true,
+      symbol = "│",
+      options = { try_as_border = true },
     },
   },
 
