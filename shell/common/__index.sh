@@ -4,6 +4,8 @@
 ## This script needs to be POSIX ##
 ###################################
 
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # shellcheck source=shell/common/aliases.sh
 . "$DOTS_DIR/shell/common/aliases.sh"
 # shellcheck source=shell/common/env.sh
