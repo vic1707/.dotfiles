@@ -4,16 +4,18 @@ return {
     -- Theme inspired by Atom
     'navarasu/onedark.nvim',
     priority = 1000,
-    config = function()
-      require('onedark').setup({
-        style = 'deep',
-        -- transparent = true,
-        -- Lualine options --
-        lualine = {
-          transparent = false, -- lualine center bar transparency
-        },
-      })
-      require('onedark').load()
+    opts = {
+      style = 'deep',
+      -- transparent = true,
+      -- Lualine options --
+      lualine = {
+        transparent = false, -- lualine center bar transparency
+      },
+    },
+    config = function(_, opts)
+      local onedark = require('onedark')
+      onedark.setup(opts)
+      onedark.load()
       vim.cmd.colorscheme('onedark')
     end,
   },
