@@ -67,7 +67,7 @@ PM_commands() {
           ;;
         install-reqs)
           # cmake: Required to install `starship`
-          # openssl: Required to install `cargo-edit`
+          # openssl: Required to install many rust packages
           echo "brew install $QUIET cmake openssl"
           return 0
           ;;
@@ -104,7 +104,7 @@ PM_commands() {
           # build-essential
           # cmake
           # curl
-          # libssl-dev
+          # libssl-dev: required for many rust packages
           # pkg-config
           echo "$SUDO_PREFIX apt $APT_QUIET -y install build-essential cmake curl libssl-dev pkg-config"
           return 0
