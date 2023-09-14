@@ -105,9 +105,8 @@ PM_commands() {
           # cmake
           # curl
           # libssl-dev
-          # passwd: allows `chsh` command
           # pkg-config
-          echo "$SUDO_PREFIX apt $APT_QUIET -y install build-essential cmake curl libssl-dev passwd pkg-config"
+          echo "$SUDO_PREFIX apt $APT_QUIET -y install build-essential cmake curl libssl-dev pkg-config"
           return 0
           ;;
         install-additionnal)
