@@ -30,9 +30,12 @@ install_sccache() {
   # shellcheck disable=SC2086 # cargo doesn't like quotes around `$QUIET`
   ~/.cargo/bin/cargo install --locked $QUIET sccache
   RET=$?
-  # return error code of previous command
-  RUSTC_WRAPPER=~/.cargo/bin/sccache
-  export RUSTC_WRAPPER
+  # if success
+  if [ $RET -eq 0 ]; then
+    RUSTC_WRAPPER=~/.cargo/bin/sccache
+    export RUSTC_WRAPPER
+  fi
+  # return code of sccache install
   return $RET
 }
 
