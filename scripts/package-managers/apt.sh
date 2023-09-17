@@ -7,7 +7,6 @@ APT_PKGS="
 adb
 ffmpeg
 fzf
-golang-go
 imagemagick
 jq
 luarocks
