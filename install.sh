@@ -97,6 +97,10 @@ if [ "$UNAME" = "Darwin" ]; then
   PATH="$PATH:/opt/homebrew/bin"
   export PATH
 fi
+
+################################
+##       PACKAGE MANAGER      ##
+################################
 ## Find package manager ##
 PM="$(find_package_manager)"
 export PM
@@ -119,6 +123,11 @@ export PM
 ## Install SHELLS ##
 (PM_commands "$PM" install "$(echo "$AVAILABLE_SHELLS" | tr -d 'nu')" && echo "Shells installed") || {
   echo "Error: shells could not be installed" >&2
+  exit 1;
+}
+## additionnal packages ##
+(PM_commands "$PM" install-additionnal && echo "Additionnal packages ($PM) installed") || {
+  echo "Error: additionnal packages ($PM) could not be installed" >&2
   exit 1;
 }
 ################################
@@ -157,9 +166,4 @@ export PM
 (install_node && echo "Node installed") || {
   echo "Failed to install rtx" >&2
   echo "Is rtx installed?" >&2
-}
-## additionnal packages ##
-(PM_commands "$PM" install-additionnal && echo "Additionnal packages ($PM) installed") || {
-  echo "Error: additionnal packages ($PM) could not be installed" >&2
-  exit 1;
 }
