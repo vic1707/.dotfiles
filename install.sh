@@ -159,7 +159,3 @@ export PM
   echo "Failed to install cargo packages" >&2
   echo "Is cargo installed?" >&2
 }
-(install_node && echo "Node installed") || {
-  echo "Failed to install rtx" >&2
-  echo "Is rtx installed?" >&2
-}

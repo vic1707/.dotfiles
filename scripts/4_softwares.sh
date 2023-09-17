@@ -32,9 +32,3 @@ install_cargo_pkgs() {
   # return error code of previous command
   return $?
 }
-
-install_node() {
-  ~/.cargo/bin/rtx install node
-  # return error code of previous command
-  return $?
-}
