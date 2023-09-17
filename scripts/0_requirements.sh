@@ -104,8 +104,7 @@ PM_commands() {
           # build-essential
           # cmake
           # curl
-          # libssl-dev: required for many rust packages
-          # pkg-config
+          # libssl-dev, pkg-config: rust `openssl-sys` crate
           echo "$SUDO_PREFIX apt $APT_QUIET -y install build-essential cmake curl libssl-dev pkg-config"
           return 0
           ;;
