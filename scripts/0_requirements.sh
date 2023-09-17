@@ -83,7 +83,6 @@ PM_commands() {
             return 1
           fi
           return 0
-          return $?
           ;;
         *)
           echo "Error: Unsupported command" >&2
