@@ -56,30 +56,30 @@ PM_commands() {
     brew)
       case $2 in
         update)
+          # shellcheck disable=SC2086
           brew update $QUIET
           return $?
           ;;
         install)
+          # shellcheck disable=SC2086
           brew install $QUIET $3
           return $?
           ;;
         upgrade)
+          # shellcheck disable=SC2086
           brew upgrade $QUIET
           return $?
           ;;
         install-reqs)
           # cmake: Required to install `starship`
           # openssl: Required to install many rust packages
+          # shellcheck disable=SC2086
           brew install $QUIET cmake openssl
           return $?
           ;;
         install-additionnal)
-          # shellcheck disable=SC2086 # brew doesn't like quotes
-          brew install $QUIET $BREW_PKGS
-          R=$?
-          additionnal_brew_installs
-          # return 1 if one of the two commands failed
-          if [ $R -ne 0 ] || [ $? -ne 0 ]; then
+          # shellcheck disable=SC2086
+          if ! brew install $QUIET $BREW_PKGS || ! additionnal_brew_installs; then
             return 1
           fi
           return 0
@@ -97,14 +97,17 @@ PM_commands() {
       APT_QUIET="$(if [ "$QUIET" = "-q" ]; then echo "-q -qq"; else echo ""; fi)"
       case $2 in
         update)
+          # shellcheck disable=SC2086
           $SUDO_PREFIX apt $APT_QUIET update
           return $?
           ;;
         install)
+          # shellcheck disable=SC2086
           $SUDO_PREFIX apt $APT_QUIET -y install $3
           return $?
           ;;
         upgrade)
+          # shellcheck disable=SC2086
           $SUDO_PREFIX apt $APT_QUIET -y upgrade
           return $?
           ;;
@@ -113,16 +116,13 @@ PM_commands() {
           # cmake
           # curl
           # libssl-dev, pkg-config: rust `openssl-sys` crate
+          # shellcheck disable=SC2086
           $SUDO_PREFIX apt $APT_QUIET -y install build-essential cmake curl libssl-dev pkg-config
           return $?
           ;;
         install-additionnal)
-          # shellcheck disable=SC2086 # apt doesn't like quotes
-          $SUDO_PREFIX apt $APT_QUIET -y install $APT_PKGS
-          R=$?
-          additionnal_apt_installs
-          # return 1 if one of the two commands failed
-          if [ $R -ne 0 ] || [ $? -ne 0 ]; then
+          # shellcheck disable=SC2086
+          if ! $SUDO_PREFIX apt $APT_QUIET -y install $APT_PKGS || ! additionnal_apt_installs; then
             return 1
           fi
           return 0
