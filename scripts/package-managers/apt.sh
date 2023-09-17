@@ -9,7 +9,6 @@ ffmpeg
 imagemagick
 jq
 luarocks
-opam
 shellcheck
 tmux
 tree

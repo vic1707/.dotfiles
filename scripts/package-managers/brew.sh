@@ -24,7 +24,6 @@ jellyfin-media-player
 jq
 luarocks
 notion
-opam
 openssh
 podman-desktop
 shellcheck
