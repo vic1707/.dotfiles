@@ -12,8 +12,6 @@ export XDG_CONFIG_HOME="$HOME/.config"
 . "$DOTS_DIR/shell/common/env.sh"
 # shellcheck source=shell/common/functions.sh
 . "$DOTS_DIR/shell/common/functions.sh"
-# shellcheck source=shell/common/PATH.sh
-. "$DOTS_DIR/shell/common/PATH.sh"
 # shellcheck source=shell/common/soft.sh
 . "$DOTS_DIR/shell/common/soft.sh"
 
