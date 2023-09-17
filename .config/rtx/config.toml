@@ -2,6 +2,7 @@
 bun = "latest"
 go = "latest"
 # jq = "latest" # TODO: watch https://github.com/jdx/rtx/issues/893
+neovim = "latest"
 node = "latest"
 python = "latest"
 # shellcheck = "latest" # TODO: watch https://github.com/koalaman/shellcheck/pull/2736

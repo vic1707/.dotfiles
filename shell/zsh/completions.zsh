@@ -11,10 +11,6 @@ _comp_options+=(globdots) # Include hidden files.
 # shellcheck disable=SC1090 # sourced via external command
 . <(rtx activate zsh)
 
-# Bob
-# shellcheck disable=SC1090 # sourced via external command
-. <(bob complete zsh)
-
 # Cargo-flamegraph
 # bugged for now see https://github.com/flamegraph-rs/flamegraph/issues/263
 # . <(flamegraph --completions zsh)

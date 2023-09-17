@@ -157,10 +157,6 @@ REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
   echo "Failed to install rtx" >&2
   echo "Is rtx installed?" >&2
 }
-(install_nvim && echo "Nvim installed") || {
-  echo "Failed to install nvim" >&2
-  echo "Is bob installed?" >&2
-}
 ## additionnal packages ##
 INSTALL_ADDITIONNAL_PKGS_COMMAND="$(PM_commands "$PM" install-additionnal)"
 (eval "$INSTALL_ADDITIONNAL_PKGS_COMMAND" && echo "Additionnal packages ($PM) installed") || {

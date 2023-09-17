@@ -51,9 +51,3 @@ install_node() {
   # return error code of previous command
   return $?
 }
-
-install_nvim() {
-  ~/.cargo/bin/bob use latest
-  # return error code of previous command
-  return $?
-}

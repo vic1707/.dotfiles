@@ -20,7 +20,6 @@ CARGO_PKGS="
 aio-cli
 bacon
 bat
-bob-nvim
 bottom
 cargo-edit
 cargo-update

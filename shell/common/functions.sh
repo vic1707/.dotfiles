@@ -142,8 +142,6 @@ ____update_env() {
   [ -x "$(command -v cargo)" ] && cargo install-update -a
   ## Xmake ##
   [ -x "$(command -v xmake)" ] && xmake update
-  ## Nvim (via Bob) ##
-  [ -x "$(command -v bob)" ] && bob use latest
   ## Node (via Rtx) ##
   [ -x "$(command -v rtx)" ] && rtx install node
   ## Tmux Plugins ##
