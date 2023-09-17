@@ -34,3 +34,16 @@ visual-studio-code
 "
 
 export BREW_PKGS
+
+###################################
+# Install additionnal tools that  #
+# requires particular setup       #
+# Globals:                        #
+#   SUDO_PREFIX                   #
+#   QUIET                         #
+# Returns:                        #
+#   None                          #
+###################################
+additionnal_brew_installs() {
+  true;
+}

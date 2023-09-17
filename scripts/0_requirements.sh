@@ -76,6 +76,13 @@ PM_commands() {
         install-additionnal)
           # shellcheck disable=SC2086 # brew doesn't like quotes
           brew install $QUIET $BREW_PKGS
+          R=$?
+          additionnal_brew_installs
+          # return 1 if one of the two commands failed
+          if [ $R -ne 0 ] || [ $? -ne 0 ]; then
+            return 1
+          fi
+          return 0
           return $?
           ;;
         *)
@@ -113,7 +120,13 @@ PM_commands() {
         install-additionnal)
           # shellcheck disable=SC2086 # apt doesn't like quotes
           $SUDO_PREFIX apt $APT_QUIET -y install $APT_PKGS
-          return $?
+          R=$?
+          additionnal_apt_installs
+          # return 1 if one of the two commands failed
+          if [ $R -ne 0 ] || [ $? -ne 0 ]; then
+            return 1
+          fi
+          return 0
           ;;
         *)
           echo "Error: Unsupported command" >&2

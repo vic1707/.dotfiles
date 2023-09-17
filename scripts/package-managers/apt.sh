@@ -15,3 +15,21 @@ tree
 "
 
 export APT_PKGS
+
+###################################
+# Install additionnal tools that  #
+# requires particular setup       #
+# Globals:                        #
+#   SUDO_PREFIX                   #
+#   QUIET                         #
+# Returns:                        #
+#   None                          #
+###################################
+additionnal_apt_installs() {
+  APT_QUIET="$(if [ "$QUIET" = "-q" ]; then echo "-q -qq"; else echo ""; fi)"
+  ## Install fury.io sources
+  echo 'deb [trusted=yes] https://apt.fury.io/rsteube/ /' | sudo tee /etc/apt/sources.list.d/fury.list
+  $SUDO_PREFIX apt update $APT_QUIET
+  # Install carapace-bin
+  $SUDO_PREFIX apt install -y carapace-bin $APT_QUIET
+}
