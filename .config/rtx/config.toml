@@ -1,5 +1,6 @@
 [tools]
 bun = "latest"
+fzf = "latest"
 go = "latest"
 # jq = "latest" # TODO: watch https://github.com/jdx/rtx/issues/893
 neovim = "latest"

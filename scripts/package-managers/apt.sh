@@ -6,7 +6,6 @@
 APT_PKGS="
 adb
 ffmpeg
-fzf
 imagemagick
 jq
 luarocks
