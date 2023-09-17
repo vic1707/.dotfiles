@@ -7,5 +7,6 @@ neovim = "latest"
 node = "latest"
 opam = "latest"
 python = "latest"
+zig = "latest"
 # shellcheck = "latest" # TODO: watch https://github.com/koalaman/shellcheck/pull/2736
 # java = "latest"
