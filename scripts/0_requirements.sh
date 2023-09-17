@@ -39,6 +39,8 @@ find_package_manager() {
 # Arguments:                      #
 #   $1: package manager           #
 #   $2: command                   #
+#   $3: additionnal packages      #
+#        if $2 is `install`       #
 # Returns:                        #
 #   0 if a supported command & PM #
 #     was passed                  #
@@ -54,27 +56,27 @@ PM_commands() {
     brew)
       case $2 in
         update)
-          echo "brew update $QUIET"
-          return 0
+          brew update $QUIET
+          return $?
           ;;
         install)
-          echo "brew install $QUIET"
-          return 0
+          brew install $QUIET $3
+          return $?
           ;;
         upgrade)
-          echo "brew upgrade $QUIET"
-          return 0
+          brew upgrade $QUIET
+          return $?
           ;;
         install-reqs)
           # cmake: Required to install `starship`
           # openssl: Required to install many rust packages
-          echo "brew install $QUIET cmake openssl"
-          return 0
+          brew install $QUIET cmake openssl
+          return $?
           ;;
         install-additionnal)
           # shellcheck disable=SC2086 # brew doesn't like quotes
-          echo "brew install $QUIET" $BREW_PKGS
-          return 0
+          brew install $QUIET $BREW_PKGS
+          return $?
           ;;
         *)
           echo "Error: Unsupported command" >&2
@@ -89,29 +91,29 @@ PM_commands() {
       APT_QUIET="$(if [ "$QUIET" = "-q" ]; then echo "-q -qq"; else echo ""; fi)"
       case $2 in
         update)
-          echo "$SUDO_PREFIX apt $APT_QUIET update"
-          return 0
+          $SUDO_PREFIX apt $APT_QUIET update
+          return $?
           ;;
         install)
-          echo "$SUDO_PREFIX apt $APT_QUIET -y install"
-          return 0
+          $SUDO_PREFIX apt $APT_QUIET -y install $3
+          return $?
           ;;
         upgrade)
-          echo "$SUDO_PREFIX apt $APT_QUIET -y upgrade"
-          return 0
+          $SUDO_PREFIX apt $APT_QUIET -y upgrade
+          return $?
           ;;
         install-reqs)
           # build-essential
           # cmake
           # curl
           # libssl-dev, pkg-config: rust `openssl-sys` crate
-          echo "$SUDO_PREFIX apt $APT_QUIET -y install build-essential cmake curl libssl-dev pkg-config"
-          return 0
+          $SUDO_PREFIX apt $APT_QUIET -y install build-essential cmake curl libssl-dev pkg-config
+          return $?
           ;;
         install-additionnal)
           # shellcheck disable=SC2086 # apt doesn't like quotes
-          echo "$SUDO_PREFIX apt $APT_QUIET -y install" $APT_PKGS
-          return 0
+          $SUDO_PREFIX apt $APT_QUIET -y install $APT_PKGS
+          return $?
           ;;
         *)
           echo "Error: Unsupported command" >&2

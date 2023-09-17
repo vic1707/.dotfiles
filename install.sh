@@ -102,24 +102,25 @@ PM="$(find_package_manager)"
 export PM
 
 ## Update package manager ##
-UPDATE_COMMAND="$(PM_commands "$PM" update)"
-(eval "$UPDATE_COMMAND" && echo "Package manager updated") || {
+(PM_commands "$PM" update && echo "Package manager updated") || {
   echo "Error: package manager could not be updated" >&2
   exit 1;
 }
 ## Upgrade package manager ##
-UPGRADE_COMMAND="$(PM_commands "$PM" upgrade)"
-(eval "$UPGRADE_COMMAND" && echo "Package manager upgraded") || {
+(PM_commands "$PM" upgrade && echo "Package manager upgraded") || {
   echo "Error: package manager could not be upgraded" >&2
   exit 1;
 }
 ## Requirements ##
-REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
-(eval "$REQUIREMENTS_COMMAND $(echo "$AVAILABLE_SHELLS" | tr -d 'nu')" && echo "Requirements installed") || {
+(PM_commands "$PM" install-reqs && echo "Requirements installed") || {
   echo "Error: requirements could not be installed" >&2
   exit 1;
 }
-
+## Install SHELLS ##
+(PM_commands "$PM" install "$(echo "$AVAILABLE_SHELLS" | tr -d 'nu')" && echo "Shells installed") || {
+  echo "Error: shells could not be installed" >&2
+  exit 1;
+}
 ################################
 ##           INSTALL          ##
 ################################
@@ -158,8 +159,7 @@ REQUIREMENTS_COMMAND="$(PM_commands "$PM" install-reqs)"
   echo "Is rtx installed?" >&2
 }
 ## additionnal packages ##
-INSTALL_ADDITIONNAL_PKGS_COMMAND="$(PM_commands "$PM" install-additionnal)"
-(eval "$INSTALL_ADDITIONNAL_PKGS_COMMAND" && echo "Additionnal packages ($PM) installed") || {
+(PM_commands "$PM" install-additionnal && echo "Additionnal packages ($PM) installed") || {
   echo "Error: additionnal packages ($PM) could not be installed" >&2
   exit 1;
 }
