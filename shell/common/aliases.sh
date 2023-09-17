@@ -32,9 +32,6 @@ alias l='ls -lF'
 alias la='ls -laF'
 alias ll='ls -la'
 
-# enable sccache for cargo
-export RUSTC_WRAPPER=~/.cargo/bin/sccache
-
 # vi
 if command -v nvim > /dev/null; then
   alias vi='nvim'

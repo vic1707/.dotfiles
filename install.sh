@@ -155,10 +155,6 @@ export PM
 (install_xmake && echo "xmake installed") || {
   echo "Failed to install xmake" >&2
 }
-(install_sccache && echo "sccache installed") || {
-  echo "Failed to install sccache" >&2
-  echo "Is cargo installed?" >&2
-}
 (install_cargo_pkgs && echo "Cargo packages installed") || {
   echo "Failed to install cargo packages" >&2
   echo "Is cargo installed?" >&2
