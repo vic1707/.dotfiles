@@ -44,13 +44,7 @@ local get_servers_config = function()
     },
     ocamllsp = {}, -- OCaml
     pyright = {}, -- Python
-    rust_analyzer = { -- Rust
-      ['rust-analyzer'] = {
-        checkOnSave = {
-          command = 'clippy',
-        },
-      },
-    },
+    rust_analyzer = {}, -- Rust -- configured by rust-tools
     sqlls = {}, -- SQL
     stylelint_lsp = {}, -- CSS, SCSS, etc.
     svelte = {}, -- Svelte
@@ -72,109 +66,144 @@ local mason_tools = {
 }
 
 return {
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
-  -- LSP Configuration & Plugins
-  'neovim/nvim-lspconfig',
-  dependencies = {
-    -- Automatically install LSPs to stdpath for neovim
-    { 'williamboman/mason.nvim', config = true },
-    {
-      'williamboman/mason-lspconfig.nvim',
-      dependencies = {
-        -- Json Schemas
-        'b0o/schemastore.nvim',
+  {
+    -- NOTE: This is where your plugins related to LSP can be installed.
+    --  The configuration is done below. Search for lspconfig to find it below.
+    -- LSP Configuration & Plugins
+    'neovim/nvim-lspconfig',
+    dependencies = {
+      -- Automatically install LSPs to stdpath for neovim
+      { 'williamboman/mason.nvim', config = true },
+      {
+        'williamboman/mason-lspconfig.nvim',
+        dependencies = {
+          -- Json Schemas
+          'b0o/schemastore.nvim',
+        },
       },
-    },
 
-    -- Automatically install other mason tools
-    {
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
-      opts = {
-        ensure_installed = mason_tools,
-        -- if set to true this will check each tool for updates. If updates
-        -- are available the tool will be updated.
-        auto_update = true,
-        -- Only attempt to install if 'debounce_hours' number of hours has
-        -- elapsed since the last time Neovim was started.
-        debounce_hours = 24,
+      -- Automatically install other mason tools
+      {
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        opts = {
+          ensure_installed = mason_tools,
+          -- if set to true this will check each tool for updates. If updates
+          -- are available the tool will be updated.
+          auto_update = true,
+          -- Only attempt to install if 'debounce_hours' number of hours has
+          -- elapsed since the last time Neovim was started.
+          debounce_hours = 24,
+        },
       },
+
+      -- Useful status updates for LSP
+      { 'j-hui/fidget.nvim', tag = 'legacy' },
+
+      -- Additional lua configuration, makes nvim stuff amazing!
+      { 'folke/neodev.nvim', opts = {} },
     },
+    config = function()
+      -- [[ Configure LSP ]]
+      --  This function gets run when an LSP connects to a particular buffer.
+      local on_attach = function(_, bufnr)
+        -- NOTE: Remember that lua is a real programming language, and as such it is possible
+        -- to define small helper and utility functions so you don't have to repeat yourself
+        -- many times.
+        --
+        -- In this case, we create a function that lets us more easily define mappings specific
+        -- for LSP related items. It sets the mode, buffer and description for us each time.
+        local nmap = function(keys, func, desc)
+          if desc then
+            desc = 'LSP: ' .. desc
+          end
 
-    -- Useful status updates for LSP
-    { 'j-hui/fidget.nvim', tag = 'legacy' },
-
-    -- Additional lua configuration, makes nvim stuff amazing!
-    { 'folke/neodev.nvim', opts = {} },
-  },
-  config = function()
-    -- [[ Configure LSP ]]
-    --  This function gets run when an LSP connects to a particular buffer.
-    local on_attach = function(_, bufnr)
-      -- NOTE: Remember that lua is a real programming language, and as such it is possible
-      -- to define small helper and utility functions so you don't have to repeat yourself
-      -- many times.
-      --
-      -- In this case, we create a function that lets us more easily define mappings specific
-      -- for LSP related items. It sets the mode, buffer and description for us each time.
-      local nmap = function(keys, func, desc)
-        if desc then
-          desc = 'LSP: ' .. desc
+          vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
         end
 
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+        nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+        nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+
+        nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+        nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+        nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+        nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+        nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+
+        -- See `:help K` for why this keymap
+        nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+        nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+        -- Lesser used LSP functionality
+        nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+        nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+        nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+        nmap('<leader>wl', function()
+          print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, '[W]orkspace [L]ist Folders')
+
+        -- Create a command `:Format` local to the LSP buffer
+        vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+          vim.lsp.buf.format()
+        end, { desc = 'Format current buffer with LSP' })
       end
 
-      nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-      nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+      -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
-      nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-      nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-      nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-      nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-      nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-      nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+      -- Ensure the servers above are installed
+      local mason_lspconfig = require('mason-lspconfig')
 
-      -- See `:help K` for why this keymap
-      nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-      nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+      local servers = get_servers_config()
 
-      -- Lesser used LSP functionality
-      nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-      nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-      nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-      nmap('<leader>wl', function()
-        print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-      end, '[W]orkspace [L]ist Folders')
+      mason_lspconfig.setup({
+        ensure_installed = vim.tbl_keys(servers),
+      })
 
-      -- Create a command `:Format` local to the LSP buffer
-      vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-        vim.lsp.buf.format()
-      end, { desc = 'Format current buffer with LSP' })
-    end
+      mason_lspconfig.setup_handlers({
+        function(server_name)
+          require('lspconfig')[server_name].setup({
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers[server_name],
+            filetypes = (servers[server_name] or {}).filetypes,
+          })
+        end,
+      })
+    end,
+  },
 
-    -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+  {
+    'simrat39/rust-tools.nvim',
+    opts = {
+      tools = {
+        runnables = {
+          use_telescope = true,
+        },
+        inlay_hints = {
+          auto = true,
+          show_parameter_hints = false,
+          parameter_hints_prefix = '',
+          other_hints_prefix = '',
+        },
+      },
 
-    -- Ensure the servers above are installed
-    local mason_lspconfig = require('mason-lspconfig')
-
-    local servers = get_servers_config()
-
-    mason_lspconfig.setup({
-      ensure_installed = vim.tbl_keys(servers),
-    })
-
-    mason_lspconfig.setup_handlers({
-      function(server_name)
-        require('lspconfig')[server_name].setup({
-          capabilities = capabilities,
-          on_attach = on_attach,
-          settings = servers[server_name],
-          filetypes = (servers[server_name] or {}).filetypes,
-        })
-      end,
-    })
-  end,
+      -- all the opts to send to nvim-lspconfig
+      -- these override the defaults set by rust-tools.nvim
+      -- see https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md#rust_analyzer
+      server = {
+        settings = {
+          -- to enable rust-analyzer settings visit:
+          -- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
+          ['rust-analyzer'] = {
+            -- enable clippy on save
+            checkOnSave = {
+              command = 'clippy',
+            },
+          },
+        },
+      },
+    },
+  },
 }
