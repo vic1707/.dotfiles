@@ -19,7 +19,8 @@
   oops = commit --amend --no-edit
 	# Shorter git status
 	sb = status -sb
-
+  # nuke all local branches except default
+  nuke = !MAIN="$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)" && git checkout "$MAIN" && git pull && git branch | grep -v "$MAIN" | xargs git branch -D
 [color]
   # Enable colors in color-supporting terminals
   ui = auto
