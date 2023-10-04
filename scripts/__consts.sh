@@ -37,6 +37,7 @@ ripgrep
 rtx-cli
 starship
 tokei
+zellij
 "
 
 # Export variables
