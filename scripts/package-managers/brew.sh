@@ -18,6 +18,7 @@ android-platform-tools
 brave-browser
 discord
 ffmpeg
+gitleaks
 imagemagick
 iterm2
 jellyfin-media-player
