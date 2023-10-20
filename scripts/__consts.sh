@@ -22,6 +22,7 @@ bacon
 bat
 bottom
 cargo-edit
+cargo-expand
 cargo-update
 coreutils
 diskonaut
