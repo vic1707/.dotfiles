@@ -2,7 +2,7 @@
 bun = "latest"
 fzf = "latest"
 go = "latest"
-# jq = "latest" # TODO: watch https://github.com/jdx/rtx/issues/893
+# jq = "latest" # TODO: watch https://github.com/lsanwick/asdf-jq/issues/5
 neovim = "latest"
 node = "latest"
 opam = "latest"
