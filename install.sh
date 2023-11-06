@@ -121,7 +121,7 @@ export PM
   exit 1;
 }
 ## Install SHELLS ##
-(PM_commands "$PM" install "$(echo "$AVAILABLE_SHELLS" | tr -d 'nu')" && echo "Shells installed") || {
+(PM_commands "$PM" install "$AVAILABLE_SHELLS" && echo "Shells installed") || {
   echo "Error: shells could not be installed" >&2
   exit 1;
 }

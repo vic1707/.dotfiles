@@ -8,7 +8,7 @@
 . "$DOTS_DIR/scripts/package-managers/__index.sh"
 
 ## 3_shell.sh ##
-AVAILABLE_SHELLS="zsh bash nu"
+AVAILABLE_SHELLS="zsh bash"
 ZSH_PLUGINS="
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
@@ -32,7 +32,6 @@ flamegraph
 gitui
 git-delta
 hyperfine
-nu
 procs
 ripgrep
 rtx-cli

@@ -26,8 +26,8 @@ Usage: install.sh [options]
 Options:
   -h, --help        Show this help message
   -q, --quiet       Quiet mode
-  -s, --shell       Install a shell (zsh|bash|nu)
-  --all-shells      Install all shells (zsh|bash|nu)
+  -s, --shell       Install a shell (zsh|bash)
+  --all-shells      Install all shells (zsh|bash)
   --                End of options
 ```
 ## Usage

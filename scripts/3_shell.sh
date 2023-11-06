@@ -8,11 +8,11 @@
 # Install needed shell config files    #
 # and plugins if needed                #
 # Arguments:                           #
-#   $1: shell to install (zsh|bash|nu) #
+#   $1: shell to install (zsh|bash)    #
 # Globals:                             #
 #  None                                #
 # Arguments:                           #
-#   $1: shell to install (zsh|bash|nu) #
+#   $1: shell to install (zsh|bash)    #
 # Returns:                             #
 #   0 if install was successful        #
 ########################################
@@ -26,9 +26,6 @@ install_shells() {
       bash)
         install_bash_env
         ;;
-      nu)
-        install_nu_env
-        ;;
     esac
   done
 }
@@ -40,17 +37,6 @@ install_bash_env() {
   echo "-- Installing bash environment --"
   ln -fs "$DOTS_DIR/shell/bash/.bashrc" "$HOME/.bashrc"
   ln -fs "$DOTS_DIR/shell/bash/.bash_profile" "$HOME/.bash_profile"
-}
-
-######################
-##        NU        ##
-######################
-install_nu_env() {
-  echo "-- Installing nu environment --"
-  if [ "$UNAME" = "Darwin" ]; then
-    rm -rf "$HOME/Library/Application Support/nushell" # just in case
-    ln -fs "$DOTS_DIR/.config/nushell" "$HOME/Library/Application Support/nushell"
-  fi
 }
 
 ######################
