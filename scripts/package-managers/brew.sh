@@ -13,9 +13,10 @@ install_brew() {
 }
 
 BREW_PKGS="
-arc
+adobe-creative-cloud
 android-platform-tools
 anytype
+arc
 brave-browser
 discord
 imagemagick
