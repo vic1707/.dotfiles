@@ -15,6 +15,7 @@ install_brew() {
 BREW_PKGS="
 arc
 android-platform-tools
+anytype
 brave-browser
 discord
 imagemagick
