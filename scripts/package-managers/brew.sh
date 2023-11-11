@@ -17,8 +17,6 @@ arc
 android-platform-tools
 brave-browser
 discord
-ffmpeg
-gitleaks
 imagemagick
 iterm2
 jellyfin-media-player
@@ -28,7 +26,6 @@ notion
 openssh
 podman-desktop
 shellcheck
-tmux
 tree
 rsteube/tap/carapace
 visual-studio-code

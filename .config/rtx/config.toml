@@ -1,6 +1,8 @@
 [tools]
 bun = "latest"
+ffmpeg = "latest"
 fzf = "latest"
+gitleaks = "latest"
 go = "latest"
 # jq = "latest" # TODO: watch https://github.com/lsanwick/asdf-jq/issues/5
 neovim = "latest"
@@ -9,5 +11,9 @@ opam = "latest"
 python = "latest"
 # shellcheck = "latest" # TODO: watch https://github.com/koalaman/shellcheck/pull/2736
 stylua = "latest"
+tmux = "latest"
 zig = "latest"
 yq = "latest"
+
+## Not working on Mac Apple Silicon ##
+# imagemagick = "latest"

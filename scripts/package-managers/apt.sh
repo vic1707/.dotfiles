@@ -5,12 +5,10 @@
 ###################################
 APT_PKGS="
 adb
-ffmpeg
 imagemagick
 jq
 luarocks
 shellcheck
-tmux
 tree
 "
 
