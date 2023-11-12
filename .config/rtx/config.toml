@@ -6,6 +6,7 @@ fzf = "latest"
 gitleaks = "latest"
 go = "latest"
 # jq = "latest" # TODO: watch https://github.com/lsanwick/asdf-jq/issues/5
+lua = "latest"
 neovim = "latest"
 node = "latest"
 opam = "latest"
