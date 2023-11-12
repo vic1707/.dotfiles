@@ -29,6 +29,7 @@ notion
 openssh
 shellcheck
 steam
+tmux
 tree
 rsteube/tap/carapace
 visual-studio-code

@@ -9,6 +9,7 @@ imagemagick
 jq
 luarocks
 shellcheck
+tmux
 tree
 "
 
