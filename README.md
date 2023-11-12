@@ -40,11 +40,6 @@ Dont't forget to initialize opam (need to be done for each shell):
 opam init -y --shell-setup
 ```
 ---
-Install all `rtx` runtimes:
-```sh
-rtx i
-```
----
 Add SSH key:
 ```sh
 ssh-keygen -t ed25519 -f ~/.ssh/github-vic1707 -P '' -C "<email>"
