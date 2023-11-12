@@ -83,11 +83,11 @@ fi
 ## Homebrew (if MacOS) ##
 if [ "$UNAME" = "Darwin" ]; then
   # echo "Ensure XCODE license is accepted"
-  echo "Trying to accept the license $(date)";
-  while ! sudo xcodebuild -license accept 2>/dev/null; do
-    sleep 2
-  done;
-  echo "License finally accepted $(date)";
+  # echo "Trying to accept the license $(date)";
+  # while ! sudo xcodebuild -license accept 2>/dev/null; do
+  #   sleep 2
+  # done;
+  # echo "License finally accepted $(date)";
 
   (install_brew && echo "Homebrew installed") || {
     echo "Error: Homebrew could not be installed" >&2
