@@ -28,6 +28,7 @@ minecraft
 notion
 openssh
 shellcheck
+slack
 steam
 tmux
 tree
