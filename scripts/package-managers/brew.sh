@@ -12,6 +12,7 @@ install_brew() {
   fi
 }
 
+# podman-desktop  - later
 BREW_PKGS="
 adobe-creative-cloud
 android-platform-tools
@@ -23,10 +24,11 @@ imagemagick
 iterm2
 jellyfin-media-player
 jq
+minecraft
 notion
 openssh
-podman-desktop
 shellcheck
+steam
 tree
 rsteube/tap/carapace
 visual-studio-code
