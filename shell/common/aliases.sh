@@ -37,3 +37,9 @@ if command -v nvim > /dev/null; then
   alias vi='nvim'
   alias vim='nvim'
 fi
+
+# docker
+if command -v docker > /dev/null; then
+  alias docker_nuke='docker system prune -a; docker volume prune -a'
+fi
+
