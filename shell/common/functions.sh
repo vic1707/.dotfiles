@@ -142,8 +142,8 @@ ____update_env() {
   [ -x "$(command -v cargo)" ] && cargo install-update -a
   ## Xmake ##
   [ -x "$(command -v xmake)" ] && xmake update
-  ## Node (via Rtx) ##
-  [ -x "$(command -v rtx)" ] && rtx install node
+  ## Rtx ##
+  type rtx && printf "[RTX] "; rtx upgrade
   ## Tmux Plugins ##
   if [ -d "$HOME/.config/tmux/plugins" ]; then
     for plugin in "$HOME/.config/tmux/plugins/"*; do
