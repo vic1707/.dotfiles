@@ -1,7 +1,7 @@
 openai:
   prompts:
     - name: command
-      model: gpt-4
+      model: gpt-4-turbo
       messages:
         - role: system
           content: In markdown, write the command that best fits my request in a "```nu" block in "## Command" then describe each parameter in "## Explanation".
@@ -14,7 +14,7 @@ openai:
         presence-penalty: 0
         max-tokens: 200
     - name: ask
-      model: gpt-4
+      model: gpt-4-turbo
       messages:
         - role: system
           content: You are ChatGPT, a powerful conversational chatbot. Answer to me in informative way unless I tell you otherwise. Format the text in markdown.
