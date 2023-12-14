@@ -23,6 +23,7 @@ bat
 bottom
 cargo-edit
 cargo-expand
+cargo-msrv
 cargo-update
 coreutils
 diskonaut
