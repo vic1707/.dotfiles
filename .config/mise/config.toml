@@ -1,7 +1,7 @@
 [tools]
 act = "latest"
 bun = "latest"
-ffmpeg = "latest"
+# ffmpeg = "latest" # mess on windows wsl
 fzf = "latest"
 gitleaks = "latest"
 go = "latest"
