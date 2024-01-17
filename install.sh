@@ -138,11 +138,11 @@ export PM
   echo "Error: $HOME/.config already exists and is not empty" >&2
   exit 1;
 }
-## Fonts ##
-(install_fonts && echo "Fonts installed") || {
-  echo "Error: fonts could not be installed" >&2
-  exit 1;
-}
+## Fonts ## ## TODO: c'est pété
+# (install_fonts && echo "Fonts installed") || {
+#   echo "Error: fonts could not be installed" >&2
+#   exit 1;
+# }
 ## Shell ##
 (install_shells "$SHELLS_TO_INSTALL" && echo "Shell(s) installed") || {
   echo "Error: shell(s) could not be installed" >&2
