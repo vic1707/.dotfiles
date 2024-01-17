@@ -120,7 +120,7 @@ __ask_choice() {
 #   - rustup                      #
 #   - cargo                       #
 #   - xmake                       #
-#   - nvim (via Bob)              #
+#   - mise tools                  #
 # Globals:                        #
 #   None                          #
 # Arguments:                      #
