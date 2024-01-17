@@ -161,4 +161,4 @@ export PM
 }
 
 # TODO: make cleaner
-~/.cargo/bin/rtx install -y
+~/.cargo/bin/mise install -y

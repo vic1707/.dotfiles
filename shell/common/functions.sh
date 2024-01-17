@@ -121,7 +121,6 @@ __ask_choice() {
 #   - cargo                       #
 #   - xmake                       #
 #   - nvim (via Bob)              #
-#   - node (via Rtx)              #
 # Globals:                        #
 #   None                          #
 # Arguments:                      #
@@ -142,8 +141,8 @@ ____update_env() {
   [ -x "$(command -v cargo)" ] && cargo install-update -a
   ## Xmake ##
   [ -x "$(command -v xmake)" ] && xmake update
-  ## Rtx ##
-  type rtx && printf "[RTX] "; rtx upgrade
+  ## (former RTX-cli) ##
+  type mise && printf "[MISE] "; mise upgrade
   ## Tmux Plugins ##
   if [ -d "$HOME/.config/tmux/plugins" ]; then
     for plugin in "$HOME/.config/tmux/plugins/"*; do

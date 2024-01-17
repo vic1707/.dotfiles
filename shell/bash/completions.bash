@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-# RTX
+# Mise (former RTX-cli)
 # shellcheck disable=SC1090 # sourced via external command
-. <(rtx activate bash)
+. <(mise activate bash)
 
 # Cargo-flamegraph
 # shellcheck disable=SC1090 # sourced via external command

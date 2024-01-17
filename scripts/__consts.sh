@@ -35,7 +35,7 @@ git-delta
 hyperfine
 procs
 ripgrep
-rtx-cli
+mise
 starship
 tokei
 zellij
