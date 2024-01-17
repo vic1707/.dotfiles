@@ -30,7 +30,9 @@ alias ll='ls -la'
 
 # vi/vim
 NVIM_BIN="$HOME/.local/share/mise/installs/neovim/latest/bin/nvim"
+# shellcheck disable=SC2139 # intended behavior
 test -f "$NVIM_BIN" && alias vi="$NVIM_BIN"
+# shellcheck disable=SC2139 # intended behavior
 test -f "$NVIM_BIN" && alias vim="$NVIM_BIN"
 
 # docker
