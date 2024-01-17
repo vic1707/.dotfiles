@@ -5,6 +5,7 @@
 ###################################
 APT_PKGS="
 adb
+bubblewrap
 imagemagick
 jq
 luarocks
