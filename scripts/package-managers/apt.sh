@@ -6,16 +6,23 @@
 
 # bubblewrap: for ocaml/opam
 # yasm: for ffmpeg
+# libbz2-dev, libffi-dev, liblzma-dev, libsqlite3-dev, tk-dev, zlib1g-dev: for python
 APT_PKGS="
 adb
 bubblewrap
 imagemagick
 jq
+libbz2-dev
+libffi-dev
+liblzma-dev
+libsqlite3-dev
 luarocks
 shellcheck
+tk-dev
 tmux
 tree
 yasm
+zlib1g-dev
 "
 
 export APT_PKGS
