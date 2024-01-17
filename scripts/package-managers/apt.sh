@@ -3,6 +3,9 @@
 ###################################
 ## This script needs to be POSIX ##
 ###################################
+
+# bubblewrap: for ocaml/opam
+# yasm: for ffmpeg
 APT_PKGS="
 adb
 bubblewrap
@@ -12,6 +15,7 @@ luarocks
 shellcheck
 tmux
 tree
+yasm
 "
 
 export APT_PKGS
