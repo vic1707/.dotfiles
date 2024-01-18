@@ -5,7 +5,7 @@ ffmpeg = "latest"
 fzf = "latest"
 gitleaks = "latest"
 go = "latest"
-# jq = "latest" # TODO: watch https://github.com/lsanwick/asdf-jq/issues/5
+jq = "1.7.1"
 lua = "latest"
 neovim = "latest"
 node = "latest"
@@ -15,6 +15,9 @@ python = "latest"
 stylua = "latest"
 zig = "latest"
 yq = "latest"
+
+[plugins]
+jq = "https://github.com/kc-workspace/asdf-jq.git"
 
 ## Not working on Mac Apple Silicon ##
 # imagemagick = "latest"

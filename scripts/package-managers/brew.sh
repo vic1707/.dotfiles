@@ -20,6 +20,7 @@ anytype
 arc
 brave-browser
 discord
+gpg
 imagemagick
 iterm2
 jellyfin-media-player
