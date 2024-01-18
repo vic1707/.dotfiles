@@ -13,12 +13,13 @@ opam = "2.1.5"
 python = "3.12.1"
 # shellcheck = "latest" # TODO: watch https://github.com/koalaman/shellcheck/pull/2736
 stylua = "0.19.1"
+tmux = "3.3a"
 zig = "0.11.0"
 yq = "4.40.5"
 
 [plugins]
 jq = "https://github.com/kc-workspace/asdf-jq.git"
+tmux ="https://github.com/Dabolus/asdf-tmux.git"
 
 ## Not working on Mac Apple Silicon ##
 # imagemagick = "7.1.1-26"
-# tmux = "3.3a"
