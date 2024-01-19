@@ -31,7 +31,6 @@ openssh
 shellcheck
 slack
 steam
-tmux
 tree
 rsteube/tap/carapace
 visual-studio-code

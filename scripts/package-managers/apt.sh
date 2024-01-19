@@ -19,7 +19,6 @@ libsqlite3-dev
 luarocks
 shellcheck
 tk-dev
-tmux
 tree
 yasm
 zlib1g-dev
