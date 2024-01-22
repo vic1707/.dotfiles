@@ -28,6 +28,7 @@ jq
 minecraft
 notion
 openssh
+podman-desktop
 shellcheck
 slack
 steam
@@ -48,5 +49,6 @@ export BREW_PKGS
 #   None                          #
 ###################################
 additionnal_brew_installs() {
-  brew install --cask docker; ## if in BREW_PKGS it doesn't install GUI app nor compose
+  # brew install --cask docker; ## if in BREW_PKGS it doesn't install GUI app nor compose
+  true
 }
