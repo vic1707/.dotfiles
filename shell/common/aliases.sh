@@ -23,7 +23,7 @@ alias fd='find . -type d -name'
 alias ff='find . -type f -name'
 
 # ls
-test -f ~/.cargo/bin/exa && alias ls='exa --icons'
+test -f ~/.cargo/bin/eza && alias ls='eza --icons'
 alias l='ls -lF'
 alias la='ls -laF'
 alias ll='ls -la'

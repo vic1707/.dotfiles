@@ -28,7 +28,7 @@ cargo-update
 coreutils
 diskonaut
 du-dust
-exa
+eza
 flamegraph
 gitui
 git-delta
