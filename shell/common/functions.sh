@@ -142,7 +142,7 @@ ____update_env() {
   ## Xmake ##
   [ -x "$(command -v xmake)" ] && xmake update
   ## (former RTX-cli) ##
-  [ -x "$(which mise)" ] && printf "[MISE] " && mise upgrade
+  mise --help 2>/dev/null 1>/dev/null && printf "[MISE] " && mise upgrade
   ## Tmux Plugins ##
   if [ -d "$HOME/.config/tmux/plugins" ]; then
     for plugin in "$HOME/.config/tmux/plugins/"*; do
@@ -151,4 +151,21 @@ ____update_env() {
     done
   fi
   return 0
+}
+
+mise_tools_updates_checks() {
+  mise --help 2>/dev/null 1>/dev/null || { echo "Mise not installed" && exit 1; }
+  TOOLS="$(mise ls | cut -d ' ' -f 1 | uniq)"
+  for TOOL in $TOOLS; do
+    CURRENT_VERSION="$(mise ls "$TOOL" | tail -n 1 | awk 'NR==1 {print $4}')"
+    LATEST_VERSION="$(mise latest "$TOOL" 2>/dev/null || echo "err")"
+    if [ "$LATEST_VERSION" = "err" ]; then
+      printf "%-10s: Error while querying the last version." "$TOOL";
+    elif [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
+      printf "%-10s: Nothing to do." "$TOOL"
+    else
+      printf "%-10s: Can upgrade %10s ==> %-10s" "$TOOL" "$CURRENT_VERSION" "$LATEST_VERSION";
+    fi
+    echo '';
+  done;
 }
