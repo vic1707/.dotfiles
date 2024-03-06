@@ -142,7 +142,12 @@ ____update_env() {
   ## Xmake ##
   [ -x "$(command -v xmake)" ] && xmake update
   ## (former RTX-cli) ##
-  mise --help 2>/dev/null 1>/dev/null && printf "[MISE] " && mise upgrade
+  mise --help 2>/dev/null 1>/dev/null && {
+    printf "[MISE] ";
+    mise upgrade
+    echo "[MISE] Checking for tool updates"
+    mise_tools_updates_checks
+  }
   ## Tmux Plugins ##
   if [ -d "$HOME/.config/tmux/plugins" ]; then
     for plugin in "$HOME/.config/tmux/plugins/"*; do
