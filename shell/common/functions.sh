@@ -158,6 +158,16 @@ ____update_env() {
   return 0
 }
 
+###################################
+# Checks if mise tools can be     #
+# updated                         #
+# Globals:                        #
+#   None                          #
+# Arguments:                      #
+#   None                          #
+# Returns:                        #
+#   0 if all updates are OK       #
+###################################
 mise_tools_updates_checks() {
   mise --help 2>/dev/null 1>/dev/null || { echo "Mise not installed" && exit 1; }
   TOOLS="$(mise ls | cut -d ' ' -f 1 | uniq)"
@@ -173,4 +183,6 @@ mise_tools_updates_checks() {
     fi
     echo '';
   done;
+
+  return 0;
 }
