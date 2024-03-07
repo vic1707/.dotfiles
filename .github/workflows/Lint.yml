@@ -8,11 +8,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run Beautysh
-        uses: illvart/beautysh-action@latest
-        with: # not in .git and not in ./shell/zsh/.zsh-plugins
-          args: -c -i 2 -s paronly $(find . -not -path "./.git/*" -not -path "./shell/zsh/.zsh-plugins/*" -not -path "./.config/tmux/plugins/*" \( -name "*.sh" -o -name "*.bash" -o -name "*.zsh" \))
+      - uses: mfinelli/setup-shfmt@v3
+      - name: Run shfmt
+        if: always()
+        run: |
+            shfmt --indent 4 --simplify --case-indent --binary-next-line --space-redirects \
+                $(find . -not -path "./.git/*" -not -path "./shell/zsh/.zsh-plugins/*" -not -path "./.config/tmux/plugins/*" \( -name "*.sh" -o -name "*.bash" -o -name "*.zsh" \))
       - name: Run stylua
+        if: always()
         uses: JohnnyMorganz/stylua-action@v4
         with:
           version: latest
