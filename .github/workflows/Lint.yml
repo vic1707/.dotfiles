@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   formatters:
-    name: Beautysh & stylua
+    name: shfmt & stylua
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

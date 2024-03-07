@@ -37,6 +37,5 @@ test -f "$NVIM_BIN" && alias vim="$NVIM_BIN"
 
 # docker
 if command -v docker > /dev/null; then
-  alias docker_nuke='docker system prune -a; docker volume prune -a'
+    alias docker_nuke='docker system prune -a; docker volume prune -a'
 fi
-

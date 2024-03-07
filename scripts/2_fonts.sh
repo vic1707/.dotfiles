@@ -14,7 +14,7 @@
 #   0 if install was successful     #
 #####################################
 install_fonts() {
-  FONT_DIR="$([ "$(uname)" = 'Darwin' ] && echo "$HOME/Library/Fonts" || echo "$HOME/.local/share/fonts")"
-  ln -fs "$DOTS_DIR/fonts/"* "$FONT_DIR"
-  return 0
+    FONT_DIR="$([ "$(uname)" = 'Darwin' ] && echo "$HOME/Library/Fonts" || echo "$HOME/.local/share/fonts")"
+    ln -fs "$DOTS_DIR/fonts/"* "$FONT_DIR"
+    return 0
 }

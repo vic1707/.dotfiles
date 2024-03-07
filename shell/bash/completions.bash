@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Mise (former RTX-cli)
 # shellcheck disable=SC1090 # sourced via external command
 . <(mise activate bash)

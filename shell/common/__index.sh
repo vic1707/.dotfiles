@@ -18,9 +18,9 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # loading platform specific scripts
 UNAME="$(uname -s)"
 if [ "$UNAME" = "Linux" ]; then
-  # shellcheck source=shell/common/_LINUX.sh
-  . "$DOTS_DIR/shell/common/_LINUX.sh"
+    # shellcheck source=shell/common/_LINUX.sh
+    . "$DOTS_DIR/shell/common/_LINUX.sh"
 elif [ "$UNAME" = "Darwin" ]; then
-  # shellcheck source=shell/common/_MAC_OS.sh
-  . "$DOTS_DIR/shell/common/_MAC_OS.sh"
+    # shellcheck source=shell/common/_MAC_OS.sh
+    . "$DOTS_DIR/shell/common/_MAC_OS.sh"
 fi
