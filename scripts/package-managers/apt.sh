@@ -7,6 +7,7 @@
 # bubblewrap: for ocaml/opam
 # yasm: for ffmpeg
 # libbz2-dev, libffi-dev, liblzma-dev, libsqlite3-dev, tk-dev, zlib1g-dev: for python
+# byaac: for tmux
 APT_PKGS="
 adb
 bubblewrap
