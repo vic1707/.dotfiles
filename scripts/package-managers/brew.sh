@@ -12,7 +12,6 @@ install_brew() {
     fi
 }
 
-# podman-desktop  - later
 BREW_PKGS="
 adobe-creative-cloud
 android-platform-tools
@@ -27,7 +26,6 @@ jq
 minecraft
 notion
 openssh
-podman-desktop
 slack
 steam
 tree
