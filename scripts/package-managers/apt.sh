@@ -18,7 +18,6 @@ libffi-dev
 liblzma-dev
 libsqlite3-dev
 luarocks
-shellcheck
 tk-dev
 tree
 yasm

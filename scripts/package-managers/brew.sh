@@ -29,7 +29,6 @@ minecraft
 notion
 openssh
 podman-desktop
-shellcheck
 slack
 steam
 tree
