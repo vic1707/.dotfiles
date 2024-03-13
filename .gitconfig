@@ -20,7 +20,15 @@
     # Shorter git status
     sb = status -sb
     # nuke all local branches except default
-    nuke = !MAIN="$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)" && git checkout "$MAIN" && git pull && git branch | grep -v "$MAIN" | xargs git branch -D
+    nuke = "!f() { \
+        MAIN=\"$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)\"; \
+        branches=\"$(git branch | grep -v \"$MAIN\")\"; \
+        git checkout \"$MAIN\" >/dev/null; \
+        git fetch --prune; \
+        git pull; \
+        [ -n \"$branches\" ] && echo \"$branches\" | xargs git branch -D; \
+    }; \
+    f;"
 
 [color]
     # Enable colors in color-supporting terminals
@@ -77,3 +85,9 @@
 
 [merge]
     conflictstyle = diff3
+[credential "https://github.com"]
+    helper = 
+    helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+    helper = 
+    helper = !/usr/bin/gh auth git-credential
