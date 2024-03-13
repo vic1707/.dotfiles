@@ -176,7 +176,7 @@ mise_tools_updates_checks() {
     mise cache clean
     TOOLS="$(mise ls | cut -d ' ' -f 1 | uniq)"
     echo "$TOOLS" | while IFS= read -r TOOL; do
-        CURRENT_VERSION="$(mise ls "$TOOL" | tail -n 1 | awk 'NR==1 {print $4}')"
+        CURRENT_VERSION="$(mise ls "$TOOL" | tail -n 1 | awk 'NR==1 {print $2}')"
         LATEST_VERSION="$(mise latest "$TOOL" 2> /dev/null || echo "err")"
         if [ "$LATEST_VERSION" = "err" ]; then
             printf "%-10s: Error while querying the last version." "$TOOL"
