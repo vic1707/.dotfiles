@@ -1,76 +1,79 @@
 [user]
-	name = vic1707
-	email = 28602203+vic1707@users.noreply.github.com
+    name = vic1707
+    email = 28602203+vic1707@users.noreply.github.com
 
 [core]
-  pager = delta
-	# case sensitive
-	ignorecase = false
-	# don't track file mode changes
-	fileMode = false
+    pager = delta
+    # case sensitive
+    ignorecase = false
+    # don't track file mode changes
+    fileMode = false
 
 [alias]
-  # List available aliases
-  aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
-	# Display tree-like log, because default log is a pain...
-  lg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
-  # Useful when you have to update your last commit
-  # with staged files without editing the commit message.
-  oops = commit --amend --no-edit
-	# Shorter git status
-	sb = status -sb
-  # nuke all local branches except default
-  nuke = !MAIN="$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)" && git checkout "$MAIN" && git pull && git branch | grep -v "$MAIN" | xargs git branch -D
+    # List available aliases
+    aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+    # Display tree-like log, because default log is a pain...
+    lg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+    # Useful when you have to update your last commit
+    # with staged files without editing the commit message.
+    oops = commit --amend --no-edit
+    # Shorter git status
+    sb = status -sb
+    # nuke all local branches except default
+    nuke = !MAIN="$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)" && git checkout "$MAIN" && git pull && git branch | grep -v "$MAIN" | xargs git branch -D
+
 [color]
-  # Enable colors in color-supporting terminals
-  ui = auto
+    # Enable colors in color-supporting terminals
+    ui = auto
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [submodule]
-	recurse = true
+    recurse = true
 
 [help]
-	autocorrect = 3 # 0 = off, 1 = warn, 2 = error, 3 = all
+    autocorrect = 3 # 0 = off, 1 = warn, 2 = error, 3 = all
 
 [diff]
-  # Use better, descriptive initials (c, i, w) instead of a/b.
-  mnemonicPrefix = true
-  # Show renames/moves as such
-  renames = true
-  colorMoved = default
+    # Use better, descriptive initials (c, i, w) instead of a/b.
+    mnemonicPrefix = true
+    # Show renames/moves as such
+    renames = true
+    colorMoved = default
 
 [fetch]
-  # Auto-fetch submodule changes (sadly, won't auto-update)
-  recurseSubmodules = on-demand
+    # Auto-fetch submodule changes (sadly, won't auto-update)
+    recurseSubmodules = on-demand
 
 [grep]
-  break = true
-  heading = true
-  lineNumber = true
-  # Consider most regexes to be ERE
-  extendedRegexp = true
+    break = true
+    heading = true
+    lineNumber = true
+    # Consider most regexes to be ERE
+    extendedRegexp = true
 
 [status]
-  # Display submodule rev change summaries in status
-  submoduleSummary = true
-  # Recursively traverse untracked directories to display all contents
-  showUntrackedFiles = all
+    # Display submodule rev change summaries in status
+    submoduleSummary = true
+    # Recursively traverse untracked directories to display all contents
+    showUntrackedFiles = all
 
 [push]
-  # Default push should only push the current branch to its push target, regardless of its remote name
-  default = upstream
+    # Default push should only push the current branch to its push target, regardless of its remote name
+    default = upstream
+    # Automatically set up the remote repository if it doesn't exist
+    autoSetupRemote = true
 
 [interactive]
-  diffFilter = delta --color-only
+    diffFilter = delta --color-only
 
 [delta]
-  navigate = true    # use n and N to move between diff sections
-  light = false
-  line-numbers = true
-  side-by-side = true
-  syntax-theme = Dracula
+    navigate = true    # use n and N to move between diff sections
+    light = false
+    line-numbers = true
+    side-by-side = true
+    syntax-theme = Dracula
 
 [merge]
-  conflictstyle = diff3
+    conflictstyle = diff3
