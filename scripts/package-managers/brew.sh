@@ -22,7 +22,6 @@ brave-browser
 discord
 gpg
 imagemagick
-iterm2
 jellyfin-media-player
 jq
 minecraft
@@ -34,6 +33,7 @@ steam
 tree
 rsteube/tap/carapace
 visual-studio-code
+wezterm
 "
 
 export BREW_PKGS
