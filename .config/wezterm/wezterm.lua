@@ -1,13 +1,23 @@
--- Pull in the wezterm API
 local wezterm = require('wezterm')
-
--- This will hold the configuration.
 local config = wezterm.config_builder()
 
--- This is where you actually apply your config choices
+config.color_scheme = 'Argonaut'
+config.font_size = 24.0
 
--- For example, changing the color scheme:
-config.color_scheme = 'Batman'
+config.colors = {
+    cursor_bg = 'green',
+    cursor_fg = 'black',
+}
 
--- and finally, return the configuration to wezterm
+config.window_frame = {
+    font_size = 24.0,
+}
+
+config.window_padding = {
+    left = '1cell',
+    right = '1cell',
+    top = '0cell',
+    bottom = '0cell',
+}
+
 return config
