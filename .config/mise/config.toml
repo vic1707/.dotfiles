@@ -21,7 +21,6 @@ tmux = "3.4"
 zig = "0.11.0"
 
 [plugins]
-jq = "https://github.com/kc-workspace/asdf-jq.git"
 tmux ="https://github.com/Dabolus/asdf-tmux.git"
 
 ## Not working on Mac Apple Silicon ##
