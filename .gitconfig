@@ -29,6 +29,15 @@
         [ -n \"$branches\" ] && echo \"$branches\" | xargs git branch -D; \
     }; \
     f;"
+	# update current branch by rebasing over main branch
+    update-branch = "!f() { \
+        MAIN=\"$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)\"; \
+        git checkout \"$MAIN\"; \
+        git pull; \
+		git checkout -; \
+		git rebase \"$MAIN\"; \
+    }; \
+    f;"
 
 [color]
     # Enable colors in color-supporting terminals
