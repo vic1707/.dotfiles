@@ -7,7 +7,7 @@
     # case sensitive
     ignorecase = false
     # don't track file mode changes
-    fileMode = false
+	filemode = false
 
 [alias]
     # List available aliases
