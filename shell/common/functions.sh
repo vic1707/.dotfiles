@@ -146,8 +146,6 @@ ____update_env() {
     [ -x "$(command -v xmake)" ] && xmake update
     ## (former RTX-cli) ##
     if mise --help 2> /dev/null 1> /dev/null; then
-        printf "[MISE] "
-        mise upgrade
         echo "[MISE] Checking for tool updates"
         mise_tools_updates_checks
     fi
