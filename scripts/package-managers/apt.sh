@@ -12,7 +12,6 @@ APT_PKGS="
 adb
 bubblewrap
 imagemagick
-jq
 libbz2-dev
 libffi-dev
 liblzma-dev

@@ -11,19 +11,20 @@
 AVAILABLE_SHELLS="zsh bash"
 ZSH_PLUGINS="
 zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 "
 # keep this up to date with `.zshrc` line 5
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
 
 CARGO_PKGS="
-aio-cli
 bacon
 bat
 bottom
 cargo-edit
 cargo-expand
 cargo-msrv
+cargo-semver-checks
 cargo-update
 coreutils
 diskonaut

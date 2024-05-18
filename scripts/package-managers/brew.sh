@@ -15,14 +15,11 @@ install_brew() {
 BREW_PKGS="
 adobe-creative-cloud
 android-platform-tools
-anytype
 arc
-brave-browser
 discord
 gpg
 imagemagick
 jellyfin-media-player
-jq
 minecraft
 notion
 openssh
