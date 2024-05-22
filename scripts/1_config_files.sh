@@ -25,5 +25,6 @@ install_config_files() {
     ln -fs "$DOTS_DIR/.config"/* "$HOME/.config"
     ## Git config files
     ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
+    ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
     return 0
 }

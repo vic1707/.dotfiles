@@ -1,0 +1,10 @@
+# Force all text files to use LF line endings
+* text=lf
+
+# Treat binary files as-is
+*.png binary
+*.jpg binary
+*.gif binary
+*.exe binary
+*.dll binary
+*.zip binary

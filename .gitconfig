@@ -8,6 +8,10 @@
     ignorecase = false
     # don't track file mode changes
 	filemode = false
+    # I hate line-endings
+    eol = lf
+    autocrlf = input
+    safecrlf = warn
 
 [alias]
     # List available aliases
@@ -94,3 +98,10 @@
 
 [merge]
     conflictstyle = diff3
+
+[file]
+	mode = off
+
+[rerere]
+	enabled = true
+	autoupdate = true
