@@ -6,9 +6,6 @@
 # Misc
 shell/zsh/.zsh-plugins/*
 
-## Contains sensitive information ##
-.config/aio/creds.yaml
-
 ## Undotree nvim plugin ##
 .config/nvim/undodir
 
