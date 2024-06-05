@@ -7,7 +7,7 @@
     # case sensitive
     ignorecase = false
     # don't track file mode changes
-	filemode = false
+    filemode = false
     # I hate line-endings
     eol = lf
     autocrlf = input
@@ -100,8 +100,8 @@
     conflictstyle = diff3
 
 [file]
-	mode = off
+    mode = off
 
 [rerere]
-	enabled = true
-	autoupdate = true
+    enabled = true
+    autoupdate = true
