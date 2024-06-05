@@ -26,20 +26,20 @@
     # nuke all local branches except default
     nuke = "!f() { \
         MAIN=\"$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)\"; \
-        branches=\"$(git branch | grep -v \"$MAIN\")\"; \
         git checkout \"$MAIN\" >/dev/null; \
         git fetch --prune; \
         git pull; \
+        branches=\"$(git branch | grep -v \"$MAIN\")\"; \
         [ -n \"$branches\" ] && echo \"$branches\" | xargs git branch -D; \
     }; \
     f;"
-	# update current branch by rebasing over main branch
+    # update current branch by rebasing over main branch
     update-branch = "!f() { \
         MAIN=\"$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)\"; \
         git checkout \"$MAIN\"; \
         git pull; \
-		git checkout -; \
-		git rebase \"$MAIN\"; \
+        git checkout -; \
+        git rebase \"$MAIN\"; \
     }; \
     f;"
 
