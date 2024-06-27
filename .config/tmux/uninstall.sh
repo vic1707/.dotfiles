@@ -5,7 +5,7 @@
 # are you sure ? (ask if $1 != -f|-y)
 if [ "$1" != "-f" ] && [ "$1" != "-y" ]; then
     printf "Are you sure you want to uninstall all tmux plugins ? [y/N] "
-    read -r
+    read -r REPLY
     echo
     case $REPLY in
         [Yy]*) ;;
