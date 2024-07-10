@@ -24,6 +24,7 @@ bottom
 cargo-edit
 cargo-expand
 cargo-msrv
+cargo-nextest
 cargo-semver-checks
 cargo-update
 coreutils
