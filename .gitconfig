@@ -26,6 +26,8 @@
     # nuke all local branches except default
     nuke = "!f() { \
         MAIN=\"$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)\"; \
+        git checkout -b __TMP__ >/dev/null; \
+        git branch -D \"$MAIN\" >/dev/null; \
         git checkout \"$MAIN\" >/dev/null; \
         git fetch --prune; \
         git pull; \
