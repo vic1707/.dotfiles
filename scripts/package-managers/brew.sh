@@ -13,6 +13,7 @@ install_brew() {
 }
 
 BREW_PKGS="
+p7zip
 adobe-creative-cloud
 android-platform-tools
 arc
@@ -26,6 +27,7 @@ openssh
 slack
 steam
 tree
+rar
 rsteube/tap/carapace
 visual-studio-code
 wezterm
