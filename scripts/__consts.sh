@@ -27,6 +27,7 @@ cargo-msrv
 cargo-nextest
 cargo-semver-checks
 cargo-update
+cargo-wizard
 coreutils
 diskonaut
 du-dust
