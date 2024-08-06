@@ -20,4 +20,7 @@ config.window_padding = {
     bottom = '0cell',
 }
 
+config.scrollback_lines = 350000
+config.enable_scroll_bar = true
+
 return config

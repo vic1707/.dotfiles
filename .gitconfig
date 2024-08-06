@@ -64,6 +64,10 @@
     # Show renames/moves as such
     renames = true
     colorMoved = default
+    tool = nvimdiff
+
+[difftool "nvimdiff"]
+    cmd = nvim -n -d \"$LOCAL\" \"$REMOTE\"
 
 [fetch]
     # Auto-fetch submodule changes (sadly, won't auto-update)
