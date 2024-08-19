@@ -4,9 +4,9 @@ local config = wezterm.config_builder()
 config.color_scheme = 'Argonaut'
 config.font_size = 24.0
 config.font = wezterm.font_with_fallback({
-    'SeriousShanns Nerd Font Mono',
-    -- 'SeriousShanns Nerd Font Propo',
-    'JetBrains Mono',
+    { family = 'SeriousShanns Nerd Font Propo', weight = 'DemiBold' },
+    { family = 'SeriousShanns Nerd Font Mono', weight = 'DemiBold' },
+    { family = 'JetBrains Mono', weight = 'Regular' },
 })
 
 config.colors = {
