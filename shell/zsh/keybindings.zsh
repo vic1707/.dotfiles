@@ -4,41 +4,38 @@
 # ZSH keybindings #
 ###################
 
-# declare key & terminfo
-typeset -g -A key
-typeset -g -A terminfo
+# declare key
+typeset -A key
 
-key[Home]="${terminfo[khome]}"
-key[End]="${terminfo[kend]}"
-key[Insert]="${terminfo[kich1]}"
-key[Backspace]="${terminfo[kbs]}"
-key[Delete]="${terminfo[kdch1]}"
-key[Up]="${terminfo[kcuu1]}"
-key[Down]="${terminfo[kcud1]}"
-key[Left]="${terminfo[kcub1]}"
-key[Right]="${terminfo[kcuf1]}"
-key[PageUp]="${terminfo[kpp]}"
-key[PageDown]="${terminfo[knp]}"
-key[Shift_Tab]="${terminfo[kcbt]}"
-key[Control_Left]="${terminfo[kLFT5]}"
-key[Control_Right]="${terminfo[kRIT5]}"
-key[Control_Backspace]="${terminfo[kDC3]}"
-key[Control_Delete]="${terminfo[kDC4]}"
+# Default key bindings (Linux/Unix-like systems)
+# to get the codes you can
+# `cat -v` and type
+# `stty -a | grep erase` or others
+key[Home]="^[[H"
+key[End]="^[[F"
+key[Insert]="^[[2~"
+key[Up]="^[[A"
+key[Down]="^[[B"
+key[Shift_Tab]="^[[Z"
+# Can be os/platform specific
+key[Control_Left]="^[Od"    # or "^[1;5D"
+key[Control_Right]="^[Oc"   # or "^[1;5C"
+key[Control_Backspace]="^W" # This may vary depending on the terminal
+
+# OS-specific overrides (macOS)
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    key[Control_Left]="^[b"
+    key[Control_Right]="^[f"
+    key[Control_Backspace]="^H"
+fi
 
 # setup key accordingly
-[[ -n ${key[Home]} ]] && bindkey -- "${key[Home]}" beginning-of-line
-[[ -n ${key[End]} ]] && bindkey -- "${key[End]}" end-of-line
-[[ -n ${key[Insert]} ]] && bindkey -- "${key[Insert]}" overwrite-mode
-[[ -n ${key[Backspace]} ]] && bindkey -- "${key[Backspace]}" backward-delete-char
-[[ -n ${key[Delete]} ]] && bindkey -- "${key[Delete]}" delete-char
-[[ -n ${key[Up]} ]] && bindkey -- "${key[Up]}" up-line-or-beginning-search
-[[ -n ${key[Down]} ]] && bindkey -- "${key[Down]}" down-line-or-beginning-search
-[[ -n ${key[Left]} ]] && bindkey -- "${key[Left]}" backward-char
-[[ -n ${key[Right]} ]] && bindkey -- "${key[Right]}" forward-char
-[[ -n ${key[PageUp]} ]] && bindkey -- "${key[PageUp]}" beginning-of-buffer-or-history
-[[ -n ${key[PageDown]} ]] && bindkey -- "${key[PageDown]}" end-of-buffer-or-history
-[[ -n ${key[Shift_Tab]} ]] && bindkey -- "${key[Shift_Tab]}" reverse-menu-complete
-[[ -n ${key[Control_Left]} ]] && bindkey -- "${key[Control_Left]}" backward-word
-[[ -n ${key[Control_Right]} ]] && bindkey -- "${key[Control_Right]}" forward-word
-[[ -n ${key[Control_Backspace]} ]] && bindkey -- "${key[Control_Backspace]}" backward-kill-word
-[[ -n ${key[Control_Delete]} ]] && bindkey -- "${key[Control_Delete]}" kill-word
+bindkey -- "${key[Home]}" beginning-of-line
+bindkey -- "${key[End]}" end-of-line
+bindkey -- "${key[Insert]}" overwrite-mode
+bindkey -- "${key[Up]}" up-line-or-beginning-search
+bindkey -- "${key[Down]}" down-line-or-beginning-search
+bindkey -- "${key[Shift_Tab]}" reverse-menu-complete
+bindkey -- "${key[Control_Left]}" backward-word
+bindkey -- "${key[Control_Right]}" forward-word
+bindkey -- "${key[Control_Backspace]}" backward-kill-word
