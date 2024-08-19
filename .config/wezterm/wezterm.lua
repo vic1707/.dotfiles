@@ -3,6 +3,11 @@ local config = wezterm.config_builder()
 
 config.color_scheme = 'Argonaut'
 config.font_size = 24.0
+config.font = wezterm.font_with_fallback({
+    'SeriousShanns Nerd Font Mono',
+    -- 'SeriousShanns Nerd Font Propo',
+    'DengXian',
+})
 
 config.colors = {
     cursor_bg = 'green',

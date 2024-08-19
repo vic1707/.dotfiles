@@ -15,6 +15,6 @@
 #####################################
 install_fonts() {
     FONT_DIR="$([ "$(uname)" = 'Darwin' ] && echo "$HOME/Library/Fonts" || echo "$HOME/.local/share/fonts")"
-    ln -fs "$DOTS_DIR/fonts/"* "$FONT_DIR"
+    cp "$DOTS_DIR"/fonts/*.otf "$FONT_DIR/"
     return 0
 }
