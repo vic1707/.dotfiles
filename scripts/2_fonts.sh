@@ -7,7 +7,8 @@
 #####################################
 # Install fonts in the fonts folder #
 # Globals:                          #
-#  HOME                             #
+#   HOME                            #
+#   DOTS_DIR                        #
 # Arguments:                        #
 #   None                            #
 # Returns:                          #
