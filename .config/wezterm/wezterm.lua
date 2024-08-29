@@ -9,6 +9,33 @@ config.font = wezterm.font_with_fallback({
     { family = 'JetBrains Mono', weight = 'Regular' },
 })
 
+config.keys = {
+    {
+        key = 'LeftArrow',
+        mods = 'OPT',
+        -- ^[b
+        action = wezterm.action({ SendString = '\x1bb' }),
+    },
+    {
+        key = 'RightArrow',
+        mods = 'OPT',
+        -- ^[f
+        action = wezterm.action({ SendString = '\x1bf' }),
+    },
+    {
+        key = 'LeftArrow',
+        mods = 'CMD',
+        -- ^A
+        action = wezterm.action({ SendString = '\x01' }),
+    },
+    {
+        key = 'RightArrow',
+        mods = 'CMD',
+        -- ^E
+        action = wezterm.action({ SendString = '\x05' }),
+    },
+}
+
 config.colors = {
     cursor_bg = 'green',
     cursor_fg = 'black',
