@@ -23,7 +23,7 @@ key[Control_Right]="^[Oc"   # or "^[1;5C"
 key[Control_Backspace]="^W" # This may vary depending on the terminal
 
 # OS-specific overrides (macOS)
-if [[ "$OSTYPE" == "darwin"* ]]; then
+if [[ $OSTYPE == "darwin"* ]]; then
     key[Control_Left]="^[b"
     key[Control_Right]="^[f"
     key[Control_Backspace]="^H"
@@ -44,5 +44,5 @@ bindkey -- "${key[Control_Right]}" forward-word
 bindkey -- "${key[Control_Backspace]}" backward-kill-word
 
 # CMD + Left/Right only if defined (so MacOs only)
-[[ -n "${key[Cmd_Left]}" ]] && bindkey -- "${key[Cmd_Left]}" beginning-of-line
-[[ -n "${key[Cmd_Right]}" ]] && bindkey -- "${key[Cmd_Right]}" end-of-line
+[[ -n ${key[Cmd_Left]} ]] && bindkey -- "${key[Cmd_Left]}" beginning-of-line
+[[ -n ${key[Cmd_Right]} ]] && bindkey -- "${key[Cmd_Right]}" end-of-line
