@@ -18,8 +18,8 @@ key[Up]="^[[A"
 key[Down]="^[[B"
 key[Shift_Tab]="^[[Z"
 # Can be os/platform specific
-key[Control_Left]="^[Od"    # or "^[1;5D"
-key[Control_Right]="^[Oc"   # or "^[1;5C"
+key[Control_Left]="^[Od"
+key[Control_Right]="^[Oc"
 key[Control_Backspace]="^W" # This may vary depending on the terminal
 
 # OS-specific overrides (macOS)
@@ -28,8 +28,8 @@ if [[ $OSTYPE == "darwin"* ]]; then
     key[Control_Right]="^[f"
     key[Control_Backspace]="^H"
     # CMD + Left/Right bindings
-    key[Cmd_Left]="^A"   # CMD + Left (start of line)
-    key[Cmd_Right]="^E"  # CMD + Right (end of line)
+    key[Cmd_Left]="^A"
+    key[Cmd_Right]="^E"
 fi
 
 # setup key accordingly
