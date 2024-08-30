@@ -56,6 +56,10 @@ ex() {
 # Returns:                        #
 #   list of selected options      #
 ###################################
+YES_NO="
+yes
+no
+"
 __ask_choice() {
     subject="$1"
     min_answers=$2
@@ -187,4 +191,39 @@ mise_tools_updates_checks() {
     done
 
     return 0
+}
+
+mise_upgrade_versions () {
+    ALL="$1"
+    mise --help 2> /dev/null 1> /dev/null || { echo "Mise not installed" && exit 1; }
+    mise cache clean
+
+    TOOLS=$(mise ls | cut -d ' ' -f 1 | uniq | tr '\n' ' ')
+    TOOLS_TO_UPDATE=""
+
+    setopt shwordsplit
+    for TOOL in $TOOLS; do
+        CURRENT_VERSION="$(mise ls "$TOOL" | tail -n 1 | awk 'NR==1 {print $2}')"
+        LATEST_VERSION="$(mise latest "$TOOL" 2> /dev/null || echo "err")"
+        if [ "$LATEST_VERSION" = "err" ]; then
+            printf "%-10s: Error while querying the last version.\n" "$TOOL"
+        elif [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
+            printf "%-10s: Nothing to do.\n" "$TOOL"
+        else
+            if [ "$ALL" != "-y" ]; then
+                printf "Upgrade %s from %s to %s? (y/n)" "$TOOL" "$CURRENT_VERSION" "$LATEST_VERSION"
+                read -r REPLY
+                if [ "$REPLY" = "y" ]; then 
+                    TOOLS_TO_UPDATE="$TOOLS_TO_UPDATE $TOOL@$LATEST_VERSION"
+                    continue
+                fi
+                echo "Skipping $TOOL"
+            else
+                TOOLS_TO_UPDATE="$TOOLS_TO_UPDATE $TOOL@$LATEST_VERSION"
+                printf "%-10s: Update from %s to %s.\n" "$TOOL" "$CURRENT_VERSION" "$LATEST_VERSION"
+            fi
+        fi
+    done
+    # shellcheck disable=SC2086
+    mise use -g --pin $TOOLS_TO_UPDATE
 }
