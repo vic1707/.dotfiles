@@ -7,6 +7,13 @@ export DOTS_DIR
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
 export BASE_ZSH_PLUGINS_DIR
 
+test -f "$HOME/.cargo/env" && \. "$HOME/.cargo/env"
+
+# Enable mise
+. <(mise activate zsh)
+. <(mise hook-env)
+
+
 ################################
 #         source config        #
 ################################

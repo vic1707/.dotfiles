@@ -32,7 +32,6 @@ flamegraph
 hyperfine
 procs
 mise
-starship
 "
 
 # Export variables
