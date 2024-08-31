@@ -58,21 +58,6 @@ while :; do
             QUIET='-q'
             shift
             ;;
-            # append shell to SHELLS_TO_INSTALL if it is in AVAILABLE_SHELLS
-        -s | --shell)
-            shift
-            if [ "$(echo " $AVAILABLE_SHELLS " | grep -c " $1 ")" -eq 1 ]; then
-                SHELLS_TO_INSTALL="$SHELLS_TO_INSTALL $1"
-            else
-                echo "Error: $1 is not a valid shell" >&2
-                exit 1
-            fi
-            shift
-            ;;
-        --all-shells)
-            SHELLS_TO_INSTALL="$AVAILABLE_SHELLS"
-            shift
-            ;;
         --)
             shift
             break
@@ -85,14 +70,6 @@ while :; do
         *) break ;;
     esac
 done
-
-################################
-##     ASK CONFIG OPTIONS     ##
-################################
-# ask shell if not already set
-if [ -z "$SHELLS_TO_INSTALL" ]; then
-    __ask_choice "Which shell do you want to install?" 0 "$AVAILABLE_SHELLS" SHELLS_TO_INSTALL
-fi
 
 ################################
 ##        REQUIREMENTS        ##
@@ -161,7 +138,7 @@ export PM
 #   exit 1;
 # }
 ## Shell ##
-(install_shells "$SHELLS_TO_INSTALL" && echo "Shell(s) installed") || {
+(install_shells "$AVAILABLE_SHELLS" && echo "Shell(s) installed") || {
     echo "Error: shell(s) could not be installed" >&2
     exit 1
 }
