@@ -19,12 +19,12 @@
 #         and is not empty        #
 ###################################
 install_config_files() {
-    ## `.config` directory
-    mkdir -p "$HOME/.config"
-    ## .config dir
-    ln -fs "$DOTS_DIR/.config"/* "$HOME/.config"
-    ## Git config files
-    ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
-    ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
-    return 0
+	## `.config` directory
+	mkdir -p "$HOME/.config"
+	## .config dir
+	ln -fs "$DOTS_DIR/.config"/* "$HOME/.config"
+	## Git config files
+	ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
+	ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
+	return 0
 }

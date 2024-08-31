@@ -12,8 +12,8 @@ jobs:
       - name: Run shfmt
         if: always()
         run: |
-            shfmt --indent 4 --simplify --case-indent --binary-next-line --space-redirects \
-                $(find . -not -path "./.git/*" -not -path "./shell/.zsh-plugins/*" -not -path "./.config/tmux/plugins/*" \( -name "*.sh" -o -name "*.bash" -o -name "*.zsh" \))
+            shfmt -w -s -ci -bn -sr \
+                $(find . -not -path "./.git/*" -not -path "./shell/.zsh-plugins/*" -not -path "./.config/nvim/undodir/*" -not -path "./.config/tmux/plugins/*" \( -name "*.sh" -o -name "*.bash" -o -name "*.zsh" \))
       - name: Run stylua
         if: always()
         uses: JohnnyMorganz/stylua-action@v4

@@ -20,12 +20,12 @@ key[Control_Backspace]="^W" # This may vary depending on the terminal
 
 # OS-specific overrides (macOS)
 if [[ $OSTYPE == "darwin"* ]]; then
-    key[Control_Left]="^[b"
-    key[Control_Right]="^[f"
-    key[Control_Backspace]="^H"
-    # CMD + Left/Right bindings
-    key[Cmd_Left]="^A"
-    key[Cmd_Right]="^E"
+	key[Control_Left]="^[b"
+	key[Control_Right]="^[f"
+	key[Control_Backspace]="^H"
+	# CMD + Left/Right bindings
+	key[Cmd_Left]="^A"
+	key[Cmd_Right]="^E"
 fi
 
 # setup key accordingly

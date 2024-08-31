@@ -6,9 +6,9 @@ export DOTS_DIR="$HOME/.dotfiles"
 export BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
 
 if [ -n "$ZSH_NAME" ]; then
-    SHELL_NAME="zsh"
+	SHELL_NAME="zsh"
 elif [ -n "$BASH" ]; then
-    SHELL_NAME="bash"
+	SHELL_NAME="bash"
 fi
 export SHELL_NAME
 
@@ -23,22 +23,20 @@ export SHELL_NAME
 # shellcheck source=shell/functions.sh
 . "$DOTS_DIR/shell/functions.sh"
 
-
 if [ "$SHELL_NAME" = "zsh" ]; then
-    # History
-    autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
-    zle -N up-line-or-beginning-search
-    zle -N down-line-or-beginning-search
-    setopt appendhistory
+	# History
+	autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+	zle -N up-line-or-beginning-search
+	zle -N down-line-or-beginning-search
+	setopt appendhistory
 
+	# shellcheck source=shell/keybindings.zsh
+	. "$DOTS_DIR/shell/keybindings.zsh"
 
-    # shellcheck source=shell/keybindings.zsh
-    . "$DOTS_DIR/shell/keybindings.zsh"
-
-    for plugin in "$BASE_ZSH_PLUGINS_DIR"/*; do
-        # shellcheck disable=SC1090
-        test -d "$plugin" && \. "$plugin/${plugin##*/}.plugin.zsh"
-    done
+	for plugin in "$BASE_ZSH_PLUGINS_DIR"/*; do
+		# shellcheck disable=SC1090
+		test -d "$plugin" && \. "$plugin/${plugin##*/}.plugin.zsh"
+	done
 
 fi
 
