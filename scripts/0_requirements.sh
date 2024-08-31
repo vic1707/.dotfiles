@@ -71,10 +71,9 @@ PM_commands() {
 					return $?
 					;;
 				install-reqs)
-					# cmake: Required to install `starship`
 					# openssl: Required to install many rust packages
 					# shellcheck disable=SC2086
-					brew install $QUIET cmake openssl
+					brew install $QUIET openssl
 					return $?
 					;;
 				install-additionnal)
