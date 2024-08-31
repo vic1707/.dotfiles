@@ -1,8 +1,4 @@
-#!/bin/zsh
-
-###################
-# ZSH keybindings #
-###################
+#!/usr/bin/env zsh
 
 # declare key
 typeset -A key

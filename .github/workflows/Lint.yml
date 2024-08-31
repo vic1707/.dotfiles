@@ -13,7 +13,7 @@ jobs:
         if: always()
         run: |
             shfmt --indent 4 --simplify --case-indent --binary-next-line --space-redirects \
-                $(find . -not -path "./.git/*" -not -path "./shell/zsh/.zsh-plugins/*" -not -path "./.config/tmux/plugins/*" \( -name "*.sh" -o -name "*.bash" -o -name "*.zsh" \))
+                $(find . -not -path "./.git/*" -not -path "./shell/.zsh-plugins/*" -not -path "./.config/tmux/plugins/*" \( -name "*.sh" -o -name "*.bash" -o -name "*.zsh" \))
       - name: Run stylua
         if: always()
         uses: JohnnyMorganz/stylua-action@v4
@@ -32,7 +32,8 @@ jobs:
         uses: ludeeus/action-shellcheck@master
         with:
           ignore_paths: >-
-            ./shell/zsh/.zshrc
+            ./shell/.zshrc
+            ./shell/.zshenv
             ./**/*.zsh
         env:
           # SC1091: Not following. -- is fixed locally but CI still fails

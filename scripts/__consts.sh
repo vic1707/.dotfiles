@@ -14,8 +14,8 @@ zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
 "
-# keep this up to date with `.zshrc` line 5
-BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
+# keep this up to date with `shell/__index.sh` line 6
+BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
 
 CARGO_PKGS="
 bacon

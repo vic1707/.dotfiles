@@ -4,7 +4,7 @@
 ## Linux specifics ##
 
 # Misc
-shell/zsh/.zsh-plugins/*
+shell/.zsh-plugins/*
 
 ## Undotree nvim plugin ##
 .config/nvim/undodir
