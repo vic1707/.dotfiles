@@ -19,8 +19,6 @@ BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/zsh/.zsh-plugins"
 
 CARGO_PKGS="
 bacon
-bat
-bottom
 cargo-edit
 cargo-expand
 cargo-msrv
@@ -30,18 +28,11 @@ cargo-update
 cargo-wizard
 coreutils
 diskonaut
-du-dust
-eza
 flamegraph
-gitui
-git-delta
 hyperfine
 procs
-ripgrep
 mise
 starship
-tokei
-zellij
 "
 
 # Export variables
