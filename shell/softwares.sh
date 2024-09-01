@@ -28,4 +28,4 @@ fi
 eval "$(carapace _carapace "$SHELL_NAME")"
 eval "$(starship completions "$SHELL_NAME")"
 # ZSH - bugged for now see https://github.com/flamegraph-rs/flamegraph/issues/263
-[ -n "${0##*zsh}" ] && eval "$(flamegraph --completions "$SHELL_NAME")"
+[ "$SHELL_NAME" != "zsh" ] && eval "$(flamegraph --completions "$SHELL_NAME")"
