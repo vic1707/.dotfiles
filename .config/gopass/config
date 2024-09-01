@@ -1,0 +1,33 @@
+[mounts]
+	path = /Users/vic1707/.password-store
+
+[recipients]
+	check = true
+	hash = 924f728ac7d4242e99ee811593ad63e4c0f9fa00e689bbd90f10805cf9899712
+
+[core]
+	autopush = true
+	autosync = true
+	cliptimeout = 30
+	exportkeys = true
+	nocolor = false
+	noreminder = false
+	notifications = true
+
+[pwgen]
+	xkcd-lang = en
+	xkcd-len = 6
+	xkcd-numbers = true
+	xkcd-sep = ;
+
+[updater]
+	check = false
+
+[show]
+	autoclip = true
+
+[generate]
+	autoclip = true
+	length = 50
+	strict = true
+	symbols = true
