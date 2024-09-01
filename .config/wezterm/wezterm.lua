@@ -34,6 +34,12 @@ config.keys = {
 		-- ^E
 		action = wezterm.action({ SendString = '\x05' }),
 	},
+	{
+		key = 'Backspace',
+		mods = 'CMD',
+		-- ^U
+		action = wezterm.action({ SendString = '\x15' }),
+	},
 }
 
 config.colors = {
