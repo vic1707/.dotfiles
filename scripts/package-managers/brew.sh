@@ -12,6 +12,7 @@ install_brew() {
 	fi
 }
 
+# pinentry-mac used for git gpg signing
 BREW_PKGS="
 p7zip
 adobe-creative-cloud
@@ -24,6 +25,7 @@ jellyfin-media-player
 minecraft
 notion
 openssh
+pinentry-mac
 slack
 steam
 tree

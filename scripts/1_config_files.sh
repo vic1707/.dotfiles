@@ -26,5 +26,7 @@ install_config_files() {
 	## Git config files
 	ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
 	ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
+	## GPG config
+	ln -fs "$DOTS_DIR/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
 	return 0
 }

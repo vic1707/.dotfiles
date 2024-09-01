@@ -1,6 +1,7 @@
 [user]
     name = vic1707
     email = 28602203+vic1707@users.noreply.github.com
+	signingkey = 5D9E528B81D35BECD5B4438EFDC6C8F59B7D6F51
 
 [core]
     pager = delta
@@ -111,3 +112,6 @@
 [rerere]
     enabled = true
     autoupdate = true
+
+[commit]
+	gpgsign = true
