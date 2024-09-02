@@ -28,6 +28,3 @@ if nvim --version > /dev/null; then
 	alias vi='nvim'
 	alias vim='nvim'
 fi
-
-# pinentry
-pinentry-mac --version > /dev/null && alias pinentry='pinentry-mac'

@@ -15,3 +15,6 @@ export HISTFILESIZE="${HISTSIZE}"
 export SAVEHIST='5000'
 # Don’t clear the screen after quitting a manual page.
 export MANPAGER='less -X'
+
+GPG_TTY="$(tty)"
+export GPG_TTY
