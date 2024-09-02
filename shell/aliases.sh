@@ -2,7 +2,7 @@
 
 # grep
 alias grep='grep --color'
-alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS} '
+alias sgrep='grep -R -n -H -C 5 --exclude-dir={.git,.svn,CVS}'
 
 # cat
 bat --version > /dev/null && alias cat='bat'
@@ -25,8 +25,8 @@ alias la='ls -laF'
 alias ll='ls -la'
 
 if nvim --version > /dev/null; then
-	alias vi="nvim"
-	alias vim="nvim"
+	alias vi='nvim'
+	alias vim='nvim'
 fi
 
 # pinentry
