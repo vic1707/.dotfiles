@@ -18,7 +18,6 @@ zsh-users/zsh-autosuggestions
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
 
 CARGO_PKGS="
-bacon
 cargo-edit
 cargo-expand
 cargo-msrv
@@ -27,10 +26,6 @@ cargo-semver-checks
 cargo-update
 cargo-wizard
 coreutils
-diskonaut
-flamegraph
-hyperfine
-procs
 mise
 "
 
