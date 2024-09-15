@@ -103,5 +103,6 @@ mise_upgrade_versions() {
 		fi
 	done
 	# shellcheck disable=SC2086
-	mise use -g --pin $TOOLS_TO_UPDATE
+	[ -n "$TOOLS_TO_UPDATE" ] && mise use -g --pin $TOOLS_TO_UPDATE
+	return 0
 }
