@@ -20,9 +20,12 @@ BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
 CARGO_PKGS="
 cargo-edit
 cargo-expand
+cargo-generate
+cargo-license
 cargo-msrv
 cargo-nextest
 cargo-semver-checks
+cargo-tarpaulin
 cargo-update
 cargo-wizard
 coreutils
