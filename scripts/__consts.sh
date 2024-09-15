@@ -31,6 +31,7 @@ cargo-wizard
 coreutils
 mise
 "
+# pi zero dev deps: flip-link probe-rs-tools
 
 # Export variables
 export AVAILABLE_SHELLS
