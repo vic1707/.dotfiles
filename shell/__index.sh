@@ -25,7 +25,7 @@ export SHELL_NAME
 
 if [ "$SHELL_NAME" = "zsh" ]; then
 	# History
-	autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+	autoload -U up-line-or-beginning-search down-line-or-beginning-search
 	zle -N up-line-or-beginning-search
 	zle -N down-line-or-beginning-search
 	setopt appendhistory
