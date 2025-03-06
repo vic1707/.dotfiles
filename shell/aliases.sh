@@ -14,10 +14,6 @@ alias t='tail -f'
 alias dud='du -d 1 -h'
 alias duf='du -sh *'
 
-# find
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
-
 # ls
 eza --version > /dev/null && alias ls='eza --icons'
 alias l='ls -lF'

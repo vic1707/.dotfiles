@@ -21,6 +21,7 @@ CARGO_PKGS="
 cargo-edit
 cargo-expand
 cargo-generate
+cargo-leptos
 cargo-license
 cargo-msrv
 cargo-nextest
@@ -28,6 +29,7 @@ cargo-semver-checks
 cargo-tarpaulin
 cargo-update
 cargo-wizard
+cargo-zigbuild
 coreutils
 mise
 "

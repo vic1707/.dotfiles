@@ -59,11 +59,11 @@ mise_tools_updates_checks() {
 		CURRENT_VERSION="$(mise ls "$TOOL" | tail -n 1 | awk 'NR==1 {print $2}')"
 		LATEST_VERSION="$(mise latest "$TOOL" 2> /dev/null || echo "err")"
 		if [ "$LATEST_VERSION" = "err" ]; then
-			printf "%-10s: Error while querying the last version." "$TOOL"
+			printf "%-18s: Error while querying the last version." "$TOOL"
 		elif [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
-			printf "%-10s: Nothing to do." "$TOOL"
+			printf "%-18s: Nothing to do." "$TOOL"
 		else
-			printf "%-10s: Can upgrade %10s ==> %-10s" "$TOOL" "$CURRENT_VERSION" "$LATEST_VERSION"
+			printf "%-18s: Can upgrade %10s ==> %-10s" "$TOOL" "$CURRENT_VERSION" "$LATEST_VERSION"
 		fi
 		echo ''
 	done
@@ -84,9 +84,9 @@ mise_upgrade_versions() {
 		CURRENT_VERSION="$(mise ls "$TOOL" | tail -n 1 | awk 'NR==1 {print $2}')"
 		LATEST_VERSION="$(mise latest "$TOOL" 2> /dev/null || echo "err")"
 		if [ "$LATEST_VERSION" = "err" ]; then
-			printf "%-10s: Error while querying the last version.\n" "$TOOL"
+			printf "%-18s: Error while querying the last version.\n" "$TOOL"
 		elif [ "$CURRENT_VERSION" = "$LATEST_VERSION" ]; then
-			printf "%-10s: Nothing to do.\n" "$TOOL"
+			printf "%-18s: Nothing to do.\n" "$TOOL"
 		else
 			if [ "$ALL" != "-y" ]; then
 				printf "Upgrade %s from %s to %s? (y/n)" "$TOOL" "$CURRENT_VERSION" "$LATEST_VERSION"
@@ -98,7 +98,7 @@ mise_upgrade_versions() {
 				echo "Skipping $TOOL"
 			else
 				TOOLS_TO_UPDATE="$TOOLS_TO_UPDATE $TOOL@$LATEST_VERSION"
-				printf "%-10s: Update from %s to %s.\n" "$TOOL" "$CURRENT_VERSION" "$LATEST_VERSION"
+				printf "%-18s: Update from %s to %s.\n" "$TOOL" "$CURRENT_VERSION" "$LATEST_VERSION"
 			fi
 		fi
 	done
