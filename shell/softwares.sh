@@ -28,8 +28,7 @@ fi
 eval "$(carapace _carapace "$SHELL_NAME")"
 eval "$(starship completions "$SHELL_NAME")"
 eval "$(just --completions "$SHELL_NAME")"
-# ZSH - bugged for now see https://github.com/gopasspw/gopass/issues/2934
-[ "$SHELL_NAME" != "zsh" ] && eval "$(gopass completion "$SHELL_NAME")"
-[ "$SHELL_NAME" = "zsh" ] && eval "$(gopass completion zsh | sed '$d'); compdef _gopass gopass"
+# eval "$(rg --generate=complete-"$SHELL_NAME")" # ZSH bugged
+eval "$(gopass completion "$SHELL_NAME")"
 # ZSH - bugged for now see https://github.com/flamegraph-rs/flamegraph/issues/263
 [ "$SHELL_NAME" != "zsh" ] && eval "$(flamegraph --completions "$SHELL_NAME")"
