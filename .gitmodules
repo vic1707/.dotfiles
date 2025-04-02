@@ -1,0 +1,4 @@
+[submodule ".passowrd-store"]
+	path = .passowrd-store
+	url = git@github.com:vic1707/.password-store.git
+	branch = main
