@@ -7,13 +7,15 @@ jobs:
     name: shfmt & stylua
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
+
       - uses: mfinelli/setup-shfmt@v3
+
       - name: Run shfmt
-        if: always()
-        run: |
-            shfmt -w -s -ci -bn -sr \
-                $(find . -not -path "./.git/*" -not -path "./shell/.zsh-plugins/*" -not -path "./.config/nvim/undodir/*" -not -path "./.config/tmux/plugins/*" \( -name "*.sh" -o -name "*.bash" -o -name "*.zsh" \))
+        run: shfmt -f -d -i 4 -s -ci -bn -sr .
+      
       - name: Run stylua
         if: always()
         uses: JohnnyMorganz/stylua-action@v4
@@ -27,7 +29,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [formatters]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
+        with:
+          persist-credentials: false
       - name: Run ShellCheck (no ZSH)
         uses: ludeeus/action-shellcheck@master
         with:
@@ -45,8 +49,3 @@ jobs:
           # SC1091: Not following. -- is fixed locally but CI still fails
           # -s bash: force checks as bash because of zsh not supported
           SHELLCHECK_OPTS: -e SC1091 -s bash
-      - name: Luacheck linter
-        if: always()
-        uses: lunarmodules/luacheck@v1
-        with:
-          args: . --codes --config .config/nvim/.luacheckrc

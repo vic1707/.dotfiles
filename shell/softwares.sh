@@ -15,13 +15,6 @@ test -f "/opt/homebrew/bin/brew" && eval "$(/opt/homebrew/bin/brew shellenv)"
 eval "$(mise activate "$SHELL_NAME")"
 eval "$(mise hook-env)"
 
-# Ocaml
-if [ "$SHELL_NAME" = "zsh" ]; then
-	eval "$(cat "$HOME"/.opam/opam-init/init.zsh)" || echo "please run 'opam init' to configure your environment"
-elif [ "$SHELL_NAME" = "bash" ]; then
-	eval "$(cat "$HOME"/.opam/opam-init/init.sh)" || echo "please run 'opam init' to configure your environment"
-fi
-
 ##################################
 ##   Enable shell completions   ##
 ##################################

@@ -5,7 +5,7 @@ PINENTRY_TUI=pinentry
 PINENTRY_GUI= # TODO: define linux default
 
 if [ "$(uname)" = "Darwin" ]; then
-	pinentry-mac --version > /dev/null && PINENTRY_GUI='pinentry-mac'
+	pinentry-mac --version > /dev/null 2>&1 && PINENTRY_GUI='pinentry-mac'
 fi
 
 if tty -s; then

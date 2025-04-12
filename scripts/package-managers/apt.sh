@@ -4,19 +4,15 @@
 ## This script needs to be POSIX ##
 ###################################
 
-# bubblewrap: for ocaml/opam
 # yasm: for ffmpeg
 # libbz2-dev, libffi-dev, liblzma-dev, libsqlite3-dev, tk-dev, zlib1g-dev: for python
-# byaac: for tmux
 APT_PKGS="
 adb
-bubblewrap
 imagemagick
 libbz2-dev
 libffi-dev
 liblzma-dev
 libsqlite3-dev
-luarocks
 tk-dev
 tree
 yasm

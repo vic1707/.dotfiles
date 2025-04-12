@@ -34,14 +34,6 @@ ____update_env() {
 	xmake update
 	mise_tools_updates_checks
 
-	## Tmux Plugins ##
-	if [ -d "$HOME/.config/tmux/plugins" ]; then
-		for plugin in "$HOME/.config/tmux/plugins/"*; do
-			printf "[TPM] Updating %-25s: " "$(echo "$plugin" | awk -F'/' '{print $NF}')"
-			git -C "$plugin" pull
-		done
-	fi
-
 	## Zsh plugins ##
 	for plugin in "$BASE_ZSH_PLUGINS_DIR/"*; do
 		if [ -d "$plugin" ]; then
@@ -52,7 +44,7 @@ ____update_env() {
 }
 
 mise_tools_updates_checks() {
-	mise --help 2> /dev/null 1> /dev/null || { echo "Mise not installed" && exit 1; }
+	mise --help > /dev/null 2>&1 || { echo "Mise not installed" && exit 1; }
 	mise cache clean
 	TOOLS="$(mise ls | cut -d ' ' -f 1 | uniq)"
 	echo "$TOOLS" | while IFS= read -r TOOL; do
@@ -73,7 +65,7 @@ mise_tools_updates_checks() {
 
 mise_upgrade_versions() {
 	ALL="$1"
-	mise --help 2> /dev/null 1> /dev/null || { echo "Mise not installed" && exit 1; }
+	mise --help > /dev/null 2>&1 || { echo "Mise not installed" && exit 1; }
 	mise cache clean
 
 	TOOLS=$(mise ls | cut -d ' ' -f 1 | uniq | tr '\n' ' ')

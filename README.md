@@ -35,11 +35,6 @@ The install script will create symlinks to the configuration files in this repo.
 
 ## After install
 
-Dont't forget to initialize opam (need to be done for each shell):
-```sh
-opam init -y --shell-setup
-```
----
 Add SSH key:
 ```sh
 ssh-keygen -t ed25519 -f ~/.ssh/github-vic1707 -P '' -C "<email>"
