@@ -30,7 +30,6 @@ slack
 steam
 tree
 rar
-rsteube/tap/carapace
 visual-studio-code
 wezterm
 "
