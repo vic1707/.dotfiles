@@ -23,15 +23,9 @@ ex() {
 }
 
 # Updates:
-#   - rustup
-#   - cargo
-#   - xmake
 #   - mise tools
+#   - zsh plugins
 ____update_env() {
-	## TODO: Package manager
-	rustup update
-	cargo install-update -a
-	xmake update
 	mise_tools_updates_checks
 
 	## Zsh plugins ##

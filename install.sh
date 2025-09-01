@@ -1,8 +1,12 @@
 #!/bin/sh
 
-################################
-##      check current dir     ##
-################################
+# Check for root privileges
+if [ "$(id -u)" -ne 0 ]; then
+    echo "This script must be run as root. Please use sudo."
+    exit 1
+fi
+
+# check current dir
 DOTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 export DOTS_DIR
 # if DOTS_DIR is not `$HOME/.dotfiles`, warn and exit
@@ -12,23 +16,15 @@ if [ "$DOTS_DIR" != "$HOME/.dotfiles" ]; then
 fi
 
 ################################
-## sourcing install functions ##
-################################
-# shellcheck source=scripts/__index.sh
-. "$DOTS_DIR/scripts/__index.sh"
-
-################################
 ##           GLOBALS          ##
 ################################
+BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
 ## Uname ##
 UNAME="$(uname -s)"
 export UNAME
 ## SHELLS_TO_INSTALL ##
 SHELLS_TO_INSTALL=''
 export SHELLS_TO_INSTALL
-## SUDO PREFIX ##
-SUDO_PREFIX="$(if [ "$(id -u)" -eq 0 ]; then echo ""; else echo "sudo"; fi)"
-export SUDO_PREFIX
 ## QUIET ##
 QUIET=''
 export QUIET
@@ -37,14 +33,10 @@ export QUIET
 ##  ARGUMENT PARSING OPTIONS  ##
 ################################
 show_help() {
-	# Please keep this in sync with the README
-	JOINED_AVAILABLE_SHELLS="$(printf "%s" "$AVAILABLE_SHELLS" | tr ' ' '|')"
 	echo "Usage: $0 [options]"
 	echo "Options:"
 	echo "  -h, --help        Show this help message"
 	echo "  -q, --quiet       Quiet mode"
-	echo "  -s, --shell       Install a shell ($JOINED_AVAILABLE_SHELLS)"
-	echo "  --all-shells      Install all shells ($JOINED_AVAILABLE_SHELLS)"
 	echo "  --                End of options"
 }
 
@@ -76,83 +68,59 @@ done
 ################################
 ## Homebrew (if MacOS) ##
 if [ "$UNAME" = "Darwin" ]; then
-	# echo "Ensure XCODE license is accepted"
-	# echo "Trying to accept the license $(date)";
-	# while ! sudo xcodebuild -license accept 2>/dev/null; do
-	#   sleep 2
-	# done;
-	# echo "License finally accepted $(date)";
-
-	(install_brew && echo "Homebrew installed") || {
-		echo "Error: Homebrew could not be installed" >&2
-		exit 1
-	}
-	# make requirements' bins available
-	PATH="$PATH:/opt/homebrew/bin"
-	export PATH
+	git clone https://github.com/Homebrew/brew ~/homebrew
+	mkdir -p ~/usr/local 
+	export HOMEBREW_PREFIX="$HOME/usr/local"
+	export PATH="$PATH:~/homebrew/bin:$HOMEBREW_PREFIX/bin"
 fi
 
-################################
-##       PACKAGE MANAGER      ##
-################################
-## Find package manager ##
-PM="$(find_package_manager)"
-export PM
+## Mise
+curl https://mise.run | sh
+eval "$HOME/.local/bin/mise activate zsh"
 
-## Update package manager ##
-(PM_commands "$PM" update && echo "Package manager updated") || {
-	echo "Error: package manager could not be updated" >&2
-	exit 1
-}
-## Upgrade package manager ##
-(PM_commands "$PM" upgrade && echo "Package manager upgraded") || {
-	echo "Error: package manager could not be upgraded" >&2
-	exit 1
-}
-## Requirements ##
-(PM_commands "$PM" install-reqs && echo "Requirements installed") || {
-	echo "Error: requirements could not be installed" >&2
-	exit 1
-}
-## Install SHELLS ##
-(PM_commands "$PM" install "$AVAILABLE_SHELLS" && echo "Shells installed") || {
-	echo "Error: shells could not be installed" >&2
-	exit 1
-}
-## additionnal packages ##
-(PM_commands "$PM" install-additionnal && echo "Additionnal packages ($PM) installed") || {
-	echo "Error: additionnal packages ($PM) could not be installed" >&2
-	exit 1
-}
 ################################
 ##           INSTALL          ##
 ################################
 ## Config files ##
-(install_config_files && echo "Config files installed") || {
-	echo "Error: $HOME/.config already exists and is not empty" >&2
-	exit 1
-}
+echo "-- Installing config files --"
+## `.config` directory
+mkdir -p "$HOME/.config"
+## .config dir
+ln -fs "$DOTS_DIR/.config"/* "$HOME/.config"
+## Git config files
+ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
+ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
+## GPG config
+ln -fs "$DOTS_DIR/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
+
 ## Fonts ## ## TODO: c'est pété
 # (install_fonts && echo "Fonts installed") || {
 #   echo "Error: fonts could not be installed" >&2
 #   exit 1;
 # }
-## Shell ##
-(install_shells "$AVAILABLE_SHELLS" && echo "Shell(s) installed") || {
-	echo "Error: shell(s) could not be installed" >&2
-	exit 1
-}
-## Softwares ##
-(install_rust && echo "Rust installed") || {
-	echo "Failed to install rust" >&2
-}
-(install_xmake && echo "xmake installed") || {
-	echo "Failed to install xmake" >&2
-}
-(install_cargo_pkgs && echo "Cargo packages installed") || {
-	echo "Failed to install cargo packages" >&2
-	echo "Is cargo installed?" >&2
-}
 
-# TODO: make cleaner
-~/.cargo/bin/mise install -y
+## Shells ##
+echo "-- Installing bash environment --"
+ln -fs "$DOTS_DIR/shell/.bashrc" "$HOME/.bashrc"
+ln -fs "$DOTS_DIR/shell/.bash_profile" "$HOME/.bash_profile"
+
+echo "-- Installing zsh environment --"
+ln -fs "$DOTS_DIR/shell/.zshrc" "$HOME/.zshrc"
+ln -fs "$DOTS_DIR/shell/.zshenv" "$HOME/.zshenv"
+
+# plugins
+ZSH_PLUGINS="
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+"
+for plugin in $ZSH_PLUGINS; do
+	if [ ! -d "$BASE_ZSH_PLUGINS_DIR/$plugin" ]; then
+		# shellcheck disable=SC2086 # git doesn't like quotes around `$QUIET`
+		git clone $QUIET "https://github.com/$plugin" "$BASE_ZSH_PLUGINS_DIR/${plugin#*/}"
+	fi
+done
+
+## Install tools
+mise install -y
+brew install "$DOTS_DIR"/Brewfile
