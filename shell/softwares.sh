@@ -7,10 +7,12 @@
 ##################################
 ##     Enable some softwares    ##
 ##################################
-test -f "$HOMEBREW_PREFIX/bin/brew" && eval "$("$HOMEBREW_PREFIX"/bin/brew shellenv)"
+HOMEBREW_PATH="$HOME/.homebrew"
+test -f "$HOMEBREW_PATH/bin/brew" && eval "$("$HOMEBREW_PATH"/bin/brew shellenv)"
 
-eval "$(mise activate "$SHELL_NAME")"
-eval "$(mise hook-env)"
+MISE_PATH="$HOME/.local/bin/mise"
+eval "$("$MISE_PATH" activate "$SHELL_NAME")"
+eval "$("$MISE_PATH" hook-env)"
 
 ##################################
 ##   Enable shell completions   ##

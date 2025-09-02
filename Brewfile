@@ -1,14 +1,16 @@
 ## Formulaes
 brew "bash"
+brew "gnupg"
 # brew "imagemagick"
 brew "openssh"
-brew "podman"
 brew "p7zip"
-brew "rar"
+brew "podman"
+brew "qemu"
 brew "tree"
 ## Casks
 cask "discord"
 cask "ghostty"
+cask "rar"
 cask "slack"
 cask "visual-studio-code"
 cask "wezterm"

@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Check for root privileges
-if [ "$(id -u)" -ne 0 ]; then
-    echo "This script must be run as root. Please use sudo."
+if [ "$(id -u)" -eq 0 ]; then
+    echo "This script must NOT be run as root."
     exit 1
 fi
 
@@ -19,15 +19,9 @@ fi
 ##           GLOBALS          ##
 ################################
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
-## Uname ##
 UNAME="$(uname -s)"
-export UNAME
-## SHELLS_TO_INSTALL ##
 SHELLS_TO_INSTALL=''
-export SHELLS_TO_INSTALL
-## QUIET ##
 QUIET=''
-export QUIET
 
 ################################
 ##  ARGUMENT PARSING OPTIONS  ##
@@ -68,15 +62,19 @@ done
 ################################
 ## Homebrew (if MacOS) ##
 if [ "$UNAME" = "Darwin" ]; then
-	git clone https://github.com/Homebrew/brew ~/homebrew
+	HOMEBREW_PATH="$HOME/.homebrew"
+	git clone https://github.com/Homebrew/brew "$HOMEBREW_PATH"
 	mkdir -p ~/usr/local 
 	export HOMEBREW_PREFIX="$HOME/usr/local"
-	export PATH="$PATH:~/homebrew/bin:$HOMEBREW_PREFIX/bin"
+	export PATH="$PATH:"$HOMEBREW_PATH/bin":$HOMEBREW_PREFIX/bin"
+    ## TODO: check for sudo
+    sudo ln -fs  "$HOME/.homebrew" /opt/homebrew
+    brew bundle
 fi
 
 ## Mise
 curl https://mise.run | sh
-eval "$HOME/.local/bin/mise activate zsh"
+eval "$("$HOME/.local/bin/mise" activate bash)"
 
 ################################
 ##           INSTALL          ##
@@ -90,8 +88,8 @@ ln -fs "$DOTS_DIR/.config"/* "$HOME/.config"
 ## Git config files
 ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
 ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
-## GPG config
-ln -fs "$DOTS_DIR/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
+## Brew config files
+ln -fs "$DOTS_DIR/Brewfile" "$HOME/Brewfile"
 
 ## Fonts ## ## TODO: c'est pété
 # (install_fonts && echo "Fonts installed") || {
@@ -122,5 +120,6 @@ for plugin in $ZSH_PLUGINS; do
 done
 
 ## Install tools
+mise trust "$DOTS_DIR/.config/mise/config.toml"
 mise install -y
-brew install "$DOTS_DIR"/Brewfile
+

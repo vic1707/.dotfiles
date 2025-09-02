@@ -2,7 +2,6 @@
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export DOTS_DIR="$HOME/.dotfiles"
-# keep it up to date with `scripts/__consts.sh` line 14
 export BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
 
 if [ -n "$ZSH_NAME" ]; then

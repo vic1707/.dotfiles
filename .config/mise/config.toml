@@ -15,5 +15,8 @@ starship = "1.22.1"
 [alias]
 carapace-bin = "asdf:vic1707/asdf-carapace-bin"
 
+[settings]
+idiomatic_version_file_enable_tools = []
+
 ## Not working on Mac Apple Silicon ##
 # imagemagick = "7.1.1-35"
