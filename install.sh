@@ -2,7 +2,7 @@
 
 # Check for root privileges
 if [ "$(id -u)" -eq 0 ]; then
-    echo "This script must NOT be run as root."
+    echo "This script must NOT be run as root." >&2
     exit 1
 fi
 
@@ -62,6 +62,11 @@ done
 ################################
 ## Homebrew (if MacOS) ##
 if [ "$UNAME" = "Darwin" ]; then
+	if ! sudo -n true 2> /dev/null; then
+		echo "Error: Brew requires 'sudo' capabilities." >&2
+		exit 1
+	fi
+
 	HOMEBREW_PATH="$HOME/.homebrew"
 	git clone https://github.com/Homebrew/brew "$HOMEBREW_PATH"
 	mkdir -p ~/usr/local 
