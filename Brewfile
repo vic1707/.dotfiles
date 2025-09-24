@@ -5,6 +5,7 @@ brew "gnupg"
 brew "openssh"
 brew "p7zip"
 brew "podman"
+brew "podman-compose"
 brew "qemu"
 brew "tree"
 ## Casks
