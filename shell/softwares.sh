@@ -19,4 +19,5 @@ eval "$("$MISE_PATH" hook-env)"
 ##################################
 eval "$(carapace _carapace "$SHELL_NAME")"
 eval "$(starship completions "$SHELL_NAME")"
+eval "$(zoxide init "$SHELL_NAME")"
 # eval "$(rg --generate=complete-"$SHELL_NAME")" # ZSH bugged

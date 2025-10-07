@@ -9,6 +9,7 @@ jq = "1.8.1"
 neovim = "0.11.4"
 ripgrep = "14.1.1"
 starship = "1.23.0"
+zoxide = "0.9.8"
 
 [alias]
 carapace-bin = "asdf:vic1707/asdf-carapace-bin"
