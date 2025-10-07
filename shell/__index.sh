@@ -36,7 +36,6 @@ if [ "$SHELL_NAME" = "zsh" ]; then
 		# shellcheck disable=SC1090
 		test -d "$plugin" && \. "$plugin/${plugin##*/}.plugin.zsh"
 	done
-
 fi
 
 eval "$(starship init "$SHELL_NAME")"

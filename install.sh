@@ -2,8 +2,8 @@
 
 # Check for root privileges
 if [ "$(id -u)" -eq 0 ]; then
-    echo "This script must NOT be run as root." >&2
-    exit 1
+	echo "This script must NOT be run as root." >&2
+	exit 1
 fi
 
 # check current dir
@@ -20,7 +20,6 @@ fi
 ################################
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
 UNAME="$(uname -s)"
-SHELLS_TO_INSTALL=''
 QUIET=''
 
 ################################
@@ -29,9 +28,9 @@ QUIET=''
 show_help() {
 	echo "Usage: $0 [options]"
 	echo "Options:"
-	echo "  -h, --help        Show this help message"
-	echo "  -q, --quiet       Quiet mode"
-	echo "  --                End of options"
+	echo "  -h, --help		Show this help message"
+	echo "  -q, --quiet		Quiet mode"
+	echo "  --				End of options"
 }
 
 while :; do
@@ -71,10 +70,10 @@ if [ "$UNAME" = "Darwin" ]; then
 	git clone https://github.com/Homebrew/brew "$HOMEBREW_PATH"
 	mkdir -p ~/usr/local 
 	export HOMEBREW_PREFIX="$HOME/usr/local"
-	export PATH="$PATH:"$HOMEBREW_PATH/bin":$HOMEBREW_PREFIX/bin"
-    ## TODO: check for sudo
-    sudo ln -fs  "$HOME/.homebrew" /opt/homebrew
-    brew bundle
+	export PATH="$PATH:$HOMEBREW_PATH/bin:$HOMEBREW_PREFIX/bin"
+	## TODO: check for sudo
+	sudo ln -fs  "$HOME/.homebrew" /opt/homebrew
+	brew bundle $QUIET
 fi
 
 ## Mise
@@ -119,7 +118,6 @@ zsh-users/zsh-autosuggestions
 "
 for plugin in $ZSH_PLUGINS; do
 	if [ ! -d "$BASE_ZSH_PLUGINS_DIR/$plugin" ]; then
-		# shellcheck disable=SC2086 # git doesn't like quotes around `$QUIET`
 		git clone $QUIET "https://github.com/$plugin" "$BASE_ZSH_PLUGINS_DIR/${plugin#*/}"
 	fi
 done

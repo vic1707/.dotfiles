@@ -1,117 +1,115 @@
 [user]
-    name = vic1707
-    email = 28602203+vic1707@users.noreply.github.com
-	signingkey = 5D9E528B81D35BECD5B4438EFDC6C8F59B7D6F51
+	name = vic1707
+	email = 28602203+vic1707@users.noreply.github.com
 
 [core]
-    pager = delta
-    # case sensitive
-    ignorecase = false
-    # don't track file mode changes
-    filemode = false
-    # I hate line-endings
-    eol = lf
-    autocrlf = input
-    safecrlf = warn
+	pager = delta
+	# case sensitive
+	ignorecase = false
+	# don't track file mode changes
+	filemode = false
+	# I hate line-endings
+	eol = lf
+	autocrlf = input
+	safecrlf = warn
+	# disables hooks
+	hooksPath = /dev/null
 
 [alias]
-    # List available aliases
-    aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
-    # Display tree-like log, because default log is a pain...
-    lg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
-    # Useful when you have to update your last commit
-    # with staged files without editing the commit message.
-    oops = commit --amend --no-edit
-    # Shorter git status
-    sb = status -sb
-    # nuke all local branches except default
-    nuke = "!f() { \
-        MAIN=\"$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)\"; \
-        git checkout -b __TMP__ >/dev/null; \
-        git branch -D \"$MAIN\" >/dev/null; \
-        git checkout \"$MAIN\" >/dev/null; \
-        git fetch --prune; \
-        git pull; \
-        branches=\"$(git branch | grep -v \"$MAIN\")\"; \
-        [ -n \"$branches\" ] && echo \"$branches\" | xargs git branch -D; \
-    }; \
-    f;"
-    # update current branch by rebasing over main branch
-    update-branch = "!f() { \
-        MAIN=\"$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)\"; \
-        git checkout \"$MAIN\"; \
-        git pull; \
-        git checkout -; \
-        git rebase \"$MAIN\"; \
-    }; \
-    f;"
+	# List available aliases
+	aliases = !git config --get-regexp alias | sed -re 's/alias\\.(\\S*)\\s(.*)$/\\1 = \\2/g'
+	# Display tree-like log, because default log is a pain...
+	lg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(auto)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'
+	# Useful when you have to update your last commit
+	# with staged files without editing the commit message.
+	oops = commit --amend --no-edit --no-verify
+	# Shorter git status
+	sb = status -sb
+	# nuke all local branches except default
+	nuke = "!f() { \
+		MAIN=\"$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)\"; \
+		git checkout -b __TMP__ >/dev/null; \
+		git branch -D \"$MAIN\" >/dev/null; \
+		git checkout \"$MAIN\" >/dev/null; \
+		git fetch --prune; \
+		git pull; \
+		branches=\"$(git branch | grep -v \"$MAIN\")\"; \
+		[ -n \"$branches\" ] && echo \"$branches\" | xargs git branch -D; \
+	}; \
+	f;"
+	# update current branch by rebasing over main branch
+	update-branch = "!f() { \
+	MAIN=\"$(git remote show origin | grep 'HEAD branch' | cut -d' ' -f5)\"; \
+	git checkout \"$MAIN\"; \
+	git pull; \
+	git checkout -; \
+	git rebase \"$MAIN\"; \
+	}; \
+	f;"
 
 [color]
-    # Enable colors in color-supporting terminals
-    ui = auto
+	# Enable colors in color-supporting terminals
+	ui = auto
 
 [init]
-    defaultBranch = main
+	defaultBranch = main
 
 [submodule]
-    recurse = true
+	recurse = true
 
 [help]
-    autocorrect = 3 # 0 = off, 1 = warn, 2 = error, 3 = all
+	autocorrect = 3 # 0 = off, 1 = warn, 2 = error, 3 = all
 
 [diff]
-    # Use better, descriptive initials (c, i, w) instead of a/b.
-    mnemonicPrefix = true
-    # Show renames/moves as such
-    renames = true
-    colorMoved = default
-    tool = nvimdiff
+	# Use better, descriptive initials (c, i, w) instead of a/b.
+	mnemonicPrefix = true
+	# Show renames/moves as such
+	renames = true
+	colorMoved = default
+	tool = nvimdiff
 
 [difftool "nvimdiff"]
-    cmd = nvim -n -d \"$LOCAL\" \"$REMOTE\"
+	cmd = nvim -n -d \"$LOCAL\" \"$REMOTE\"
 
 [fetch]
-    # Auto-fetch submodule changes (sadly, won't auto-update)
-    recurseSubmodules = on-demand
+	# Auto-fetch submodule changes (sadly, won't auto-update)
+	recurseSubmodules = on-demand
 
 [grep]
-    break = true
-    heading = true
-    lineNumber = true
-    # Consider most regexes to be ERE
-    extendedRegexp = true
+	break = true
+	heading = true
+	lineNumber = true
+	# Consider most regexes to be ERE
+	extendedRegexp = true
 
 [status]
-    # Display submodule rev change summaries in status
-    submoduleSummary = true
-    # Recursively traverse untracked directories to display all contents
-    showUntrackedFiles = all
+	# Display submodule rev change summaries in status
+	submoduleSummary = true
+	# Recursively traverse untracked directories to display all contents
+	showUntrackedFiles = all
 
 [push]
-    # Default push should only push the current branch to its push target, regardless of its remote name
-    default = upstream
-    # Automatically set up the remote repository if it doesn't exist
-    autoSetupRemote = true
+	# Default push should only push the current branch to its push target, regardless of its remote name
+	default = upstream
+	# Automatically set up the remote repository if it doesn't exist
+	autoSetupRemote = true
 
 [interactive]
-    diffFilter = delta --color-only
+	diffFilter = delta --color-only
 
 [delta]
-    navigate = true    # use n and N to move between diff sections
-    light = false
-    line-numbers = true
-    side-by-side = true
-    syntax-theme = Dracula
+	navigate = true    # use n and N to move between diff sections
+	light = false
+	line-numbers = true
+	side-by-side = true
+	syntax-theme = Dracula
 
 [merge]
-    conflictstyle = diff3
+	conflictstyle = diff3
 
 [file]
-    mode = off
+	mode = off
 
 [rerere]
-    enabled = true
-    autoupdate = true
-
-[commit]
-	gpgsign = true
+	enabled = true
+	autoupdate = true
