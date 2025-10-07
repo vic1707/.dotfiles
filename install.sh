@@ -6,6 +6,18 @@ if [ "$(id -u)" -eq 0 ]; then
 	exit 1
 fi
 
+get() {
+	url="$1"
+	if hash curl; then
+		curl $QUIET -fsSL "$url"
+	elif hash wget; then
+		wget $QUIET -O- "$url"
+	else
+		echo "Error: need curl or wget to download $url" >&2
+		exit 1
+	fi
+}
+
 # check current dir
 DOTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 export DOTS_DIR
@@ -77,7 +89,7 @@ if [ "$UNAME" = "Darwin" ]; then
 fi
 
 ## Mise
-curl https://mise.run | sh
+get https://mise.run | sh
 eval "$("$HOME/.local/bin/mise" activate bash)"
 
 ################################
@@ -95,11 +107,30 @@ ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
 ## Brew config files
 ln -fs "$DOTS_DIR/Brewfile" "$HOME/Brewfile"
 
-## Fonts ## ## TODO: c'est pété
-# (install_fonts && echo "Fonts installed") || {
-#   echo "Error: fonts could not be installed" >&2
-#   exit 1;
-# }
+## Fonts ##
+while read -r font_url; do
+	# skip empty lines or comments
+	{ [ -z "$font_url" ] || case $font_url in \#*) true ;; *) false ;; esac; } && continue
+    tmpfile="$DOTS_DIR/fonts/$(basename "$font_url")"
+	get "$font_url" > "$tmpfile"
+
+    # source ex function
+    . "$DOTS_DIR/shell/functions.sh"
+	(
+		cd "$DOTS_DIR/fonts" || exit 1
+		ex "$DOTS_DIR/fonts/$(basename "$font_url")"
+	)
+	rm -f "$tmpfile"
+done < "$DOTS_DIR/fonts/.fonts.conf"
+if [ "$UNAME" = "Darwin" ]; then
+	# "$HOME/Library/Fonts" already exist 
+	# can't be deleted without sudo
+	# and doesn't support lns...
+	cp -r "$DOTS_DIR"/fonts/* "$HOME/Library/Fonts/"
+else
+	ln -fs "$DOTS_DIR/fonts" "$HOME/.local/share/fonts"
+	fc-cache -fv
+fi
 
 ## Shells ##
 echo "-- Installing bash environment --"
