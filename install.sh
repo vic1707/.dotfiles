@@ -1,8 +1,24 @@
 #!/bin/sh
 
-################################
-##      check current dir     ##
-################################
+# Check for root privileges
+if [ "$(id -u)" -eq 0 ]; then
+	echo "This script must NOT be run as root." >&2
+	exit 1
+fi
+
+get() {
+	url="$1"
+	if hash curl; then
+		curl $QUIET -fsSL "$url"
+	elif hash wget; then
+		wget $QUIET -O- "$url"
+	else
+		echo "Error: need curl or wget to download $url" >&2
+		exit 1
+	fi
+}
+
+# check current dir
 DOTS_DIR="$(cd "$(dirname "$0")" && pwd)"
 export DOTS_DIR
 # if DOTS_DIR is not `$HOME/.dotfiles`, warn and exit
@@ -12,40 +28,21 @@ if [ "$DOTS_DIR" != "$HOME/.dotfiles" ]; then
 fi
 
 ################################
-## sourcing install functions ##
-################################
-# shellcheck source=scripts/__index.sh
-. "$DOTS_DIR/scripts/__index.sh"
-
-################################
 ##           GLOBALS          ##
 ################################
-## Uname ##
+BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
 UNAME="$(uname -s)"
-export UNAME
-## SHELLS_TO_INSTALL ##
-SHELLS_TO_INSTALL=''
-export SHELLS_TO_INSTALL
-## SUDO PREFIX ##
-SUDO_PREFIX="$(if [ "$(id -u)" -eq 0 ]; then echo ""; else echo "sudo"; fi)"
-export SUDO_PREFIX
-## QUIET ##
 QUIET=''
-export QUIET
 
 ################################
 ##  ARGUMENT PARSING OPTIONS  ##
 ################################
 show_help() {
-	# Please keep this in sync with the README
-	JOINED_AVAILABLE_SHELLS="$(printf "%s" "$AVAILABLE_SHELLS" | tr ' ' '|')"
 	echo "Usage: $0 [options]"
 	echo "Options:"
-	echo "  -h, --help        Show this help message"
-	echo "  -q, --quiet       Quiet mode"
-	echo "  -s, --shell       Install a shell ($JOINED_AVAILABLE_SHELLS)"
-	echo "  --all-shells      Install all shells ($JOINED_AVAILABLE_SHELLS)"
-	echo "  --                End of options"
+	echo "  -h, --help		Show this help message"
+	echo "  -q, --quiet		Quiet mode"
+	echo "  --				End of options"
 }
 
 while :; do
@@ -76,83 +73,87 @@ done
 ################################
 ## Homebrew (if MacOS) ##
 if [ "$UNAME" = "Darwin" ]; then
-	# echo "Ensure XCODE license is accepted"
-	# echo "Trying to accept the license $(date)";
-	# while ! sudo xcodebuild -license accept 2>/dev/null; do
-	#   sleep 2
-	# done;
-	# echo "License finally accepted $(date)";
-
-	(install_brew && echo "Homebrew installed") || {
-		echo "Error: Homebrew could not be installed" >&2
+	if ! sudo -n true 2> /dev/null; then
+		echo "Error: Brew requires 'sudo' capabilities." >&2
 		exit 1
-	}
-	# make requirements' bins available
-	PATH="$PATH:/opt/homebrew/bin"
-	export PATH
+	fi
+
+	HOMEBREW_PATH="$HOME/.homebrew"
+	git clone https://github.com/Homebrew/brew "$HOMEBREW_PATH"
+	mkdir -p ~/usr/local 
+	export HOMEBREW_PREFIX="$HOME/usr/local"
+	export PATH="$PATH:$HOMEBREW_PATH/bin:$HOMEBREW_PREFIX/bin"
+	## TODO: check for sudo
+	sudo ln -fs  "$HOME/.homebrew" /opt/homebrew
+	brew bundle $QUIET
 fi
 
-################################
-##       PACKAGE MANAGER      ##
-################################
-## Find package manager ##
-PM="$(find_package_manager)"
-export PM
+## Mise
+get https://mise.run | sh
+eval "$("$HOME/.local/bin/mise" activate bash)"
 
-## Update package manager ##
-(PM_commands "$PM" update && echo "Package manager updated") || {
-	echo "Error: package manager could not be updated" >&2
-	exit 1
-}
-## Upgrade package manager ##
-(PM_commands "$PM" upgrade && echo "Package manager upgraded") || {
-	echo "Error: package manager could not be upgraded" >&2
-	exit 1
-}
-## Requirements ##
-(PM_commands "$PM" install-reqs && echo "Requirements installed") || {
-	echo "Error: requirements could not be installed" >&2
-	exit 1
-}
-## Install SHELLS ##
-(PM_commands "$PM" install "$AVAILABLE_SHELLS" && echo "Shells installed") || {
-	echo "Error: shells could not be installed" >&2
-	exit 1
-}
-## additionnal packages ##
-(PM_commands "$PM" install-additionnal && echo "Additionnal packages ($PM) installed") || {
-	echo "Error: additionnal packages ($PM) could not be installed" >&2
-	exit 1
-}
 ################################
 ##           INSTALL          ##
 ################################
 ## Config files ##
-(install_config_files && echo "Config files installed") || {
-	echo "Error: $HOME/.config already exists and is not empty" >&2
-	exit 1
-}
-## Fonts ## ## TODO: c'est pété
-# (install_fonts && echo "Fonts installed") || {
-#   echo "Error: fonts could not be installed" >&2
-#   exit 1;
-# }
-## Shell ##
-(install_shells "$AVAILABLE_SHELLS" && echo "Shell(s) installed") || {
-	echo "Error: shell(s) could not be installed" >&2
-	exit 1
-}
-## Softwares ##
-(install_rust && echo "Rust installed") || {
-	echo "Failed to install rust" >&2
-}
-(install_xmake && echo "xmake installed") || {
-	echo "Failed to install xmake" >&2
-}
-(install_cargo_pkgs && echo "Cargo packages installed") || {
-	echo "Failed to install cargo packages" >&2
-	echo "Is cargo installed?" >&2
-}
+echo "-- Installing config files --"
+## `.config` directory
+mkdir -p "$HOME/.config"
+## .config dir
+ln -fs "$DOTS_DIR/.config"/* "$HOME/.config"
+## Git config files
+ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
+ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
+## Brew config files
+ln -fs "$DOTS_DIR/Brewfile" "$HOME/Brewfile"
 
-# TODO: make cleaner
-~/.cargo/bin/mise install -y
+## Fonts ##
+while read -r font_url; do
+	# skip empty lines or comments
+	{ [ -z "$font_url" ] || case $font_url in \#*) true ;; *) false ;; esac; } && continue
+    tmpfile="$DOTS_DIR/fonts/$(basename "$font_url")"
+	get "$font_url" > "$tmpfile"
+
+    # source ex function
+    . "$DOTS_DIR/shell/functions.sh"
+	(
+		cd "$DOTS_DIR/fonts" || exit 1
+		ex "$DOTS_DIR/fonts/$(basename "$font_url")"
+	)
+	rm -f "$tmpfile"
+done < "$DOTS_DIR/fonts/.fonts.conf"
+if [ "$UNAME" = "Darwin" ]; then
+	# "$HOME/Library/Fonts" already exist 
+	# can't be deleted without sudo
+	# and doesn't support lns...
+	cp -r "$DOTS_DIR"/fonts/* "$HOME/Library/Fonts/"
+else
+	ln -fs "$DOTS_DIR/fonts" "$HOME/.local/share/fonts"
+	fc-cache -fv
+fi
+
+## Shells ##
+echo "-- Installing bash environment --"
+ln -fs "$DOTS_DIR/shell/.bashrc" "$HOME/.bashrc"
+ln -fs "$DOTS_DIR/shell/.bash_profile" "$HOME/.bash_profile"
+
+echo "-- Installing zsh environment --"
+ln -fs "$DOTS_DIR/shell/.zshrc" "$HOME/.zshrc"
+ln -fs "$DOTS_DIR/shell/.zshenv" "$HOME/.zshenv"
+
+# plugins
+ZSH_PLUGINS="
+zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions
+zsh-users/zsh-autosuggestions
+"
+for plugin in $ZSH_PLUGINS; do
+	if [ ! -d "$BASE_ZSH_PLUGINS_DIR/$plugin" ]; then
+		git clone $QUIET "https://github.com/$plugin" "$BASE_ZSH_PLUGINS_DIR/${plugin#*/}"
+	fi
+done
+
+## Install tools
+mise trust "$DOTS_DIR/.config/mise/config.toml"
+mise install -y
+
