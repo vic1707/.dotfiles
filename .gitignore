@@ -5,4 +5,5 @@
 
 # Misc
 shell/.zsh-plugins/*
-fonts/*/
+fonts/*
+!fonts/.fonts.conf

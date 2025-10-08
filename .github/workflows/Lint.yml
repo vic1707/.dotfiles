@@ -14,8 +14,12 @@ jobs:
       - uses: mfinelli/setup-shfmt@v3
 
       - name: Run shfmt
-        run: shfmt -f -d -i 4 -s -ci -bn -sr .
-      
+        # fix command `shfmt -w -i 4 -s -bn -ci -sr -kp .`
+        run: |
+          SUPPORTED_SHELLS="sh|bash"
+          rg --ignore --hidden -l "^#!(.*/|.*env +)($SUPPORTED_SHELLS)" . \
+              | xargs -r -t shfmt -d -i 4 -s -bn -ci -sr -kp
+
       - name: Run stylua
         if: always()
         uses: JohnnyMorganz/stylua-action@v4

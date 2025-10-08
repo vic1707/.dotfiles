@@ -31,7 +31,6 @@ fi
 ##           GLOBALS          ##
 ################################
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
-UNAME="$(uname -s)"
 QUIET=''
 
 ################################
@@ -72,7 +71,7 @@ done
 ##        REQUIREMENTS        ##
 ################################
 ## Homebrew (if MacOS) ##
-if [ "$UNAME" = "Darwin" ]; then
+if [ "$(uname -s)" = "Darwin" ]; then
 	if ! sudo -n true 2> /dev/null; then
 		echo "Error: Brew requires 'sudo' capabilities." >&2
 		exit 1
@@ -80,11 +79,11 @@ if [ "$UNAME" = "Darwin" ]; then
 
 	HOMEBREW_PATH="$HOME/.homebrew"
 	git clone https://github.com/Homebrew/brew "$HOMEBREW_PATH"
-	mkdir -p ~/usr/local 
+	mkdir -p ~/usr/local
 	export HOMEBREW_PREFIX="$HOME/usr/local"
 	export PATH="$PATH:$HOMEBREW_PATH/bin:$HOMEBREW_PREFIX/bin"
 	## TODO: check for sudo
-	sudo ln -fs  "$HOME/.homebrew" /opt/homebrew
+	sudo ln -fs "$HOME/.homebrew" /opt/homebrew
 	brew bundle $QUIET
 fi
 
@@ -110,20 +109,25 @@ ln -fs "$DOTS_DIR/Brewfile" "$HOME/Brewfile"
 ## Fonts ##
 while read -r font_url; do
 	# skip empty lines or comments
-	{ [ -z "$font_url" ] || case $font_url in \#*) true ;; *) false ;; esac; } && continue
-    tmpfile="$DOTS_DIR/fonts/$(basename "$font_url")"
+	{ [ -z "$font_url" ] || case $font_url in \#*) true ;; *) false ;; esac } && continue
+	file_name=$(basename "$font_url")
+	tmpfile="$DOTS_DIR/fonts/$file_name"
 	get "$font_url" > "$tmpfile"
 
-    # source ex function
-    . "$DOTS_DIR/shell/functions.sh"
-	(
-		cd "$DOTS_DIR/fonts" || exit 1
-		ex "$DOTS_DIR/fonts/$(basename "$font_url")"
-	)
-	rm -f "$tmpfile"
+	# source ex function
+	. "$DOTS_DIR/shell/functions.sh"
+	case "$file_name" in
+		*.zip | *.rar | *.tar | *.gz)
+			(
+				cd "$DOTS_DIR/fonts" || exit 1
+				ex "$DOTS_DIR/fonts/$file_name"
+				rm -f "$tmpfile"
+			)
+			;;
+	esac
 done < "$DOTS_DIR/fonts/.fonts.conf"
-if [ "$UNAME" = "Darwin" ]; then
-	# "$HOME/Library/Fonts" already exist 
+if [ "$(uname -s)" = "Darwin" ]; then
+	# "$HOME/Library/Fonts" already exist
 	# can't be deleted without sudo
 	# and doesn't support lns...
 	cp -r "$DOTS_DIR"/fonts/* "$HOME/Library/Fonts/"
@@ -156,4 +160,3 @@ done
 ## Install tools
 mise trust "$DOTS_DIR/.config/mise/config.toml"
 mise install -y
-

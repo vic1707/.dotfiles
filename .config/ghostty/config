@@ -1,4 +1,5 @@
-font-family = "SeriousShanns Nerd Font Mono"
+# font-family = "SeriousShanns Nerd Font Mono"
+font-family = "ComicShanns Nerd Font"
 font-size = 20
 
 theme = "Catppuccin Mocha"
