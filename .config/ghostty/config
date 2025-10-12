@@ -3,3 +3,7 @@ font-family = "ComicShanns Nerd Font"
 font-size = 20
 
 theme = "Catppuccin Mocha"
+
+# fixes ssh keyboard shortcuts
+shell-integration-features = ssh-terminfo
+# shell-integration-features = ssh-env
