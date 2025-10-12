@@ -7,7 +7,7 @@
 ##################################
 ##     Enable some softwares    ##
 ##################################
-HOMEBREW_PATH="$HOME/.homebrew"
+HOMEBREW_PATH="/opt/homebrew" # technically "$HOME/.homebrew"
 test -f "$HOMEBREW_PATH/bin/brew" && eval "$("$HOMEBREW_PATH"/bin/brew shellenv)"
 
 MISE_PATH="$HOME/.local/bin/mise"
