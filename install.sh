@@ -32,6 +32,7 @@ fi
 ################################
 BASE_ZSH_PLUGINS_DIR="$DOTS_DIR/shell/.zsh-plugins"
 QUIET=''
+MISE_QUIET='false'
 
 ################################
 ##  ARGUMENT PARSING OPTIONS  ##
@@ -52,6 +53,7 @@ while :; do
 			;;
 		-q | --quiet)
 			QUIET='-q'
+			MISE_QUIET='true'
 			shift
 			;;
 		--)
@@ -88,6 +90,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
 fi
 
 ## Mise
+export MISE_QUIET
 get https://mise.run | sh
 eval "$("$HOME/.local/bin/mise" activate bash)"
 
