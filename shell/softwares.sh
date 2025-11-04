@@ -20,7 +20,12 @@ test -f "$CARGO_PATH/env" && . "$CARGO_PATH/env"
 ##################################
 ##   Enable shell completions   ##
 ##################################
-eval "$(carapace _carapace "$SHELL_NAME")"
-eval "$(starship completions "$SHELL_NAME")"
-eval "$(zoxide init "$SHELL_NAME")"
-# eval "$(rg --generate=complete-"$SHELL_NAME")" # ZSH bugged
+## Check `carapace --list | sort` before enabling others
+
+if [ "$SHELL_NAME" = "zsh" ]; then
+	rg --generate complete-zsh > "$ZSH_COMPLETIONS_DIR/_rg"
+elif [ "$SHELL_NAME" = "bash" ]; then
+	rg --generate complete-bash > "$BASH_COMPLETIONS_DIR/rg.bash"
+fi
+
+eval "$(carapace _carapace)"

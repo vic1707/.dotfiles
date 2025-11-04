@@ -11,4 +11,8 @@ _comp_options+=(globdots) # Include hidden files.
 export WORDCHARS="${WORDCHARS:s/\//}"
 export WORDCHARS="${WORDCHARS:s/-/}"
 
+export ZSH_COMPLETIONS_DIR="$HOME/.zsh-complete"
+mkdir -p "$ZSH_COMPLETIONS_DIR"
+fpath+=($ZSH_COMPLETIONS_DIR)
+
 . "$HOME/.dotfiles/shell/__index.sh"
