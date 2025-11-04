@@ -22,6 +22,9 @@ export SHELL_NAME
 # shellcheck source=shell/functions.sh
 . "$DOTS_DIR/shell/functions.sh"
 
+LS_COLORS="$(vivid generate molokai)"
+export LS_COLORS
+
 if [ "$SHELL_NAME" = "zsh" ]; then
 	# History
 	autoload -U up-line-or-beginning-search down-line-or-beginning-search
