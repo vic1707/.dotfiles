@@ -14,6 +14,9 @@ MISE_PATH="$HOME/.local/bin/mise"
 eval "$("$MISE_PATH" activate "$SHELL_NAME")"
 eval "$("$MISE_PATH" hook-env)"
 
+CARGO_PATH="$HOME/.cargo"
+test -f "$CARGO_PATH/env" && . "$CARGO_PATH/env"
+
 ##################################
 ##   Enable shell completions   ##
 ##################################

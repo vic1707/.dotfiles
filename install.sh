@@ -94,6 +94,9 @@ export MISE_QUIET
 get https://mise.run | sh
 eval "$("$HOME/.local/bin/mise" activate bash)"
 
+## Rustup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- $QUIET -y --profile default --no-modify-path
+
 ################################
 ##           INSTALL          ##
 ################################
