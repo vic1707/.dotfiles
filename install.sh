@@ -111,6 +111,9 @@ ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
 ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
 ## Brew config files
 ln -fs "$DOTS_DIR/Brewfile" "$HOME/Brewfile"
+## GPG
+mkdir -p "$HOME/.gnupg"
+ln -fs "$DOTS_DIR/gpg-agent.conf" "$HOME/.gnupg/gpg-agent.conf"
 
 ## Fonts ##
 while read -r font_url; do

@@ -1,0 +1,19 @@
+#!/usr/bin/env sh
+
+GPG_TTY="$(tty)"
+export GPG_TTY
+
+PINENTRY_TUI=pinentry
+PINENTRY_GUI=pinentry # TODO: check linux
+
+if [ "$(uname)" = "Darwin" ]; then
+	# brew install jorgelbg/tap/pinentry-touchid pinentry-mac
+	hash pinentry-mac && PINENTRY_GUI="$(which pinentry-mac)"
+	# hash pinentry-touchid && PINENTRY_GUI="$(which pinentry-touchid)"
+fi
+
+if tty -s; then
+	eval "$PINENTRY_TUI $*"
+else
+	eval "$PINENTRY_GUI $*"
+fi
