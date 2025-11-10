@@ -79,13 +79,13 @@ if [ "$(uname -s)" = "Darwin" ]; then
 		exit 1
 	fi
 
-	HOMEBREW_PATH="$HOME/.homebrew"
+	export HOMEBREW_PATH="$HOME/.homebrew"
 	git clone https://github.com/Homebrew/brew "$HOMEBREW_PATH"
 	mkdir -p ~/usr/local
 	export HOMEBREW_PREFIX="$HOME/usr/local"
 	export PATH="$PATH:$HOMEBREW_PATH/bin:$HOMEBREW_PREFIX/bin"
 	## TODO: check for sudo
-	sudo ln -fs "$HOME/.homebrew" /opt/homebrew
+	sudo ln -fs "$HOMEBREW_PATH" /opt/homebrew
 	brew bundle $QUIET
 fi
 
