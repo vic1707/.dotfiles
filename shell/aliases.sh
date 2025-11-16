@@ -24,3 +24,5 @@ if nvim --version > /dev/null 2>&1; then
 	alias vi='nvim'
 	alias vim='nvim'
 fi
+
+which z > /dev/null && alias cd='z'
