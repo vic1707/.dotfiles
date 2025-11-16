@@ -1,0 +1,117 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ----------------------------
+# Default flags
+# ----------------------------
+COMMAND=""
+DEFAULT_CHECK_FLAGS=("--current" "--global")
+CHECK_FLAGS=()
+AUTO_UPGRADE=false
+
+# ----------------------------
+# Argument parsing
+# ----------------------------
+if [ $# -lt 1 ]; then
+	echo "Usage: $0 {check|upgrade} [options]"
+	exit 1
+fi
+
+COMMAND="$1"
+shift
+
+while [[ $# -gt 0 ]]; do
+	case "$1" in
+		-c) CHECK_FLAGS+=("--current") ;;
+		-g) CHECK_FLAGS+=("--global") ;;
+		-y) AUTO_UPGRADE=true ;;
+		*) echo "Unknown flag: $1"; exit 1 ;;
+	esac
+	shift
+done
+
+(( ${#CHECK_FLAGS[@]} )) || CHECK_FLAGS=("${DEFAULT_CHECK_FLAGS[@]}")
+
+# ----------------------------
+# Helper function: get tools from mise
+# ----------------------------
+get_tools() {
+	mise cache clean
+	# Output: TOOL<TAB>VERSION<TAB>SOURCE_PATH
+	mise ls --json "${CHECK_FLAGS[@]}" | jq -r '
+		to_entries[] | .key as $tool | .value[] 
+		| select(.source != null)
+		| [$tool, .version, .source.path]
+		| @tsv
+	'
+}
+
+format_tool() {
+	local tool=$1 current_version=$2 latest_version=$3 src_file=$4
+	printf "%-18s: %s → %s (%s)\n" "$tool" "$current_version" "$latest_version" "$src_file"
+}
+
+format_up_to_date_tool() {
+	local tool=$1 src_file=$2
+	printf "%-18s: up-to-date (%s)\n" "$tool" "$src_file"
+}
+
+format_err_tool() {
+	local tool=$1 src_file=$2
+	printf "%-18s: error checking latest version (%s)\n" "$tool" "$src_file"
+}
+
+# ----------------------------
+# Check command
+# ----------------------------
+check_tools() {
+	get_tools | while IFS=$'\t' read -r TOOL VERSION SOURCE; do
+		[ -z "$SOURCE" ] && continue
+		LATEST=$(mise latest "$TOOL" 2>/dev/null || echo "err")
+		if [[ "$LATEST" == "err" ]]; then
+			format_err_tool "$TOOL" "$SOURCE"
+		elif [[ "$VERSION" == "$LATEST" ]]; then
+			format_up_to_date_tool "$TOOL" "$SOURCE"
+		else
+			format_tool "$TOOL" "$VERSION" "$LATEST" "$SOURCE"
+		fi
+	done
+}
+
+# ----------------------------
+# Upgrade command
+# ----------------------------
+upgrade_tools() {
+	while read -r LINE; do
+		echo "$LINE"
+		[[ "$LINE" != *"→"* ]] && continue
+
+		TOOL=$(echo "$LINE" | awk -F'[: ]+' '{print $1}')
+		LATEST=$(echo "$LINE" | awk -F'[: ]+→ +' '{print $2}' | awk '{print $1}')
+		SOURCE=$(echo "$LINE" | grep -o '(/\S*)' | tr -d '()')
+
+		if ! $AUTO_UPGRADE; then
+			read -rp "Continue? (Y/N): " confirm < /dev/tty
+			[[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || { echo "Skipping..."; continue; }
+		fi
+
+		mise use --pin -p "$SOURCE" "$TOOL@$LATEST"
+	done < <(check_tools)
+}
+
+# ----------------------------
+# Main CLI
+# ----------------------------
+case "$COMMAND" in
+	check)
+		check_tools
+		;;
+	upgrade)
+		upgrade_tools
+		;;
+	*)
+		echo "Unknown command: $COMMAND"
+		echo "Usage: $0 {check|upgrade} [options]"
+		exit 1
+		;;
+esac
