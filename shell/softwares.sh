@@ -17,6 +17,8 @@ eval "$("$MISE_PATH" hook-env)"
 CARGO_PATH="$HOME/.cargo"
 test -f "$CARGO_PATH/env" && . "$CARGO_PATH/env"
 
+eval "$(zoxide init "$SHELL_NAME")"
+
 ##################################
 ##   Enable shell completions   ##
 ##################################
