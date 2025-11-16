@@ -5,7 +5,7 @@ set -euo pipefail
 # Default flags
 # ----------------------------
 COMMAND=""
-DEFAULT_CHECK_FLAGS=("--current" "--global")
+DEFAULT_CHECK_FLAGS=("--current")
 CHECK_FLAGS=()
 AUTO_UPGRADE=false
 
@@ -22,7 +22,7 @@ shift
 
 while [[ $# -gt 0 ]]; do
 	case "$1" in
-		-c) CHECK_FLAGS+=("--current") ;;
+		-l) CHECK_FLAGS+=("--local") ;;
 		-g) CHECK_FLAGS+=("--global") ;;
 		-y) AUTO_UPGRADE=true ;;
 		*) echo "Unknown flag: $1"; exit 1 ;;
