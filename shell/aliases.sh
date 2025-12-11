@@ -25,6 +25,6 @@ if nvim --version > /dev/null 2>&1; then
 	alias vim='nvim'
 fi
 
-which z > /dev/null && alias cd='z'
+hash zoxide > /dev/null && alias cd='z'
 
 alias mise-updates="$DOTS_DIR/shell/scripts/mise-updates"
