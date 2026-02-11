@@ -159,6 +159,7 @@ ZSH_PLUGINS="
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-completions
 zsh-users/zsh-autosuggestions
+olets/zsh-transient-prompt
 "
 for plugin in $ZSH_PLUGINS; do
 	if [ ! -d "$BASE_ZSH_PLUGINS_DIR/$plugin" ]; then

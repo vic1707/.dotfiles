@@ -25,6 +25,8 @@ export SHELL_NAME
 LS_COLORS="$(vivid generate molokai)"
 export LS_COLORS
 
+eval "$(starship init "$SHELL_NAME")"
+
 if [ "$SHELL_NAME" = "zsh" ]; then
 	# History
 	autoload -U up-line-or-beginning-search down-line-or-beginning-search
@@ -37,8 +39,11 @@ if [ "$SHELL_NAME" = "zsh" ]; then
 
 	for plugin in "$BASE_ZSH_PLUGINS_DIR"/*; do
 		# shellcheck disable=SC1090
-		test -d "$plugin" && \. "$plugin/${plugin##*/}.plugin.zsh"
+		test -f "$plugin/${plugin##*/}.plugin.zsh" && \. "$plugin/${plugin##*/}.plugin.zsh"
+		# shellcheck disable=SC1090
+		test -f "$plugin/${plugin##*/zsh-}.plugin.zsh" && \. "$plugin/${plugin##*/zsh-}.plugin.zsh"
 	done
-fi
 
-eval "$(starship init "$SHELL_NAME")"
+	TRANSIENT_PROMPT_TRANSIENT_PROMPT="$(starship module character)"
+	export TRANSIENT_PROMPT_TRANSIENT_PROMPT
+fi
