@@ -12,8 +12,9 @@ starship = "1.24.2"
 vivid = "0.10.1"
 zoxide = "0.9.9"
 
-[alias]
+[tool_alias]
 carapace-bin = "asdf:vic1707/asdf-carapace-bin"
+vivid = "asdf:vic1707/asdf-any-cargo-quickinstall" # default one gets x86_64 on mac m
 
 [settings]
 idiomatic_version_file_enable_tools = []
