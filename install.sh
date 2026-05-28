@@ -96,6 +96,10 @@ eval "$("$HOME/.local/bin/mise" activate bash)"
 
 ## Rustup
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- $QUIET -y --profile default --no-modify-path
+CARGO_PATH="$HOME/.cargo"
+test -f "$CARGO_PATH/env" && . "$CARGO_PATH/env"
+
+cargo install cargo-expand
 
 ################################
 ##           INSTALL          ##

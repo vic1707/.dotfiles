@@ -26,7 +26,8 @@ ex() {
 #   - mise tools
 #   - zsh plugins
 ____update_env() {
-	mise-updates check -g
+	mise self-update -y
+	mise-updates upgrade -g
 
 	## Zsh plugins ##
 	for plugin in "$BASE_ZSH_PLUGINS_DIR/"*; do
