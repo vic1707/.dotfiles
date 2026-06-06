@@ -7,12 +7,12 @@
 ##################################
 ##     Enable some softwares    ##
 ##################################
-HOMEBREW_PATH="/opt/homebrew" # technically "$HOME/.homebrew"
-test -f "$HOMEBREW_PATH/bin/brew" && eval "$("$HOMEBREW_PATH"/bin/brew shellenv)"
-
 MISE_PATH="$HOME/.local/bin/mise"
 eval "$("$MISE_PATH" activate "$SHELL_NAME")"
 eval "$("$MISE_PATH" hook-env)"
+
+HOMEBREW_PATH="/opt/homebrew" # technically "$HOME/.homebrew"
+test -f "$HOMEBREW_PATH/bin/brew" && eval "$("$HOMEBREW_PATH"/bin/brew shellenv)"
 
 CARGO_PATH="$HOME/.cargo"
 test -f "$CARGO_PATH/env" && . "$CARGO_PATH/env"
