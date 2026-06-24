@@ -11,7 +11,6 @@ neovim = "0.12.2"
 ripgrep = "15.1.0"
 starship = "1.25.1"
 vivid = "0.10.1"
-zoxide = "0.9.9"
 
 [tool_alias]
 carapace-bin = "asdf:vic1707/asdf-carapace-bin"

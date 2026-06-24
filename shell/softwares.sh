@@ -17,8 +17,6 @@ test -f "$HOMEBREW_PATH/bin/brew" && eval "$("$HOMEBREW_PATH"/bin/brew shellenv)
 CARGO_PATH="$HOME/.cargo"
 test -f "$CARGO_PATH/env" && . "$CARGO_PATH/env"
 
-eval "$(zoxide init "$SHELL_NAME")"
-
 ##################################
 ##   Enable shell completions   ##
 ##################################
