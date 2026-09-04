@@ -95,7 +95,7 @@ upgrade_tools() {
 			[[ $confirm == [yY] || $confirm == [yY][eE][sS] ]] || { echo "Skipping..."; continue; }
 		fi
 
-		mise use --pin -p "$SOURCE" "$TOOL@$LATEST"
+		mise use --pin -p "$SOURCE" "$TOOL@$LATEST" || echo "FAILED: $TOOL@$LATEST" >&2
 	done < <(check_tools)
 }
 
