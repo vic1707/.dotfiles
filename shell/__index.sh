@@ -29,10 +29,11 @@ eval "$(starship init "$SHELL_NAME")"
 
 if [ "$SHELL_NAME" = "zsh" ]; then
 	# History
+	HISTFILE="${ZDOTDIR:-$HOME}/.zsh_history"
 	autoload -U up-line-or-beginning-search down-line-or-beginning-search
 	zle -N up-line-or-beginning-search
 	zle -N down-line-or-beginning-search
-	setopt appendhistory
+	setopt appendhistory extendedhistory incappendhistorytime
 
 	# shellcheck source=shell/keybindings.zsh
 	. "$DOTS_DIR/shell/keybindings.zsh"
