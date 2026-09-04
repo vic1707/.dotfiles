@@ -12,6 +12,7 @@ brew "tree"
 ## Casks
 cask "discord"
 cask "ghostty"
+cask "hammerspoon"
 cask "rar"
 cask "slack"
 cask "visual-studio-code"

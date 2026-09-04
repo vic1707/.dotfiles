@@ -110,6 +110,7 @@ echo "-- Installing config files --"
 mkdir -p "$HOME/.config"
 ## .config dir
 ln -fs "$DOTS_DIR/.config"/* "$HOME/.config"
+ln -fs "$DOTS_DIR/.config"/.hammerspoon "$HOME/.hammerspoon" # special case
 ## Git config files
 ln -fs "$DOTS_DIR/.gitconfig" "$HOME/.gitconfig"
 ln -fs "$DOTS_DIR/.gitattributes" "$HOME/.gitattributes"
